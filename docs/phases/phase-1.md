@@ -123,7 +123,11 @@ as a forward-only migration in its phase.
   the Phase 0 smoke test.
 - `npm run db:backup-drill`: counts and policy/trigger totals match after
   wipe and restore; `wows_app` can still read.
-- CI: see the run linked from the final commit of this phase.
+- CI green on `main`: <https://github.com/bhavyabengani/wows/actions/runs/34212391051>
+  (typecheck, lint, format, types check, unit, Supabase start, migrate + seed,
+  DB tests, login E2E, restore drill).
+- Vercel still serves after the push (public pages work without a Supabase
+  project; `/login` explains sign-in is not set up).
 
 ## Deferred
 
