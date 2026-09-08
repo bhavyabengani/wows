@@ -9,5 +9,7 @@ test("placeholder page loads and shows the educational disclaimer", async ({
   await expect(
     page.getByRole("heading", { level: 1, name: "Wolves of Wall Street" }),
   ).toBeVisible();
-  await expect(page.locator("footer")).toContainText(EDUCATIONAL_DISCLAIMER);
+  await expect(page.getByRole("contentinfo")).toContainText(
+    EDUCATIONAL_DISCLAIMER,
+  );
 });

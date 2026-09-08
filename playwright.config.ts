@@ -1,4 +1,8 @@
 import { defineConfig, devices } from "@playwright/test";
+import { loadLocalEnv } from "./scripts/lib/load-env";
+
+// The dev server and the tests need the local Supabase variables.
+loadLocalEnv();
 
 const PORT = 3000;
 const BASE_URL = `http://localhost:${PORT}`;

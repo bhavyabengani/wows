@@ -96,3 +96,21 @@ describe("H37: Python tooling stays out of the Next.js app", () => {
     expect(bridges).toEqual([]);
   });
 });
+
+describe("H2: the RLS-bypassing system paths never reach request code", () => {
+  it("src/app imports neither @/db/system nor @/lib/supabase/admin", () => {
+    const offenders: string[] = [];
+    for (const file of walk(join(ROOT, "src", "app"))) {
+      if (!/\.(ts|tsx)$/.test(file)) continue;
+      const source = readFileSync(file, "utf8");
+      if (
+        /@\/db\/system|@\/lib\/supabase\/admin|\/db\/system"|supabase\/admin"/.test(
+          source,
+        )
+      ) {
+        offenders.push(relative(ROOT, file));
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+});
