@@ -1,0 +1,30 @@
+name: Database backup
+
+# Daily pg_dump of production to a private Supabase Storage bucket (H35).
+# Dormant until the repository variable BACKUPS_ENABLED is set to "true"
+# and the secrets below exist. See README > Backups.
+on:
+  schedule:
+    - cron: "30 21 * * *" # 03:00 IST daily
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    if: ${{ vars.BACKUPS_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Dump, upload, prune
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          BACKUP_BUCKET: db-backups
+          RETENTION_DAYS: "30"
+        run: scripts/backup.sh
