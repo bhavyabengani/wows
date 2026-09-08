@@ -5,6 +5,60 @@ of 12). Decisions A–D and open questions 1–8 were put to the user before any
 schema code was written; the answers are recorded under "Decisions" below and
 in `CLAUDE.md`.
 
+## Status note (8 September 2026, end of session)
+
+Phase 1 stopped at a safe point: every commit below passes typecheck, lint,
+format check, unit tests, database tests, the login end-to-end test and the
+restore drill, and CI is green on the last pushed commit.
+
+**Where the work lives.** Phase 1 was committed directly to `main` (nine
+grouped commits plus two follow-ups), the same way Phase 0 was; no
+`phase-1` branch existed when the work started. A `phase-1` branch now
+points at the same commits for reference. Resetting `main` back to Phase 0
+would need a force-push and is the user's call, not done here.
+
+### Done
+
+- Schema (28 tables), three migrations, roles, triggers, 66 RLS policies.
+- `withUser` connection model over the transaction pooler, verified by test.
+- Magic-link auth restricted to `@ashoka.edu.in`, proxy, `requireRole`,
+  dashboard stub with loading / empty / error states, core-only role grant
+  endpoint.
+- Seed (20 users, two seasons, all content states), production bootstrap
+  script, generated types.
+- Sentry scaffold and request-ID logger.
+- Backup workflow, restore script, restore drill (in CI).
+- Tests: 19 unit, 19 database, 4 end-to-end. CI green:
+  <https://github.com/bhavyabengani/wows/actions/runs/34212391051>.
+- Docs: `CLAUDE.md` (conventions, Tested-by lines), README, `.env.example`,
+  `docs/ENGINE_RULES.md`, `docs/DEPENDENCIES.md`.
+
+### Half-done (needs a human, not more code)
+
+- **Final doc commit not on GitHub.** The commit recording the CI link
+  (`8f04a34`) is committed locally but SSH to GitHub started timing out on
+  ports 22 and 443 at the end of the session while HTTPS still worked. Run
+  `git push origin main` from a terminal when the network allows.
+- **Production Supabase project does not exist.** Until it does, the Vercel
+  deployment serves public pages only and `/login` says sign-in is not set
+  up. To finish: create the project, set the Vercel variables listed in
+  README > Deploy, apply the magic-link template from
+  `supabase/templates/magic_link.html` in the dashboard, run
+  `DATABASE_URL=<prod> npm run db:migrate`, sign in once, run
+  `npm run db:bootstrap-core -- <email>`.
+- **Backups are dormant.** The workflow needs the three GitHub secrets, the
+  private `db-backups` bucket, and `BACKUPS_ENABLED=true` (README > Backups).
+- **Ownership** of GitHub, Vercel, Supabase and the domain is still
+  unrecorded in README.
+
+### Next
+
+- Design preview (out-of-sequence, throwaway) on a `design-preview` branch
+  from `main`: not started.
+- Phase 2 (market data ingestion): open questions at the end of this file.
+- Small follow-ups deferred to their phases: admin UI for promotions
+  (Phase 10), alumni second email, `SignedFigure` component (Phase 11).
+
 ## What was built
 
 - **Schema** (`src/db/schema.ts`, Drizzle): every entity in the brief's
