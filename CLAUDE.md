@@ -81,6 +81,13 @@ the engine, stop.
   separate Streamlit app (later). These are **never** merged into the Next.js
   app (H37).
 
+### `AGENTS.md` is generated
+
+`next dev` writes and re-adds `AGENTS.md` at the repo root. It only points at
+the Next.js 16 docs in `node_modules/next/dist/docs/`, which you should read
+before using an API you remember from an older Next.js. Do not edit it by
+hand; it is committed so the working tree stays clean.
+
 ### Site map
 
 ```
