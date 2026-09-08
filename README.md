@@ -118,7 +118,7 @@ Only needed if the project is lost or moved to a new account.
 
 ### Production URL
 
-Recorded here once the first deployment exists: _not yet deployed_.
+<https://wows-seven.vercel.app/> (Vercel project `wows`, connected to `main`).
 
 ## Ownership
 

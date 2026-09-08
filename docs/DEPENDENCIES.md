@@ -40,8 +40,8 @@ current phase's tasks? If neither, do not add it.
 
 ## Deliberately not installed yet
 
-- **Drizzle / Prisma** — ORM undecided (open question, Phase 0 summary).
+- **Drizzle** (`drizzle-orm`, `drizzle-kit`, a Postgres driver) — decided; added in Phase 1.
 - **Zod** — added with the first API boundary (Phase 1).
 - **TanStack Query** — added with the first client-side server state.
-- **Sentry** — phase pending decision (open question, Phase 0 summary).
+- **Sentry** (`@sentry/nextjs`) — added at the start of Phase 1.
 - **`@supabase/supabase-js`** — Phase 1.

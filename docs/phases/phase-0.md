@@ -84,29 +84,50 @@ init` puts both under `dependencies`; both are build-time only (a CLI and
 - ORM, Zod, TanStack Query, Supabase client, Sentry, structured logger: none
   installed. Each is either undecided or has no consumer yet (see
   `docs/DEPENDENCIES.md`, "Deliberately not installed yet").
-- Vercel deployment: **blocked on the user**. The repo is ready to import.
-  See "Open questions" below.
 
 ## Open questions — decisions needed before Phase 1
 
-Raised from the brief, not resolved here.
+Raised from the brief. **Answered by the user on 8 September 2026**; the
+answers are recorded inline and in `CLAUDE.md`.
 
 1. **ORM: Drizzle or Prisma?** And who owns the migration chain: the ORM or
    the Supabase CLI? Running both is a known source of drift; the brief
    requires exactly one forward-only chain.
+   - **Decision: Drizzle, and Drizzle owns migrations.** Drizzle is closer to
+     SQL, which matters because much of Phase 1 is raw Postgres (RLS
+     policies, append-only triggers, the season-transition trigger) that
+     Prisma's schema language cannot express. Drizzle's schema file also
+     yields inferred types, satisfying "types generated from the schema".
+     The Supabase CLI is used only to run a local instance in dev and CI,
+     never for migrations; nobody runs `supabase db push`.
 2. **Sentry and structured logging.** Scaffold the Sentry SDK and a
    request-ID logger now (DSN blank in `.env.example`), or defer to Phase 1?
    Phase 0 deferred; `.env.example` reserves the variable names.
+   - **Decision: Phase 1, at the start.** Phase 1 introduces the first real
+     write paths (auth, seed, dashboard load), where H34 first has teeth and
+     Sentry is how you find out when it is violated. DSN blank in
+     `.env.example`.
 3. **Design tokens in Phase 0.** Done here because Tailwind and shadcn are
    set up here. Confirm, or say if they should move.
+   - **Decision: confirmed.** Configuration, zero cost, and `shadcn init`
+     needed them.
 4. **Backups (H35) vs the free tier.** Supabase's free tier does not include
    scheduled backups (they start on the Pro plan, with point-in-time recovery
    as a further add-on). Either the club pays for Pro, or Phase 9 builds a
    cron-driven `pg_dump` to storage with a tested restore. This needs a
    decision and, if paid, a budget owner.
+   - **Decision: cron-driven `pg_dump` to a private Supabase Storage bucket,
+     built in Phase 1, not Phase 9.** The restore procedure must be tested
+     against a small seeded database now, not a semester of real results,
+     and the cron works regardless of tier so the budget question need not
+     block. If the club later pays for Pro, the cron becomes belt-and-braces.
+     Phase 1 ships a `db:restore` script and a documented monthly restore
+     drill in `README.md`.
 5. **Ownership.** Who owns the Vercel project, GitHub org, domain, and
    Supabase project after the founding cohort graduates? `README.md` records
    every answer as **unknown** today.
+   - **Not yet answered.** Vercel project now exists under the user's
+     account; long-term ownership still to be recorded.
 
 Added by this session:
 
@@ -114,10 +135,8 @@ Added by this session:
    2, 9 and 11 by implication. `CLAUDE.md` carries a provisional list of all
    twelve; confirm or correct it, and the "Tested by" phase numbers will be
    updated to match.
-7. **Vercel.** Create the Vercel project and import
-   `github.com/bhavyabengani/wows` (steps in `README.md`, "Setting Vercel up
-   from scratch"), or provide a Vercel token. Once it exists, the deployment
-   will be verified and the production URL recorded in `README.md`.
+7. **Vercel.** Done: the user created the project; deployment verified at
+   <https://wows-seven.vercel.app/> and recorded in `README.md`.
 
 ## Acceptance criteria
 
