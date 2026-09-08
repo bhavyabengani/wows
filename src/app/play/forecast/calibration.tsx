@@ -53,7 +53,8 @@ export function CalibrationView() {
             y2={y(100)}
             stroke="currentColor"
             strokeOpacity={0.25}
-            strokeDasharray="4 4"
+            strokeDasharray="1 3"
+            strokeLinecap="round"
           />
           {[0, 25, 50, 75, 100].map((t) => (
             <g

@@ -1,15 +1,24 @@
 "use client";
 
 import { Tabs } from "radix-ui";
-import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { cn } from "cn";
-import { When, td, tdNum, th, thNum, TableWrap } from "@/components/preview/ui";
+import {
+  Sparkline,
+  When,
+  buttonClass,
+  td,
+  tdNum,
+  th,
+  thNum,
+  TableWrap,
+} from "@/components/preview/ui";
 import {
   previewUser,
   trackInfo,
   leaderboards,
   memberById,
+  sampleSeries,
   type TrackKey,
 } from "@/preview-data";
 
@@ -23,17 +32,17 @@ export function LeaderboardTabs() {
       <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
         <Tabs.List
           aria-label="Leaderboard tracks"
-          className="flex min-w-max gap-1 border-b border-wows-rule"
+          className="flex min-w-max border-b border-wows-ink"
         >
           {trackInfo.map((t) => (
             <Tabs.Trigger
               key={t.key}
               value={t.key}
               className={cn(
-                "-mb-px border-b-2 px-3 py-2 text-sm whitespace-nowrap focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-wows-accent-soft",
-                "data-[state=active]:border-wows-accent data-[state=active]:font-medium data-[state=active]:text-wows-ink",
-                "data-[state=inactive]:border-transparent data-[state=inactive]:text-wows-muted data-[state=inactive]:hover:text-wows-ink",
-                t.key === "calibration" && "text-base",
+                "px-3.5 py-2.5 text-[15px] whitespace-nowrap focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-wows-accent-soft",
+                "data-[state=active]:bg-wows-accent data-[state=active]:font-semibold data-[state=active]:text-wows-paper",
+                "data-[state=inactive]:text-wows-muted data-[state=inactive]:hover:text-wows-ink",
+                t.key === "calibration" && "font-semibold",
               )}
             >
               {t.label}
@@ -44,11 +53,13 @@ export function LeaderboardTabs() {
 
       <Tabs.Content
         value={track}
-        className="mt-5 flex flex-col gap-5 focus:outline-none"
+        className="mt-6 flex flex-col gap-6 focus:outline-none"
       >
-        <div className="grid gap-4 md:grid-cols-[3fr_2fr]">
-          <p className="text-sm leading-relaxed text-wows-ink">{info.method}</p>
-          <dl className="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-1 text-xs text-wows-muted">
+        <div className="grid gap-5 md:grid-cols-[3fr_2fr]">
+          <p className="max-w-prose text-[15px] leading-relaxed text-wows-ink">
+            {info.method}
+          </p>
+          <dl className="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1 self-start text-[12.5px] text-wows-muted md:border-l md:border-wows-rule md:pl-5">
             <dt>Last updated</dt>
             <dd>
               <When iso={info.updatedAt} className="text-wows-ink" />
@@ -61,11 +72,11 @@ export function LeaderboardTabs() {
         </div>
 
         {info.weights ? (
-          <div className="rounded-md border border-wows-rule bg-wows-surface p-4">
-            <h3 className="text-sm font-medium text-wows-ink">
-              Weights for {"Monsoon 2026"}
-            </h3>
-            <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+          <div className="border-l-[3px] border-wows-accent pl-4">
+            <p className="text-[15px] font-medium text-wows-ink">
+              Weights, Monsoon 2026
+            </p>
+            <ul className="mt-1 flex flex-wrap gap-x-6 gap-y-1 text-[15px]">
               {info.weights.map((w) => (
                 <li key={w.track} className="flex items-baseline gap-2">
                   <span className="text-wows-muted">{w.label}</span>
@@ -73,21 +84,6 @@ export function LeaderboardTabs() {
                 </li>
               ))}
             </ul>
-            <div
-              className="mt-3 flex h-2 w-full overflow-hidden rounded-full"
-              aria-hidden="true"
-            >
-              {info.weights.map((w, i) => (
-                <div
-                  key={w.track}
-                  style={{ width: `${w.weight}%` }}
-                  className={cn(
-                    i % 2 === 0 ? "bg-wows-accent" : "bg-wows-accent-soft",
-                    i > 0 && "border-l border-wows-surface",
-                  )}
-                />
-              ))}
-            </div>
           </div>
         ) : null}
 
@@ -100,20 +96,21 @@ export function LeaderboardTabs() {
               <th scope="col" className={th}>
                 Member
               </th>
-              <th scope="col" className={cn(th, "hidden sm:table-cell")}>
+              <th scope="col" className={cn(th, "hidden md:table-cell")}>
                 Vertical
+              </th>
+              <th scope="col" className={cn(th, "hidden sm:table-cell")}>
+                <span className="sr-only">Trend</span>
               </th>
               <th scope="col" className={thNum}>
                 {info.valueLabel}
               </th>
-              <th scope="col" className={cn(thNum, "w-20")}>
-                Δ
-              </th>
               <th
                 scope="col"
-                className="w-8 border-b border-wows-rule"
-                aria-label="Expand"
-              />
+                className={cn(thNum, "hidden w-16 sm:table-cell")}
+              >
+                Δ wk
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -132,84 +129,83 @@ function Row({ row }: { row: (typeof leaderboards)[TrackKey][number] }) {
   const m = memberById(row.memberId);
   const you = m.name === previewUser.name;
   const contentId = `components-${row.memberId}-${row.rank}`;
-  const toggle = () => setOpen((o) => !o);
+  const series = sampleSeries(row.rank * 7 + row.memberId.length, 50, 12);
+  const delta =
+    row.delta === 0 ? (
+      <span className="text-wows-muted">— 0</span>
+    ) : row.delta > 0 ? (
+      <span className="text-wows-positive">▲ +{row.delta}</span>
+    ) : (
+      <span className="text-wows-accent">▼ {row.delta}</span>
+    );
   return (
     <>
-      <tr className={cn(you && "bg-wows-surface")}>
-        <td className={cn(tdNum, "pl-0 pr-3 text-left font-semibold")}>
+      <tr className={cn(you && "bg-wows-accent/6")}>
+        <td
+          className={cn(tdNum, "pl-0 pr-3 text-left text-[17px] font-medium")}
+        >
           {row.rank}
         </td>
         <td className={td}>
           <button
             type="button"
-            onClick={toggle}
+            onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
             aria-controls={contentId}
-            className="text-left text-wows-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft"
+            className="text-left text-[15px] text-wows-ink underline decoration-wows-rule underline-offset-4 hover:decoration-wows-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft"
           >
             {m.name}
             {you ? (
-              <span className="ml-2 text-xs text-wows-muted">(you)</span>
+              <span className="ml-2 text-[12.5px] text-wows-accent">you</span>
             ) : null}
           </button>
-          <span className="block text-xs text-wows-muted sm:hidden">
-            {m.vertical}
+          <span className="mt-0.5 flex items-center gap-3 text-[12.5px] text-wows-muted md:hidden">
+            <span>{m.vertical}</span>
+            <span className="numeric sm:hidden">{delta}</span>
           </span>
         </td>
-        <td className={cn(td, "hidden text-wows-muted sm:table-cell")}>
+        <td className={cn(td, "hidden text-wows-muted md:table-cell")}>
           {m.vertical}
         </td>
-        <td className={cn(tdNum, "font-medium")}>{row.value}</td>
-        <td className={tdNum}>
-          {row.delta === 0 ? (
-            <span className="text-wows-muted">—</span>
-          ) : row.delta > 0 ? (
-            <span className="text-wows-positive">▲ +{row.delta}</span>
-          ) : (
-            <span className="text-wows-accent">▼ {row.delta}</span>
-          )}
+        <td className={cn(td, "hidden sm:table-cell")}>
+          <Sparkline values={series} tone="muted" />
         </td>
-        <td className={cn(td, "pr-0")}>
-          <button
-            type="button"
-            onClick={toggle}
-            aria-expanded={open}
-            aria-controls={contentId}
-            aria-label={open ? "Hide components" : "Show components"}
-            className="grid size-7 place-items-center rounded-sm text-wows-muted hover:bg-wows-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft"
-          >
-            <ChevronRight
-              className={cn("size-4 transition-transform", open && "rotate-90")}
-              aria-hidden="true"
-            />
-          </button>
-        </td>
+        <td className={cn(tdNum, "text-[15px] font-medium")}>{row.value}</td>
+        <td className={cn(tdNum, "hidden sm:table-cell")}>{delta}</td>
       </tr>
       {open ? (
         <tr id={contentId}>
-          <td
-            colSpan={6}
-            className="border-b border-wows-rule bg-wows-paper px-3 py-3 sm:px-6"
-          >
-            <p className="text-xs text-wows-muted">How this rank is built</p>
-            <dl className="mt-1 grid gap-x-8 gap-y-1 text-sm sm:grid-cols-2">
-              {row.components.map((c) => (
-                <div
-                  key={c.label}
-                  className="flex items-baseline justify-between gap-4"
-                >
-                  <dt className="text-wows-muted">{c.label}</dt>
-                  <dd className="numeric text-right text-wows-ink">
-                    {c.value}
-                    {c.note ? (
-                      <span className="ml-1 text-xs text-wows-muted">
-                        ({c.note})
-                      </span>
-                    ) : null}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+          <td colSpan={6} className="border-b border-wows-rule p-0">
+            <div className="animate-drawer border-l-[3px] border-wows-accent bg-wows-paper px-4 py-4 sm:ml-10 sm:px-5">
+              <p className="text-[12.5px] text-wows-muted">
+                How this rank is built
+              </p>
+              <dl className="mt-1.5 grid gap-x-10 gap-y-1.5 text-[15px] sm:grid-cols-2">
+                {row.components.map((c) => (
+                  <div
+                    key={c.label}
+                    className="flex items-baseline justify-between gap-4 border-b border-wows-rule/60 pb-1"
+                  >
+                    <dt className="text-wows-muted">{c.label}</dt>
+                    <dd className="numeric text-right text-wows-ink">
+                      {c.value}
+                      {c.note ? (
+                        <span className="ml-1 font-sans text-[12.5px] text-wows-muted">
+                          ({c.note})
+                        </span>
+                      ) : null}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className={`${buttonClass.quiet} mt-3 -ml-1`}
+              >
+                Close
+              </button>
+            </div>
           </td>
         </tr>
       ) : null}

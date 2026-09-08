@@ -38,13 +38,22 @@ function QuestionCard({
 
   return (
     <li>
-      <Panel className={cn(locked && "bg-wows-paper")}>
+      <Panel
+        className={cn(
+          locked && "border-wows-accent bg-wows-accent text-wows-paper",
+        )}
+      >
         <div className="flex flex-wrap items-start justify-between gap-3">
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
-            className="text-left font-medium leading-snug text-wows-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft"
+            className={cn(
+              "text-left text-[17px] font-semibold leading-snug underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft",
+              locked
+                ? "text-wows-paper focus-visible:outline-wows-paper"
+                : "text-wows-ink",
+            )}
           >
             {q.prompt}
           </button>
@@ -147,15 +156,10 @@ function QuestionCard({
                     className="mt-1 w-full rounded-md border border-wows-rule bg-wows-surface px-3 py-2 text-sm text-wows-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft"
                   />
                 </div>
-                <div className="flex flex-wrap items-center gap-3">
+                <div>
                   <button type="submit" className={buttonClass.primary}>
-                    {submitted ? "Update forecast" : "Submit forecast"}
+                    Submit forecast
                   </button>
-                  {submitted ? (
-                    <p role="status" className="text-sm text-wows-positive">
-                      Saved. You can revise until the deadline.
-                    </p>
-                  ) : null}
                 </div>
               </form>
             )}

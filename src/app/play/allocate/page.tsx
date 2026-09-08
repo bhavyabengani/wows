@@ -15,7 +15,7 @@ export default function AllocatePage() {
         title="Allocation game"
         lede="One week of a historical replay at a time. Set the mix, read the news, advance. Your run is saved after every step."
         aside={
-          <Link href="/play/allocate/debrief" className={buttonClass.secondary}>
+          <Link href="/play/allocate/debrief" className={buttonClass.quiet}>
             See a finished run&apos;s debrief
           </Link>
         }

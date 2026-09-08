@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { cn } from "cn";
 import {
+  Callout,
   Chip,
   PageHeader,
   Section,
-  SignedFigure,
+  Sparkline,
+  StepStrip,
   When,
   buttonClass,
 } from "@/components/preview/ui";
@@ -12,12 +15,8 @@ import { dashboard, previewUser, season } from "@/preview-data";
 export const metadata = { title: "Dashboard" };
 
 type State = "ready" | "loading" | "empty" | "error";
-
-function parseState(value: string | undefined): State {
-  return value === "loading" || value === "empty" || value === "error"
-    ? value
-    : "ready";
-}
+const parseState = (v: string | undefined): State =>
+  v === "loading" || v === "empty" || v === "error" ? v : "ready";
 
 export default async function DashboardPage({
   searchParams,
@@ -25,7 +24,6 @@ export default async function DashboardPage({
   searchParams: Promise<{ state?: string }>;
 }) {
   const state = parseState((await searchParams).state);
-
   const switcher = (
     <nav aria-label="Preview state" className="flex flex-wrap gap-1 text-xs">
       {(["ready", "loading", "empty", "error"] as const).map((s) => (
@@ -35,8 +33,8 @@ export default async function DashboardPage({
           aria-current={state === s ? "page" : undefined}
           className={
             state === s
-              ? "rounded-sm bg-wows-ink px-2 py-1 text-wows-paper"
-              : "rounded-sm border border-wows-rule px-2 py-1 text-wows-muted hover:text-wows-ink"
+              ? "bg-wows-ink px-2 py-1 text-wows-paper"
+              : "border border-wows-rule px-2 py-1 text-wows-muted hover:text-wows-ink"
           }
         >
           {s}
@@ -44,62 +42,52 @@ export default async function DashboardPage({
       ))}
     </nav>
   );
+  const lede = (
+    <>
+      {season.name}, week {season.week} of {season.weeks}.{" "}
+      {previewUser.vertical}, {previewUser.cohort}.
+    </>
+  );
 
   if (state === "loading") {
     return (
-      <main
-        aria-busy="true"
-        aria-label="Loading dashboard"
-        className="flex flex-col gap-8"
-      >
-        <PageHeader
-          title={previewUser.name}
-          lede="Loading your standing…"
-          aside={switcher}
-        />
-        <div className="grid gap-6 md:grid-cols-[2fr_3fr]">
-          <div className="space-y-3">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="h-10 rounded-sm bg-wows-rule/70" />
-            ))}
-          </div>
-          <div className="space-y-3">
-            <div className="h-24 rounded-md bg-wows-rule/70" />
-            <div className="h-40 rounded-md bg-wows-rule/70" />
-          </div>
-        </div>
+      <main className="flex flex-col gap-8" aria-busy="true">
+        <PageHeader title={previewUser.name} lede={lede} aside={switcher} />
+        <p
+          role="status"
+          className="border-t border-wows-rule pt-4 text-[15px] text-wows-muted"
+        >
+          Loading standings…
+        </p>
       </main>
     );
   }
-
   if (state === "error") {
     return (
       <main className="flex flex-col gap-8">
-        <PageHeader title={previewUser.name} aside={switcher} />
-        <div
-          role="alert"
-          className="rounded-md border border-wows-accent/40 bg-wows-surface p-5"
-        >
-          <h2 className="font-semibold text-wows-ink">
-            Your standing could not be loaded
-          </h2>
-          <p className="mt-1 text-sm text-wows-muted">
-            The server did not answer in time. Nothing was changed. Reference{" "}
-            <span className="numeric">req_8f3a21</span>.
-          </p>
-          <div className="mt-4 flex gap-2">
-            <Link href="/dashboard" className={buttonClass.primary}>
-              Try again
-            </Link>
-            <Link href="/events" className={buttonClass.secondary}>
-              Go to events
-            </Link>
+        <PageHeader title={previewUser.name} lede={lede} aside={switcher} />
+        <Callout>
+          <div role="alert">
+            <h2 className="text-xl font-semibold tracking-tight text-wows-ink">
+              Your standing could not be loaded
+            </h2>
+            <p className="mt-1 text-[15px] text-wows-muted">
+              The server did not answer in time. Nothing was changed. Reference{" "}
+              <span className="numeric">req_8f3a21</span>.
+            </p>
+            <div className="mt-4 flex gap-2">
+              <Link href="/dashboard" className={buttonClass.primary}>
+                Try again
+              </Link>
+              <Link href="/events" className={buttonClass.quiet}>
+                Go to events instead
+              </Link>
+            </div>
           </div>
-        </div>
+        </Callout>
       </main>
     );
   }
-
   if (state === "empty") {
     return (
       <main className="flex flex-col gap-8">
@@ -108,14 +96,13 @@ export default async function DashboardPage({
           lede="No season is open right now."
           aside={switcher}
         />
-        <div className="rounded-md border border-wows-rule bg-wows-surface p-5">
-          <h2 className="font-semibold text-wows-ink">Between seasons</h2>
-          <p className="mt-1 max-w-xl text-sm text-wows-muted">
+        <Section title="Between seasons">
+          <p className="max-w-xl text-[15px] leading-relaxed text-wows-muted">
             The core team opens a season at the start of each semester. Until
             then you can read published research, work through Foundations, and
             look at last season&apos;s settled leaderboards.
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-3">
             <Link href="/learn" className={buttonClass.primary}>
               Continue Foundations
             </Link>
@@ -123,27 +110,47 @@ export default async function DashboardPage({
               Published research
             </Link>
           </div>
-        </div>
+        </Section>
       </main>
     );
   }
 
+  const overall = dashboard.standings.find((s) => s.track === "Overall")!;
+  const game = dashboard.activeGames[0]!;
   return (
-    <main className="flex flex-col gap-8">
-      <PageHeader
-        title={previewUser.name}
-        lede={
-          <>
-            {season.name}, week {season.week} of {season.weeks}.{" "}
-            {previewUser.vertical}, {previewUser.cohort}.
-          </>
-        }
-        aside={switcher}
-      />
+    <main className="flex flex-col gap-10">
+      <PageHeader title={previewUser.name} lede={lede} aside={switcher} />
 
-      <div className="grid gap-8 md:grid-cols-[2fr_3fr]">
+      <section className="grid gap-8 border-t border-wows-ink pt-5 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <p className="text-[15px] text-wows-muted">Overall this season</p>
+          <p className="numeric mt-1 text-[56px] leading-none font-medium tracking-tight text-wows-ink sm:text-[72px]">
+            {overall.rank}
+            <span className="text-[0.4em] font-normal text-wows-muted">
+              {" "}
+              of {overall.of}
+            </span>
+          </p>
+          <p className="mt-2 text-[15px]">
+            <span className="numeric text-wows-ink">{overall.value}</span>
+            <span className="text-wows-muted"> index · </span>
+            <span className="numeric text-wows-positive">
+              ▲ +{overall.delta} since Monday
+            </span>
+          </p>
+        </div>
+        <Sparkline
+          values={overall.series}
+          width={200}
+          height={56}
+          tone="accent"
+          className="justify-self-start md:justify-self-end"
+        />
+      </section>
+
+      <div className="grid gap-10 md:grid-cols-[3fr_2fr]">
         <Section
-          title="Your standing"
+          title="Standing by track"
           action={
             <Link href="/leaderboard" className={buttonClass.quiet}>
               All leaderboards
@@ -151,96 +158,90 @@ export default async function DashboardPage({
           }
         >
           <ul className="divide-y divide-wows-rule">
-            {dashboard.standings.map((s) => (
-              <li
-                key={s.track}
-                className="flex items-baseline justify-between gap-4 py-2.5"
-              >
-                <div>
-                  <p className="text-sm font-medium text-wows-ink">{s.track}</p>
-                  <p className="numeric text-xs text-wows-muted">{s.value}</p>
-                </div>
-                <div className="text-right">
-                  <p className="numeric text-sm text-wows-ink">
-                    <span className="font-semibold">{s.rank}</span>
-                    <span className="text-wows-muted"> / {s.of}</span>
-                  </p>
-                  <p className="numeric text-xs">
-                    {s.delta === 0 ? (
-                      <span className="text-wows-muted">— no change</span>
-                    ) : s.delta > 0 ? (
-                      <span className="text-wows-positive">
-                        ▲ +{s.delta} since Monday
+            {dashboard.standings
+              .filter((s) => s.track !== "Overall")
+              .map((s) => (
+                <li
+                  key={s.track}
+                  className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-x-4 py-3"
+                >
+                  <div className="min-w-0">
+                    <p className="text-[15px] font-medium text-wows-ink">
+                      {s.track}
+                    </p>
+                    <p className="text-[12.5px] text-wows-muted">
+                      <span className="numeric text-wows-ink">{s.value}</span>{" "}
+                      {s.unit}
+                    </p>
+                  </div>
+                  <Sparkline values={s.series} />
+                  <div className="w-[7.5rem] text-right">
+                    <p className="numeric text-[22px] leading-none text-wows-ink">
+                      {s.rank}
+                      <span className="text-[0.55em] text-wows-muted">
+                        {" "}
+                        / {s.of}
                       </span>
-                    ) : (
-                      <span className="text-wows-accent">
-                        ▼ {s.delta} since Monday
-                      </span>
-                    )}
-                  </p>
-                </div>
-              </li>
-            ))}
+                    </p>
+                    <p
+                      className={cn(
+                        "numeric mt-1 text-[12.5px]",
+                        s.delta > 0
+                          ? "text-wows-positive"
+                          : s.delta < 0
+                            ? "text-wows-accent"
+                            : "text-wows-muted",
+                      )}
+                    >
+                      {s.delta > 0
+                        ? `▲ +${s.delta}`
+                        : s.delta < 0
+                          ? `▼ ${s.delta}`
+                          : "— 0"}{" "}
+                      wk
+                    </p>
+                  </div>
+                </li>
+              ))}
           </ul>
         </Section>
 
         <div className="flex flex-col gap-8">
           <Section title="Active game">
-            {dashboard.activeGames.map((g) => {
-              const pct = Math.round((g.step / g.steps) * 100);
-              return (
-                <div
-                  key={g.name}
-                  className="rounded-md border border-wows-rule bg-wows-surface p-4"
-                >
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <p className="font-medium text-wows-ink">{g.name}</p>
-                    <p className="numeric text-sm text-wows-muted">
-                      step {g.step} of {g.steps}
-                    </p>
-                  </div>
-                  <div
-                    role="progressbar"
-                    aria-valuenow={g.step}
-                    aria-valuemin={0}
-                    aria-valuemax={g.steps}
-                    aria-label="Run progress"
-                    className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-wows-rule"
-                  >
-                    <div
-                      className="h-full bg-wows-accent"
-                      style={{ width: `${pct}%` }}
-                    />
-                  </div>
-                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-sm">
-                    <p className="text-wows-muted">
-                      Closes <When iso={g.closesAt} />
-                    </p>
-                    <Link href={g.href} className={buttonClass.primary}>
-                      Continue run
-                    </Link>
-                  </div>
-                </div>
-              );
-            })}
+            <p className="text-[15px] font-medium text-wows-ink">{game.name}</p>
+            <StepStrip
+              steps={game.steps}
+              current={game.step}
+              className="mt-3"
+            />
+            <p className="numeric mt-2 text-[12.5px] text-wows-muted">
+              step {game.step} of {game.steps} · closes{" "}
+              <When iso={game.closesAt} />
+            </p>
+            <Link href={game.href} className={`${buttonClass.primary} mt-4`}>
+              Continue run
+            </Link>
           </Section>
 
           <Section title="Deadlines">
             <ul className="divide-y divide-wows-rule">
-              {dashboard.deadlines.map((d) => (
-                <li
-                  key={d.label}
-                  className="flex flex-col gap-1 py-2.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
-                >
+              {dashboard.deadlines.map((d, i) => (
+                <li key={d.label} className="py-3">
                   <Link
                     href={d.href}
-                    className="text-sm text-wows-ink underline-offset-4 hover:underline"
+                    className={cn(
+                      "text-[15px] leading-snug underline-offset-4 hover:underline",
+                      i === 0 ? "font-medium text-wows-ink" : "text-wows-ink",
+                    )}
                   >
                     {d.label}
                   </Link>
                   <When
                     iso={d.at}
-                    className="shrink-0 text-xs text-wows-muted"
+                    className={cn(
+                      "mt-0.5 block text-[12.5px]",
+                      i === 0 ? "text-wows-accent" : "text-wows-muted",
+                    )}
                   />
                 </li>
               ))}
@@ -250,10 +251,10 @@ export default async function DashboardPage({
           <Section title="Next event">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <div>
-                <p className="font-medium text-wows-ink">
+                <p className="text-[15px] font-medium text-wows-ink">
                   {dashboard.nextEvent.title}
                 </p>
-                <p className="text-sm text-wows-muted">
+                <p className="text-[12.5px] text-wows-muted">
                   <When iso={dashboard.nextEvent.startsAt} />,{" "}
                   {dashboard.nextEvent.location}
                 </p>
@@ -263,11 +264,6 @@ export default async function DashboardPage({
           </Section>
         </div>
       </div>
-
-      <p className="text-xs text-wows-muted">
-        Figures are sample data. The real dashboard reads its numbers from the
-        server on every load. <SignedFigure bps={0} className="sr-only" />
-      </p>
     </main>
   );
 }

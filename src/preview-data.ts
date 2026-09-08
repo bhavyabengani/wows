@@ -163,6 +163,23 @@ export const trackInfo: TrackInfo[] = [
   },
 ];
 
+/** Deterministic six-point sample series for sparklines; not real data. */
+export function sampleSeries(
+  seed: number,
+  base: number,
+  spread: number,
+): number[] {
+  let x = (seed * 9301 + 49297) % 233280;
+  const out: number[] = [];
+  let v = base;
+  for (let i = 0; i < 8; i += 1) {
+    x = (x * 9301 + 49297) % 233280;
+    v += (x / 233280 - 0.5) * spread;
+    out.push(Math.round(v * 100) / 100);
+  }
+  return out;
+}
+
 export interface LeaderboardRow {
   memberId: string;
   rank: number;
@@ -742,16 +759,95 @@ export const leaderboards: Record<TrackKey, LeaderboardRow[]> = {
 };
 
 // ---------------------------------------------------------------------------
+// Landing specimens
+// ---------------------------------------------------------------------------
+
+export const landing = {
+  functions: [
+    {
+      title: "Play a historical replay",
+      figure: "26",
+      unit: "weekly steps in a season replay",
+      body: "Allocate a student-sized corpus across index, large-caps, gilts, gold and FDs, one week at a time, through a real stretch of market history. The debrief compares you with doing nothing and with the index.",
+    },
+    {
+      title: "Forecast, and learn how calibrated you are",
+      figure: "0.183",
+      unit: "a good Brier score after ten questions",
+      body: "Answer observable questions with a probability. When they resolve you are scored on calibration, never on whether you called the market.",
+    },
+    {
+      title: "Write research that gets reviewed",
+      figure: "150",
+      unit: "words minimum, with a falsifier",
+      body: "A thesis, a key risk, a falsifier and sources. A vertical lead and a second reviewer score the reasoning. Published notes carry the club's disclaimer.",
+    },
+    {
+      title: "Learn in tracks, meet in person",
+      figure: "12",
+      unit: "modules across three tracks",
+      body: "Foundations, Applied Analysis and Quant, approved by the faculty advisor, plus workshops, guest talks and sessions with RSVPs.",
+    },
+  ],
+  masthead: {
+    faculty:
+      "Faculty advisor: Department of Economics. Reviews all published curriculum; reads everything; approves nothing that reads as advice.",
+    policy:
+      "No real money at any stage. No buy, sell or hold recommendations under the club's name. No top picks, no copy-trading, no visible open positions. Everything on this portal is for education only.",
+  },
+};
+
+// ---------------------------------------------------------------------------
 // Dashboard
 // ---------------------------------------------------------------------------
 
 export const dashboard = {
   standings: [
-    { track: "Calibration", rank: 3, of: 15, value: "Brier 0.183", delta: 2 },
-    { track: "Research", rank: 3, of: 8, value: "38 pts", delta: -1 },
-    { track: "Risk-adjusted", rank: 2, of: 6, value: "1.18", delta: 2 },
-    { track: "Scenario", rank: 3, of: 6, value: "74", delta: -1 },
-    { track: "Overall", rank: 1, of: 15, value: "78.4", delta: 2 },
+    {
+      track: "Calibration",
+      rank: 3,
+      of: 15,
+      value: "0.183",
+      unit: "Brier",
+      delta: 2,
+      series: [0.231, 0.224, 0.219, 0.205, 0.198, 0.191, 0.187, 0.183],
+    },
+    {
+      track: "Research",
+      rank: 3,
+      of: 8,
+      value: "38",
+      unit: "pts",
+      delta: -1,
+      series: [0, 0, 14, 14, 26, 26, 38, 38],
+    },
+    {
+      track: "Risk-adjusted",
+      rank: 2,
+      of: 6,
+      value: "1.18",
+      unit: "ratio",
+      delta: 2,
+      series: [0.4, 0.62, 0.55, 0.9, 1.02, 0.97, 1.11, 1.18],
+    },
+    {
+      track: "Scenario",
+      rank: 3,
+      of: 6,
+      value: "74",
+      unit: "score",
+      delta: -1,
+      series: [74, 74, 74, 74, 74, 74, 74, 74],
+    },
+    {
+      track: "Overall",
+      rank: 1,
+      of: 15,
+      value: "78.4",
+      unit: "index",
+      delta: 2,
+      series: [61.2, 63.0, 66.4, 70.1, 72.8, 75.0, 76.9, 78.4],
+    },
   ],
   activeGames: [
     {
@@ -807,6 +903,12 @@ export const allocation = {
   replayDate: "2024-04-03T09:45:00Z",
   corpusPaise: 10_68_412_50n,
   startPaise: 10_00_000_00n,
+  /** Corpus after each completed step, whole rupees, for the sparkline. */
+  history: [
+    1000000, 1004500, 1011200, 1004900, 1013800, 1020100, 1027300, 1019000,
+    1024600, 1031900, 1009050, 1041200, 1077400, 1068412,
+  ],
+  nextCorpusPaise: 10_74_930_25n,
   changeSinceLastBps: -84,
   classes: [
     {
@@ -1096,6 +1198,8 @@ export interface Position {
   keyRisk: string;
   falsifier: string;
   status: "open" | "closed";
+  /** Last eight closes, whole rupees. */
+  series: number[];
 }
 
 export const positions: Position[] = [
@@ -1114,6 +1218,7 @@ export const positions: Position[] = [
     falsifier:
       "Two consecutive quarters of constant-currency revenue growth below 3% with utilisation under 84%.",
     status: "open",
+    series: [4112, 4098, 4131, 4160, 4149, 4201, 4236, 4248],
   },
   {
     id: "p2",
@@ -1130,6 +1235,7 @@ export const positions: Position[] = [
     falsifier:
       "LDR above 98% at the March quarter, or NIM below 3.3% in any quarter.",
     status: "open",
+    series: [1742, 1751, 1738, 1729, 1735, 1722, 1715, 1718],
   },
 ];
 
