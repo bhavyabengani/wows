@@ -21,11 +21,13 @@ export function PageHeader({
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-wows-ink">
+        <h1 className="text-[32px] leading-[1.05] font-bold tracking-tight text-wows-ink sm:text-[40px]">
           {title}
         </h1>
         {lede ? (
-          <p className="mt-1 max-w-2xl text-sm text-wows-muted">{lede}</p>
+          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-wows-muted">
+            {lede}
+          </p>
         ) : null}
       </div>
       {aside ? <div className="shrink-0">{aside}</div> : null}
@@ -49,7 +51,9 @@ export function Section({
     <section className={cn("border-t border-wows-rule pt-4", className)}>
       {title ? (
         <div className="mb-3 flex items-baseline justify-between gap-4">
-          <h2 className="text-base font-semibold text-wows-ink">{title}</h2>
+          <h2 className="text-xl font-semibold tracking-tight text-wows-ink">
+            {title}
+          </h2>
           {action}
         </div>
       ) : null}
@@ -71,9 +75,10 @@ export function Panel({
   return (
     <div
       className={cn(
-        "rounded-md border p-4 sm:p-5",
+        "border p-4 sm:p-5",
         tone === "surface" && "border-wows-rule bg-wows-surface",
-        tone === "accent" && "border-wows-accent/30 bg-wows-surface",
+        tone === "accent" &&
+          "border-wows-rule border-l-[3px] border-l-wows-accent bg-wows-surface",
         className,
       )}
     >
@@ -171,7 +176,7 @@ export function Chip({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-sm border px-1.5 py-0.5 text-xs font-medium whitespace-nowrap",
+        "inline-flex items-center border px-1.5 py-0.5 text-xs font-medium whitespace-nowrap",
         tone === "neutral" && "border-wows-rule bg-wows-paper text-wows-muted",
         tone === "accent" &&
           "border-wows-accent bg-wows-accent text-wows-surface",
@@ -189,11 +194,11 @@ export function Chip({
 
 export const buttonClass = {
   primary:
-    "inline-flex items-center justify-center rounded-md bg-wows-accent px-3.5 py-2 text-sm font-medium text-wows-surface hover:bg-wows-accent-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft disabled:opacity-50",
+    "inline-flex items-center justify-center bg-wows-accent px-4 py-2 text-sm font-semibold text-wows-paper hover:bg-wows-accent-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft disabled:opacity-50",
   secondary:
-    "inline-flex items-center justify-center rounded-md border border-wows-rule bg-wows-surface px-3.5 py-2 text-sm font-medium text-wows-ink hover:border-wows-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft disabled:opacity-50",
+    "inline-flex items-center justify-center border border-wows-ink px-4 py-2 text-sm font-semibold text-wows-ink hover:bg-wows-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft disabled:opacity-50",
   quiet:
-    "inline-flex items-center justify-center rounded-md px-2 py-1 text-sm font-medium text-wows-accent-soft underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft",
+    "inline-flex items-center justify-center px-1 py-1 text-sm font-medium text-wows-accent underline decoration-wows-accent/40 underline-offset-4 hover:decoration-wows-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft",
 };
 
 /** Table wrapper: scrolls horizontally on narrow screens, never the page. */
@@ -245,11 +250,144 @@ export function SimulationDisclaimer() {
   return (
     <p
       role="note"
-      className="rounded-md border border-wows-rule bg-wows-paper px-3 py-2 text-xs leading-relaxed text-wows-muted"
+      className="border-l-2 border-wows-rule pl-3 text-[12.5px] leading-relaxed text-wows-muted"
     >
       Simulation. Historical replay on a pinned data snapshot; no real money, no
       live prices, and nothing here is advice. You are being assessed on your
       reasoning, not your returns.
     </p>
+  );
+}
+
+/** Oxblood left rule; for the one thing on the page that must be read. */
+export function Callout({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={cn("border-l-[3px] border-wows-accent pl-4", className)}>
+      {children}
+    </div>
+  );
+}
+
+/**
+ * A number as the subject of the page: rupees at display size, paise at
+ * caption size and lower weight, all in the numeric face.
+ */
+export function DisplayMoney({
+  paise,
+  className,
+  size = "lg",
+}: {
+  paise: bigint;
+  className?: string;
+  size?: "lg" | "md";
+}) {
+  const text = formatINR(paise);
+  const dot = text.lastIndexOf(".");
+  const whole = text.slice(0, dot);
+  const frac = text.slice(dot);
+  return (
+    <span
+      className={cn(
+        "numeric font-medium tracking-tight text-wows-ink",
+        size === "lg"
+          ? "text-[40px] leading-none sm:text-[48px]"
+          : "text-[28px] leading-none",
+        className,
+      )}
+    >
+      {whole}
+      <span className="text-[0.5em] font-normal text-wows-muted">{frac}</span>
+    </span>
+  );
+}
+
+/** Inline sparkline: the shape of a series, ink-coloured, no axes. */
+export function Sparkline({
+  values,
+  width = 72,
+  height = 20,
+  className,
+  tone = "ink",
+}: {
+  values: number[];
+  width?: number;
+  height?: number;
+  className?: string;
+  tone?: "ink" | "muted" | "accent" | "positive";
+}) {
+  if (values.length < 2) return null;
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const span = max - min || 1;
+  const pad = 2;
+  const pts = values.map((v, i) => {
+    const x = pad + (i / (values.length - 1)) * (width - pad * 2);
+    const y = pad + (1 - (v - min) / span) * (height - pad * 2);
+    return [x, y] as const;
+  });
+  const last = pts[pts.length - 1]!;
+  const stroke =
+    tone === "accent"
+      ? "var(--wows-accent)"
+      : tone === "positive"
+        ? "var(--wows-positive)"
+        : tone === "muted"
+          ? "var(--wows-muted)"
+          : "var(--wows-ink)";
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      width={width}
+      height={height}
+      aria-hidden="true"
+      className={cn("shrink-0 overflow-visible", className)}
+    >
+      <polyline
+        points={pts.map(([x, y]) => `${x},${y}`).join(" ")}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={1.25}
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <circle cx={last[0]} cy={last[1]} r={1.75} fill={stroke} />
+    </svg>
+  );
+}
+
+/** Timestep strip: one tick per step, the current one filled oxblood. */
+export function StepStrip({
+  steps,
+  current,
+  className,
+}: {
+  steps: number;
+  current: number;
+  className?: string;
+}) {
+  return (
+    <ol
+      className={cn("flex items-end gap-[3px]", className)}
+      aria-label={`Step ${current} of ${steps}`}
+    >
+      {Array.from({ length: steps }, (_, i) => i + 1).map((n) => (
+        <li
+          key={n}
+          aria-current={n === current ? "step" : undefined}
+          className={cn(
+            "h-3 w-1.5 transition-colors duration-300",
+            n < current && "bg-wows-ink/35",
+            n === current && "h-4 bg-wows-accent",
+            n > current && "bg-wows-rule",
+          )}
+        />
+      ))}
+    </ol>
   );
 }

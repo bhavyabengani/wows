@@ -88,12 +88,14 @@
   --color-wows-accent-soft: var(--wows-accent-soft);
   --color-wows-positive: var(--wows-positive);
 
-  /* System font stack until Phase 11 chooses a face. */
+  /* Design preview pairing (docs/DESIGN_DIRECTION.md): Schibsted Grotesk
+     for interface and headlines, IBM Plex Mono for every number. Loaded by
+     next/font in src/app/layout.tsx, which sets the two variables on <html>. */
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+    var(--font-schibsted), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
   --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas,
     monospace;
   --font-heading: var(--font-sans);
 
@@ -144,7 +146,28 @@
  * with an explicit sign and arrow; never rely on colour alone (H38).
  */
 @utility numeric {
-  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings:
+    "tnum" 1,
+    "lnum" 1;
+}
+
+/* Leaderboard drawer: slides open once, answering a click. Reduced motion
+   disables it through the global rule below. */
+@utility animate-drawer {
+  animation: drawer-open 220ms cubic-bezier(0.2, 0, 0, 1);
+  transform-origin: top;
+}
+@keyframes drawer-open {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @layer base {

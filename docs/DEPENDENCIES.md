@@ -59,6 +59,19 @@ every dependency is justified.
 | `curl_cffi` | HTTP client that impersonates a browser's TLS fingerprint. The price source answers `429` to plain `requests`/`curl` from most networks; this is the same technique `yfinance` uses internally. We call the endpoint directly rather than using `yfinance` itself, because it decodes prices into Python floats before our code sees them, which `docs/ENGINE_RULES.md` forbids. |
 | `pytest`    | Test runner for the pipeline. Runs as its own CI job with its own pinned interpreter.                                                                                                                                                                                                                                                                                            |
 
+## Fonts (design-preview branch)
+
+Not npm packages, but they are downloaded at build time by `next/font/google`
+and self-hosted, so they belong here for the same reason.
+
+- **Schibsted Grotesk** — interface and headline face. A newspaper grotesk
+  with character that still reads at 15px on a phone. One variable weight.
+- **IBM Plex Mono** (400, 500, 600) — every number: prices, ranks, scores,
+  dates. True lining figures, tabular by construction. Never used for labels.
+
+Both are SIL Open Font License. No request leaves the user's browser for
+them at runtime; Next serves the subsetted files from the deployment.
+
 ## Deliberately not installed yet
 
 - **TanStack Query** — added with the first client-side server state.
