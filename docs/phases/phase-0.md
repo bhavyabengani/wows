@@ -121,10 +121,10 @@ Added by this session:
 
 ## Acceptance criteria
 
-| #   | Criterion                                                              | Status                                                                          |
-| --- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| 1   | CI green on `main` running typecheck, lint, format, Vitest, Playwright | Workflow written; all steps pass locally. Confirmed on GitHub after first push. |
-| 2   | Vercel deployment reachable, serving the placeholder                   | **Blocked** on the user creating the project.                                   |
-| 3   | `CLAUDE.md` with six sections and 38 invariants with "Tested by"       | Done.                                                                           |
-| 4   | `README.md`, `.env.example`, `docs/DEPENDENCIES.md` accurate           | Done; `DEPENDENCIES.md` is test-enforced.                                       |
-| 5   | `docs/phases/phase-0.md` written                                       | This file.                                                                      |
+| #   | Criterion                                                              | Status                                                                  |
+| --- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| 1   | CI green on `main` running typecheck, lint, format, Vitest, Playwright | Green: <https://github.com/bhavyabengani/wows/actions/runs/34199786713> |
+| 2   | Vercel deployment reachable, serving the placeholder                   | **Blocked** on the user creating the project.                           |
+| 3   | `CLAUDE.md` with six sections and 38 invariants with "Tested by"       | Done.                                                                   |
+| 4   | `README.md`, `.env.example`, `docs/DEPENDENCIES.md` accurate           | Done; `DEPENDENCIES.md` is test-enforced.                               |
+| 5   | `docs/phases/phase-0.md` written                                       | This file.                                                              |
