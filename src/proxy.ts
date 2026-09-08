@@ -39,10 +39,25 @@ export async function proxy(request: NextRequest) {
 
   let response = NextResponse.next({ request: { headers: requestHeaders } });
 
+  const { pathname, search } = request.nextUrl;
+  const toLogin = () => {
+    const login = request.nextUrl.clone();
+    login.pathname = "/login";
+    login.search = "";
+    login.searchParams.set("next", pathname + search);
+    const redirect = NextResponse.redirect(login);
+    redirect.headers.set(REQUEST_ID_HEADER, requestId);
+    return redirect;
+  };
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
   if (!supabaseUrl || !supabaseKey) {
-    throw new Error("Supabase environment variables are not set");
+    // Unconfigured deployment: public pages keep working, everyone is a
+    // guest, and /login explains that sign-in is not set up.
+    if (isProtectedPath(pathname)) return toLogin();
+    response.headers.set(REQUEST_ID_HEADER, requestId);
+    return response;
   }
 
   const supabase = createServerClient(supabaseUrl, supabaseKey, {
@@ -64,16 +79,7 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { pathname, search } = request.nextUrl;
-  if (!user && isProtectedPath(pathname)) {
-    const login = request.nextUrl.clone();
-    login.pathname = "/login";
-    login.search = "";
-    login.searchParams.set("next", pathname + search);
-    const redirect = NextResponse.redirect(login);
-    redirect.headers.set(REQUEST_ID_HEADER, requestId);
-    return redirect;
-  }
+  if (!user && isProtectedPath(pathname)) return toLogin();
 
   response.headers.set(REQUEST_ID_HEADER, requestId);
   return response;

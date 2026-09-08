@@ -32,13 +32,36 @@ const serverSchema = publicSchema.extend({
 export type PublicEnv = z.infer<typeof publicSchema>;
 export type ServerEnv = z.infer<typeof serverSchema>;
 
-export const publicEnv: PublicEnv = publicSchema.parse({
-  NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
-  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
-  NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
-});
+let cachedPublic: PublicEnv | undefined;
+
+/**
+ * Browser-safe environment. Parsed lazily so that a deployment without
+ * Supabase configured (public pages only) still builds and serves; the
+ * first auth-dependent request then fails with a readable message.
+ */
+export function publicEnv(): PublicEnv {
+  if (cachedPublic) return cachedPublic;
+  const parsed = publicSchema.safeParse({
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+    NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  });
+  if (!parsed.success) throw new EnvError(parsed.error.issues);
+  cachedPublic = parsed.data;
+  return cachedPublic;
+}
+
+export class EnvError extends Error {
+  constructor(issues: z.core.$ZodIssue[]) {
+    const detail = issues
+      .map((i) => `${i.path.join(".")}: ${i.message}`)
+      .join("; ");
+    super(`Invalid environment: ${detail}. See .env.example.`);
+    this.name = "EnvError";
+  }
+}
 
 let cached: ServerEnv | undefined;
 
@@ -49,12 +72,7 @@ export function env(): ServerEnv {
     throw new Error("env() is server-only; use publicEnv in the browser");
   }
   const parsed = serverSchema.safeParse(process.env);
-  if (!parsed.success) {
-    const issues = parsed.error.issues
-      .map((i) => `${i.path.join(".")}: ${i.message}`)
-      .join("; ");
-    throw new Error(`Invalid environment: ${issues}. See .env.example.`);
-  }
+  if (!parsed.success) throw new EnvError(parsed.error.issues);
   cached = parsed.data;
   return cached;
 }

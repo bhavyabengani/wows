@@ -1,6 +1,6 @@
 "use server";
 
-import { publicEnv } from "@/lib/env";
+import { EnvError, publicEnv } from "@/lib/env";
 import { requestLogger } from "@/lib/log";
 import { magicLinkRequestSchema } from "@/lib/schemas/auth";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -26,14 +26,29 @@ export async function requestMagicLink(
   const { email } = parsed.data;
   const log = await requestLogger({ action: "auth.magic_link" });
 
-  const supabase = await createSupabaseServerClient();
-  const { error } = await supabase.auth.signInWithOtp({
-    email,
-    options: {
-      shouldCreateUser: true,
-      emailRedirectTo: `${publicEnv.NEXT_PUBLIC_SITE_URL}/auth/confirm`,
-    },
-  });
+  let error: { message: string } | null = null;
+  try {
+    const supabase = await createSupabaseServerClient();
+    ({ error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: `${publicEnv().NEXT_PUBLIC_SITE_URL}/auth/confirm`,
+      },
+    }));
+  } catch (cause) {
+    if (cause instanceof EnvError) {
+      log.error("sign-in is not configured on this deployment", {
+        error: cause,
+      });
+      return {
+        status: "error",
+        message:
+          "Sign-in is not set up on this deployment yet. Ask the core team.",
+      };
+    }
+    throw cause;
+  }
   if (error) {
     log.error("magic link request failed", {
       error,
