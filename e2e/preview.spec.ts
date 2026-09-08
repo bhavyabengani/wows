@@ -45,16 +45,16 @@ for (const route of ROUTES) {
   });
 }
 
-test("leaderboard rows expand to their components and the mobile menu opens", async ({
+test("leaderboard rows expand to their components and the bottom nav works on a phone", async ({
   page,
 }) => {
   await page.goto("/leaderboard");
-  await page.getByRole("button", { name: "Show components" }).first().click();
+  await page.getByRole("button", { name: "Sara Qureshi" }).click();
   await expect(page.getByText("How this rank is built")).toBeVisible();
 
   await page.setViewportSize({ width: 375, height: 812 });
-  await page.getByRole("button", { name: "Open navigation" }).click();
-  await expect(page.getByRole("dialog")).toBeVisible();
-  await page.getByRole("dialog").getByRole("link", { name: "Events" }).click();
+  const bottomNav = page.getByRole("navigation", { name: "Primary, mobile" });
+  await expect(bottomNav).toBeVisible();
+  await bottomNav.getByRole("link", { name: "Events" }).click();
   await expect(page).toHaveURL(/\/events$/);
 });

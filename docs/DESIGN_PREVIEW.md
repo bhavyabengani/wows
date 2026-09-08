@@ -14,6 +14,50 @@ end-to-end test that expects `/dashboard` behind a sign-in) when the preview
 was built. A static `/dashboard` cannot satisfy that test, so the branch
 starts from the last Phase 0 commit, where both rules hold.
 
+## Pass 2: what changed
+
+The team's reaction to pass 1 was "default admin template". Pass 2 follows
+[`DESIGN_DIRECTION.md`](DESIGN_DIRECTION.md): a broadsheet financial page
+on paper, with numbers as the subject. Before/after screenshots of the
+dashboard, leaderboard and allocation page are in `docs/screenshots/`.
+
+- **Type.** Schibsted Grotesk for interface and headlines, IBM Plex Mono for
+  every number (see `DEPENDENCIES.md`). Four sizes: 40px display (32 on
+  phones), 20px section, 15px body, 12.5px caption. The `numeric` utility
+  now switches to the mono face as well as tabular figures.
+- **Colour and surface.** The header is an oxblood masthead. Oxblood also
+  fills the one primary button per screen, the selected leaderboard tab, the
+  current timestep tick, and a forecast's recorded and locked states. No
+  drop shadows anywhere; rules and space separate content. The leaderboard
+  has no card; secondary notes get a rule; callouts get an oxblood left rule.
+- **Sparklines** on the dashboard (overall index and every track), every
+  leaderboard row, every portfolio position, and the allocation cockpit
+  (corpus by step). Hand-written SVG, ink-coloured, no axes.
+- **Leaderboard** as a full-width table: rank in the mono face, your row
+  tinted oxblood at 6%, the components drawer inset on the same paper with a
+  short slide, two-line rows on phones instead of horizontal scroll.
+- **Allocation cockpit.** Replay date and portfolio value in display size
+  top-left, a single stacked bar segmented by class (oxblood, greens, greys,
+  hatching for the FD so it reads without colour), sliders beneath, the news
+  set apart by an oxblood rule, and Advance as the only filled button. On
+  advance the value counts to its new figure over 400ms and the timestep
+  tick moves.
+- **Landing** as a typographic opening statement, the four functions as a
+  two-column list with specimen numbers from the sample data, and the
+  faculty and no-advice policy as a ruled masthead block.
+- **Forecasts.** Submit settles the input into a filled-oxblood recorded
+  block with the probability at display size; locked questions are oxblood
+  panels. The reliability curve keeps its dotted diagonal and count-sized
+  points, with the Brier score set large beside it.
+- **Debrief** as a document: three large numbers in a row, behaviours as
+  paragraphs led by an oxblood keyword, the timeline as a vertical rule with
+  events pinned to it.
+- **Mobile.** Bottom navigation replaces the drawer; tables reflow to two
+  lines; the allocation breakdown stacks.
+- **Motion.** Exactly three moments: count-up on advance, the forecast
+  record, the leaderboard drawer. Reduced motion disables all of them; the
+  loading state is a plain "Loading standings…" line.
+
 ## What was built
 
 Every route in the brief, as static pages with hardcoded sample data:
@@ -53,8 +97,8 @@ Two small pieces are real and worth keeping:
 
 ## Design questions for the team
 
-1. **Density.** The leaderboard and audit tables are set at 14px with tight
-   rows. Too dense on a phone, or about right for a data product?
+1. **Density.** The leaderboard is set at 15px with 12px of vertical padding
+   per row. Too airy for a data product, or right for a phone?
 2. **Leaderboard on mobile.** Table with horizontal scroll (as built) or
    stacked cards per member? Cards read better; tables compare better.
 3. **Debrief.** Currently everything is on one page (counterfactuals,
@@ -62,15 +106,17 @@ Two small pieces are real and worth keeping:
    behaviours only after the member has read the counterfactual bars?
 4. **Signed figures.** Arrow + sign + colour on every gain/loss. Keep the
    arrow everywhere, or drop it in dense tables and keep the sign?
-5. **The preview banner** is sticky. Should the real header be sticky too?
+5. **The oxblood masthead.** Enough brand, or does the header want to be
+   paper with an oxblood rule instead?
 6. **Calibration curve.** Is a five-bin reliability curve legible to a
    first-year, or does it need a one-line reading of "you are
    underconfident" beside it?
 7. **Forecast input.** Slider (as built) versus a plain number field.
-   Sliders invite round numbers; is that a problem?
+   Sliders invite round numbers; is that a problem? And is the filled-oxblood
+   "Recorded" block the right weight for a revisable answer?
 8. **Thesis gate.** The 150-word counter turns green at the threshold. Is
    that the right nudge, or does it invite padding?
 9. **Landing tone.** The "what we do not do" panel sits beside the hero.
    Prominent enough for the university, or too apologetic for applicants?
-10. **Dark surfaces.** The banner and the primary buttons are the only
-    dark or oxblood fills. Is that the right amount of brand?
+10. **Type.** Schibsted Grotesk and Plex Mono: does the pairing feel like
+    the club, and is Plex Mono legible enough at 12.5px for dates in tables?
