@@ -11,13 +11,21 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  CI: true
+  # Local Supabase instance started below. The keys are read from
+  # `supabase status` at runtime so nothing secret-shaped lives in the repo.
+  DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
+  DATABASE_POOLER_URL: postgresql://postgres.pooler-dev:postgres@127.0.0.1:54329/postgres
+  NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+  NEXT_PUBLIC_SITE_URL: http://localhost:3000
+  MAILPIT_URL: http://127.0.0.1:54324
+
 jobs:
   ci:
-    name: typecheck, lint, format, unit, e2e
+    name: typecheck, lint, format, unit, db, e2e, restore drill
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    env:
-      CI: true
+    timeout-minutes: 30
     steps:
       - name: Check out
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -40,8 +48,28 @@ jobs:
       - name: Format check
         run: npm run format:check
 
+      - name: Generated types are up to date
+        run: |
+          npm run db:generate-types
+          git diff --exit-code -- src/db/types.ts
+
       - name: Unit tests (Vitest)
         run: npm test
+
+      - name: Start local Supabase
+        run: |
+          npm run db:start
+          npx supabase status -o env \
+            | sed -n 's/^PUBLISHABLE_KEY=/NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=/p; s/^SECRET_KEY=/SUPABASE_SECRET_KEY=/p' \
+            | tr -d '"' >> "$GITHUB_ENV"
+
+      - name: Migrate and seed
+        run: |
+          npm run db:migrate
+          npm run db:seed
+
+      - name: Database invariant and RLS tests
+        run: npm run test:db
 
       - name: Resolve Playwright version
         run: echo "PLAYWRIGHT_VERSION=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_ENV"
@@ -57,6 +85,9 @@ jobs:
 
       - name: End-to-end tests (Playwright)
         run: npm run test:e2e
+
+      - name: Backup restore drill (H35)
+        run: npm run db:backup-drill
 
       - name: Upload Playwright report
         if: failure()
