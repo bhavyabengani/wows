@@ -1,26 +1,160 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * Design tokens — WOWS Portal
+ * ---------------------------------------------------------------------------
+ * The interface is light and paper-toned. There is no dark theme: the brand
+ * oxblood (#5E011D) has very low luminance and cannot carry accent duty on a
+ * dark surface, so a dark trading-terminal look is ruled out by design.
+ *
+ * Layer 1 — brand tokens (`--wows-*`). The single source of truth. Change a
+ *           value here and it propagates everywhere below.
+ * Layer 2 — shadcn/ui semantic variables (`--background`, `--primary`, ...).
+ *           Derived from layer 1 so shadcn primitives pick up the palette.
+ *           Two shadcn names (`--muted`, `--accent`) mean *backgrounds* in
+ *           shadcn but *text colour* / *brand* in our token table, which is
+ *           why layer 1 carries the `wows-` prefix instead of colliding.
+ * Layer 3 — Tailwind utilities, generated from the `@theme` block below:
+ *           bg-wows-paper, text-wows-ink, text-wows-muted, border-wows-rule,
+ *           bg-wows-accent, text-wows-accent-soft, text-wows-positive, ...
+ *
+ * Font: system stack for now. Font selection is deferred to Phase 11 — see
+ * CLAUDE.md > Design direction for the constraints on that choice.
+ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Layer 1 — brand tokens */
+  --wows-paper: #f6f5f2; /* page background — cool, slightly grey paper */
+  --wows-surface: #ffffff; /* cards, tables, panels */
+  --wows-ink: #1a1418; /* primary text */
+  --wows-muted: #6b6469; /* secondary text, labels */
+  --wows-rule: #e3dfda; /* borders, table rules, dividers */
+  --wows-accent: #5e011d; /* brand, primary buttons, negative figures */
+  --wows-accent-soft: #8c1030; /* hover/pressed states, links */
+  --wows-positive: #14603c; /* gains */
+
+  /* Layer 2 — shadcn/ui semantic variables, derived from layer 1 */
+  --background: var(--wows-paper);
+  --foreground: var(--wows-ink);
+  --card: var(--wows-surface);
+  --card-foreground: var(--wows-ink);
+  --popover: var(--wows-surface);
+  --popover-foreground: var(--wows-ink);
+  --primary: var(--wows-accent);
+  --primary-foreground: var(--wows-surface);
+  --secondary: var(--wows-rule);
+  --secondary-foreground: var(--wows-ink);
+  --muted: var(--wows-paper);
+  --muted-foreground: var(--wows-muted);
+  --accent: var(--wows-paper);
+  --accent-foreground: var(--wows-ink);
+  --destructive: var(--wows-accent);
+  --border: var(--wows-rule);
+  --input: var(--wows-rule);
+  --ring: var(--wows-accent-soft);
+  --chart-1: var(--wows-accent);
+  --chart-2: var(--wows-positive);
+  --chart-3: var(--wows-muted);
+  --chart-4: var(--wows-accent-soft);
+  --chart-5: var(--wows-rule);
+  --radius: 0.375rem;
+  --sidebar: var(--wows-surface);
+  --sidebar-foreground: var(--wows-ink);
+  --sidebar-primary: var(--wows-accent);
+  --sidebar-primary-foreground: var(--wows-surface);
+  --sidebar-accent: var(--wows-paper);
+  --sidebar-accent-foreground: var(--wows-ink);
+  --sidebar-border: var(--wows-rule);
+  --sidebar-ring: var(--wows-accent-soft);
 }
+
+/*
+ * shadcn components ship `dark:` classes. Keeping this variant bound to a
+ * `.dark` class (which is never applied) means those classes stay inert
+ * instead of falling back to the OS `prefers-color-scheme` media query.
+ */
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Layer 3 — brand tokens as Tailwind utilities */
+  --color-wows-paper: var(--wows-paper);
+  --color-wows-surface: var(--wows-surface);
+  --color-wows-ink: var(--wows-ink);
+  --color-wows-muted: var(--wows-muted);
+  --color-wows-rule: var(--wows-rule);
+  --color-wows-accent: var(--wows-accent);
+  --color-wows-accent-soft: var(--wows-accent-soft);
+  --color-wows-positive: var(--wows-positive);
+
+  /* System font stack until Phase 11 chooses a face. */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
+  --font-heading: var(--font-sans);
+
+  /* shadcn semantic colours */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+ * `numeric` — apply to every cell, figure, or column that holds a number so
+ * digits line up vertically (tabular lining figures). Pair a coloured figure
+ * with an explicit sign and arrow; never rely on colour alone (H38).
+ */
+@utility numeric {
+  font-variant-numeric: tabular-nums;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
