@@ -124,7 +124,7 @@ surface. Confirm or correct this list before starting Phase 1, and update the
 | 0   | Foundation                    | Scaffold, tokens, test harness, CI, deployment, this file. **Done.**                     |
 | 1   | Schema, auth, roles, RLS      | Drizzle schema and migrations, Supabase auth, roles, RLS, seed, Sentry + logger, backups |
 | 2   | Market data ingestion         | Standalone Python pipeline, versioned snapshot, loader, quality checks. **Done.**        |
-| 3   | Simulation engine             | Pure module: ledger, paise money, deterministic seeded replay, golden files              |
+| 3   | Simulation engine             | Pure module: ledger, paise money, deterministic seeded replay, golden files. **Done.**   |
 | 4   | Allocation game               | `/play/allocate`, order API, idempotency keys, tick-by-tick prices, persisted runs       |
 | 5   | Season portfolio and theses   | `/play/portfolio`, thesis gate, immutable revisions, positions hidden until settlement   |
 | 6   | Forecasting and quiz          | `/play/forecast`, `/play/quiz` kiosk sandbox, server-time deadlines                      |
@@ -200,6 +200,19 @@ surface. Confirm or correct this list before starting Phase 1, and update the
 - **Naming.** Files `kebab-case.tsx`; components `PascalCase`; database
   tables and columns `snake_case`.
 - **Commits.** Small and reviewable. The message says what changed and why.
+- **The engine is a pure module.** `src/engine/` imports nothing but itself
+  and Zod: no app code, no database, no React, no Next, no Node builtins, and
+  no ambient time or randomness. `src/engine/architecture.test.ts` enforces
+  every part of that. If a later phase seems to need an exception, the
+  boundary was drawn in the wrong place; move it deliberately rather than
+  adding one.
+- **Regenerating a golden file is a reviewed act.** `src/engine/__goldens__/`
+  records what the engine used to produce, compared byte for byte in CI.
+  `npm run engine:regenerate-goldens -- --confirm` rewrites them, which makes
+  any change to valuation, ordering, costs or scoring look intentional. Know
+  which behaviour changed and why it should, read the diff, and record the
+  reason in the commit message. A change nobody can explain is a bug, not a
+  new golden.
 - **Dependencies.** Every direct dependency has one justifying line in
   `docs/DEPENDENCIES.md` (H36, guarded by `src/lib/repo-invariants.test.ts`).
 - **Anything whose checksum is recorded in a manifest is off limits to every
@@ -254,7 +267,7 @@ is enforced instead.
 - H5. Nothing that is settled may be mutated afterward. Corrections are new compensating records, never edits.
   - Tested by: `src/db/invariants.db.test.ts` ("settled-season guard": direct and indirect season-scoped rows reject INSERT/UPDATE/DELETE once settled). The settlement action itself: Phase 7.
 - H6. A scenario version is pinned to a leaderboard; changing a scenario creates a new version. `(name, version)` unique; configs never edited in place.
-  - Tested by: `src/db/invariants.db.test.ts` (`(name, version)` unique; UPDATE on scenarios rejected). Leaderboard pinning: Phase 7.
+  - Tested by: `src/db/invariants.db.test.ts` (`(name, version)` unique; UPDATE on scenarios rejected) and `src/engine/config.test.ts` (a scenario config is validated at load, and a malformed one fails loudly rather than part-way through a run). Leaderboard pinning: Phase 7.
 - H7. `price_bars` are immutable; corrections create a new `snapshot_version`.
   - Tested by: `src/db/invariants.db.test.ts` (UPDATE/DELETE/TRUNCATE on price_bars rejected even for the system role).
 - H8. `orders`, `fills`, and `audit_log` are append-only. `orders` unique on `(run_id, idempotency_key)`. `audit_log` is never deleted.
@@ -269,17 +282,17 @@ is enforced instead.
 - H11. Market data is historical replay over a pinned, versioned snapshot — never live prices.
   - Tested by: `src/lib/repo-invariants.test.ts` (no price-source host or client appears anywhere under `src/`, so the app cannot fetch a live price) and `data/ingest/tests/test_build.py` (a snapshot is built offline from committed raw files and is byte-identical on a rebuild). The snapshot itself is the enforcement: the app reads `price_bars`, and only the loader writes them.
 - H12. All money is integer paise. Never floats, never `Number` for currency. Fractional quantities use a fixed-precision decimal with one stated rounding rule applied everywhere.
-  - Tested by: `src/db/invariants.db.test.ts` (every `*_paise` column is bigint, no float currency columns, non-positive prices rejected). Engine arithmetic: Phase 3.
+  - Tested by: `src/db/invariants.db.test.ts` (every `*_paise` column is bigint, no float currency columns, non-positive prices rejected), `data/ingest/tests/test_money.py` and `test_no_float.py` on the ingestion side, and `src/engine/money.test.ts` on the engine side (rounding at ties in both directions, the floor exception on buys, values past 2^53, refusal of anything that is not a decimal), with `src/engine/architecture.test.ts` asserting the engine never calls `parseFloat` or `toFixed`.
 - H13. Append-only transaction ledger; portfolio state is derived by folding the ledger, never a mutable balance. Any cache must be rebuildable from scratch by a single command.
-  - Tested by: not yet — Phase 3
+  - Tested by: `src/engine/run.test.ts` ("the ledger is the only truth": the fold is identical taken whole or in prefixes, does not depend on the order entries arrive in, and an order without a fill changes nothing) and `src/db/holdings-cache.db.test.ts` (the cache is corrupted deliberately, rebuilt by `npm run engine:rebuild-cache`, and the right answer comes back).
 - H14. Deterministic and seeded: same seed + same inputs = byte-identical output, with a test asserting it.
-  - Tested by: not yet — Phase 3
+  - Tested by: `src/engine/run.test.ts` (a full scenario played twice is byte-identical, and a different seed is not) and `src/engine/architecture.test.ts` (no `Math.random`, `Date.now` or ambient time anywhere in the engine).
 - H15. The client never receives future data — not in hidden fields, preloaded arrays, or source maps. Prices are fetched tick-by-tick.
-  - Tested by: not yet — Phase 4
+  - Tested by: `src/engine/prices.test.ts` (the accessor is built against a run and throws for any step beyond its current one, and exposes no method returning a series, so there is nothing to slice). H15 covers data, not prose: a news card must also be written from information available on its own step date, which is a review rule in `data/scenarios/README.md`. Delivery to the browser: not yet — Phase 4.
 - H16. Idempotent order submission: every order carries a client-generated idempotency key; a duplicate key returns the original result.
-  - Tested by: not yet — Phase 4
+  - Tested by: `src/engine/run.test.ts` (a repeated key returns the original entries and the ledger does not grow: the double-click case directly) and `src/db/invariants.db.test.ts` (the unique constraint on `(run_id, idempotency_key)` as the backstop).
 - H17. Golden-file tests: fixed scenario, fixed action sequence, committed expected output; any engine change that alters output fails CI until the golden file is deliberately regenerated.
-  - Tested by: not yet — Phase 3
+  - Tested by: `src/engine/golden.test.ts` over `src/engine/__goldens__/` — three runs (passive, active, and one whose shock forces a sale), each pinning the full ledger, per-step state, both counterfactuals and the behavioural metrics. Verified once by making a one-basis-point change to the transaction cost, watching all three fail, then reverting.
 - H18. Allocation runs persist server-side after every timestep; a closed laptop never loses a run.
   - Tested by: not yet — Phase 4
 
