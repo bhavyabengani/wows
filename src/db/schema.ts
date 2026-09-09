@@ -400,6 +400,17 @@ export const runs = pgTable(
     currentStep: integer("current_step").notNull().default(0),
     state: runStateEnum("state").notNull().default("in_progress"),
     mode: runModeEnum("mode").notNull().default("practice"),
+    /**
+     * The engine's own state, minus its ledger: generator state, the drawn
+     * shock, the opening and current target weights, the step schedule and the
+     * sequence counters. The ledger itself lives in `run_ledger_entries`,
+     * which is append-only; this row is the small mutable remainder, and it is
+     * what makes a closed laptop lose nothing (H18).
+     *
+     * Never sent to the browser. It holds the seed's drawn shock and the whole
+     * step schedule, which the player must not see (H15).
+     */
+    engineState: jsonb("engine_state"),
     startedAt: timestamptz("started_at").notNull().defaultNow(),
     completedAt: timestamptz("completed_at"),
   },
@@ -407,6 +418,66 @@ export const runs = pgTable(
     index("runs_user_idx").on(t.userId),
     index("runs_game_instance_idx").on(t.gameInstanceId),
     check("runs_step_nonneg", sql`${t.currentStep} >= 0`),
+  ],
+).enableRLS();
+
+/**
+ * A fixed-window rate limiter, in the database rather than in memory.
+ *
+ * The app runs on serverless instances that do not share memory, so a counter
+ * held in a module variable would reset whenever a new instance started and
+ * would not be a limit at all. This is a small table and one upsert per
+ * request, which is the honest cost of a limit that works.
+ */
+export const rateLimits = pgTable(
+  "rate_limits",
+  {
+    /** Who and what: `${userId}:${route}`. */
+    bucket: text("bucket").notNull(),
+    /** Start of the fixed window this count belongs to. */
+    windowStart: timestamptz("window_start").notNull(),
+    count: integer("count").notNull().default(0),
+  },
+  (t) => [
+    primaryKey({
+      name: "rate_limits_pkey",
+      columns: [t.bucket, t.windowStart],
+    }),
+    check("rate_limits_count_nonneg", sql`${t.count} >= 0`),
+  ],
+).enableRLS();
+
+/**
+ * The run's ledger (H13): every state-changing occurrence, in order, never
+ * updated and never deleted.
+ *
+ * `orders` and `fills` carry the trades in typed columns, because the Phase 1
+ * schema defines them that way and later phases query them. This table carries
+ * the *whole* ledger, trades included, because cash flows have no typed table
+ * and a ledger missing its income and expenses is not a ledger. Folding this
+ * table reproduces the engine's own state exactly;
+ * `src/db/run-ledger.db.test.ts` asserts the two agree.
+ */
+export const runLedgerEntries = pgTable(
+  "run_ledger_entries",
+  {
+    runId: uuid("run_id")
+      .notNull()
+      .references(() => runs.id, { onDelete: "restrict" }),
+    /** Monotonic within a run; the engine assigns it. */
+    seq: integer("seq").notNull(),
+    stepIndex: integer("step_index").notNull(),
+    tradeDate: date("trade_date", { mode: "string" }).notNull(),
+    kind: text("kind").notNull(),
+    /** The engine's entry, verbatim, with bigints as tagged strings. */
+    entryJson: jsonb("entry_json").notNull(),
+    createdAt: createdAt(),
+  },
+  (t) => [
+    primaryKey({ name: "run_ledger_entries_pkey", columns: [t.runId, t.seq] }),
+    index("run_ledger_entries_step_idx").on(t.runId, t.stepIndex),
+    check("run_ledger_entries_seq_nonneg", sql`${t.seq} >= 0`),
+    check("run_ledger_entries_step_nonneg", sql`${t.stepIndex} >= 0`),
   ],
 ).enableRLS();
 

@@ -38,12 +38,20 @@ export type PriceBarsRow = InferSelectModel<typeof schema.priceBars>;
 export type PriceBarsInsert = InferInsertModel<typeof schema.priceBars>;
 export type ProgressRow = InferSelectModel<typeof schema.progress>;
 export type ProgressInsert = InferInsertModel<typeof schema.progress>;
+export type RateLimitsRow = InferSelectModel<typeof schema.rateLimits>;
+export type RateLimitsInsert = InferInsertModel<typeof schema.rateLimits>;
 export type ResearchNotesRow = InferSelectModel<typeof schema.researchNotes>;
 export type ResearchNotesInsert = InferInsertModel<typeof schema.researchNotes>;
 export type ReviewsRow = InferSelectModel<typeof schema.reviews>;
 export type ReviewsInsert = InferInsertModel<typeof schema.reviews>;
 export type RsvpsRow = InferSelectModel<typeof schema.rsvps>;
 export type RsvpsInsert = InferInsertModel<typeof schema.rsvps>;
+export type RunLedgerEntriesRow = InferSelectModel<
+  typeof schema.runLedgerEntries
+>;
+export type RunLedgerEntriesInsert = InferInsertModel<
+  typeof schema.runLedgerEntries
+>;
 export type RunsRow = InferSelectModel<typeof schema.runs>;
 export type RunsInsert = InferInsertModel<typeof schema.runs>;
 export type ScenariosRow = InferSelectModel<typeof schema.scenarios>;
