@@ -1,0 +1,5174 @@
+{
+  "behaviour": {
+    "concentration": {
+      "peakBps": 3525,
+      "peakStep": 2,
+      "peakSymbol": "NIFTYBEES",
+      "timeWeightedMaxBps": 2835
+    },
+    "overTrading": {
+      "costPaise": "__paise_bigint__:47500",
+      "reversalCount": 0,
+      "reversalWindowSteps": 2,
+      "tradeCount": 0,
+      "turnoverBps": 0,
+      "turnoverPaise": "__paise_bigint__:0"
+    },
+    "panicSelling": {
+      "drawdownThresholdBps": 1000,
+      "episodes": [],
+      "minimumSaleBps": 1000
+    }
+  },
+  "counterfactuals": [
+    {
+      "finalValuePaise": "__paise_bigint__:124875611",
+      "key": "did_nothing",
+      "label": "Did nothing: the opening mix, held"
+    },
+    {
+      "finalValuePaise": "__paise_bigint__:134848205",
+      "key": "all_index",
+      "label": "All NIFTYBEES, no trades"
+    }
+  ],
+  "description": "Deploys once at step 0 and never trades again. Income piles up in cash, so the shock is absorbed without selling anything.",
+  "entries": [
+    {
+      "amountPaise": "__paise_bigint__:50000000",
+      "date": "2019-01-31",
+      "kind": "corpus_initialised",
+      "seq": 0,
+      "step": 0
+    },
+    {
+      "date": "2019-01-31",
+      "idempotencyKey": "passive-step-0",
+      "kind": "order_placed",
+      "orderId": "o1",
+      "quantity": "__paise_bigint__:17035775",
+      "seq": 1,
+      "side": "buy",
+      "step": 0,
+      "symbol": "GOLDBEES"
+    },
+    {
+      "costPaise": "__paise_bigint__:5000",
+      "date": "2019-01-31",
+      "grossPaise": "__paise_bigint__:5000000",
+      "kind": "fill",
+      "orderId": "o1",
+      "pricePaise": "__paise_bigint__:2935",
+      "quantity": "__paise_bigint__:17035775",
+      "seq": 2,
+      "side": "buy",
+      "step": 0,
+      "symbol": "GOLDBEES",
+      "synthetic": false
+    },
+    {
+      "date": "2019-01-31",
+      "idempotencyKey": "passive-step-0",
+      "kind": "order_placed",
+      "orderId": "o2",
+      "quantity": "__paise_bigint__:141783",
+      "seq": 3,
+      "side": "buy",
+      "step": 0,
+      "symbol": "HINDUNILVR"
+    },
+    {
+      "costPaise": "__paise_bigint__:2500",
+      "date": "2019-01-31",
+      "grossPaise": "__paise_bigint__:2499989",
+      "kind": "fill",
+      "orderId": "o2",
+      "pricePaise": "__paise_bigint__:176325",
+      "quantity": "__paise_bigint__:141783",
+      "seq": 4,
+      "side": "buy",
+      "step": 0,
+      "symbol": "HINDUNILVR",
+      "synthetic": false
+    },
+    {
+      "date": "2019-01-31",
+      "idempotencyKey": "passive-step-0",
+      "kind": "order_placed",
+      "orderId": "o3",
+      "quantity": "__paise_bigint__:685965",
+      "seq": 5,
+      "side": "buy",
+      "step": 0,
+      "symbol": "ICICIBANK"
+    },
+    {
+      "costPaise": "__paise_bigint__:2500",
+      "date": "2019-01-31",
+      "grossPaise": "__paise_bigint__:2499999",
+      "kind": "fill",
+      "orderId": "o3",
+      "pricePaise": "__paise_bigint__:36445",
+      "quantity": "__paise_bigint__:685965",
+      "seq": 6,
+      "side": "buy",
+      "step": 0,
+      "symbol": "ICICIBANK",
+      "synthetic": false
+    },
+    {
+      "date": "2019-01-31",
+      "idempotencyKey": "passive-step-0",
+      "kind": "order_placed",
+      "orderId": "o4",
+      "quantity": "__paise_bigint__:333533",
+      "seq": 7,
+      "side": "buy",
+      "step": 0,
+      "symbol": "INFY"
+    },
+    {
+      "costPaise": "__paise_bigint__:2500",
+      "date": "2019-01-31",
+      "grossPaise": "__paise_bigint__:2499997",
+      "kind": "fill",
+      "orderId": "o4",
+      "pricePaise": "__paise_bigint__:74955",
+      "quantity": "__paise_bigint__:333533",
+      "seq": 8,
+      "side": "buy",
+      "step": 0,
+      "symbol": "INFY",
+      "synthetic": false
+    },
+    {
+      "date": "2019-01-31",
+      "idempotencyKey": "passive-step-0",
+      "kind": "order_placed",
+      "orderId": "o5",
+      "quantity": "__paise_bigint__:41322314",
+      "seq": 9,
+      "side": "buy",
+      "step": 0,
+      "symbol": "LTGILTBEES"
+    },
+    {
+      "costPaise": "__paise_bigint__:7500",
+      "date": "2019-01-31",
+      "grossPaise": "__paise_bigint__:7500000",
+      "kind": "fill",
+      "orderId": "o5",
+      "pricePaise": "__paise_bigint__:1815",
+      "quantity": "__paise_bigint__:41322314",
+      "seq": 10,
+      "side": "buy",
+      "step": 0,
+      "symbol": "LTGILTBEES",
+      "synthetic": true
+    },
+    {
+      "date": "2019-01-31",
+      "idempotencyKey": "passive-step-0",
+      "kind": "order_placed",
+      "orderId": "o6",
+      "quantity": "__paise_bigint__:15422578",
+      "seq": 11,
+      "side": "buy",
+      "step": 0,
+      "symbol": "NIFTYBEES"
+    },
+    {
+      "costPaise": "__paise_bigint__:17500",
+      "date": "2019-01-31",
+      "grossPaise": "__paise_bigint__:17499999",
+      "kind": "fill",
+      "orderId": "o6",
+      "pricePaise": "__paise_bigint__:11347",
+      "quantity": "__paise_bigint__:15422578",
+      "seq": 12,
+      "side": "buy",
+      "step": 0,
+      "symbol": "NIFTYBEES",
+      "synthetic": false
+    },
+    {
+      "date": "2019-01-31",
+      "idempotencyKey": "passive-step-0",
+      "kind": "order_placed",
+      "orderId": "o7",
+      "quantity": "__paise_bigint__:891249",
+      "seq": 13,
+      "side": "buy",
+      "step": 0,
+      "symbol": "RELIANCE"
+    },
+    {
+      "costPaise": "__paise_bigint__:5000",
+      "date": "2019-01-31",
+      "grossPaise": "__paise_bigint__:4999996",
+      "kind": "fill",
+      "orderId": "o7",
+      "pricePaise": "__paise_bigint__:56101",
+      "quantity": "__paise_bigint__:891249",
+      "seq": 14,
+      "side": "buy",
+      "step": 0,
+      "symbol": "RELIANCE",
+      "synthetic": false
+    },
+    {
+      "date": "2019-01-31",
+      "idempotencyKey": "passive-step-0",
+      "kind": "order_placed",
+      "orderId": "o8",
+      "quantity": "__paise_bigint__:248249",
+      "seq": 15,
+      "side": "buy",
+      "step": 0,
+      "symbol": "TCS"
+    },
+    {
+      "costPaise": "__paise_bigint__:5000",
+      "date": "2019-01-31",
+      "grossPaise": "__paise_bigint__:4999983",
+      "kind": "fill",
+      "orderId": "o8",
+      "pricePaise": "__paise_bigint__:201410",
+      "quantity": "__paise_bigint__:248249",
+      "seq": 16,
+      "side": "buy",
+      "step": 0,
+      "symbol": "TCS",
+      "synthetic": false
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-02-28",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 17,
+      "step": 1
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-02-28",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 18,
+      "step": 1
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-03-28",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 19,
+      "step": 2
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-03-28",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 20,
+      "step": 2
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-04-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 21,
+      "step": 3
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-04-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 22,
+      "step": 3
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-05-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 23,
+      "step": 4
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-05-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 24,
+      "step": 4
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-06-28",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 25,
+      "step": 5
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-06-28",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 26,
+      "step": 5
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-07-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 27,
+      "step": 6
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-07-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 28,
+      "step": 6
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-08-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 29,
+      "step": 7
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-08-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 30,
+      "step": 7
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-09-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 31,
+      "step": 8
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-09-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 32,
+      "step": 8
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-10-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 33,
+      "step": 9
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-10-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 34,
+      "step": 9
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-11-29",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 35,
+      "step": 10
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-11-29",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 36,
+      "step": 10
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2019-12-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 37,
+      "step": 11
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2019-12-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 38,
+      "step": 11
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-01-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 39,
+      "step": 12
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-01-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 40,
+      "step": 12
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-02-28",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 41,
+      "step": 13
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-02-28",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 42,
+      "step": 13
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-03-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 43,
+      "step": 14
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-03-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 44,
+      "step": 14
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-04-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 45,
+      "step": 15
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-04-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 46,
+      "step": 15
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-05-29",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 47,
+      "step": 16
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-05-29",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 48,
+      "step": 16
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-06-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 49,
+      "step": 17
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-06-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 50,
+      "step": 17
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-07-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 51,
+      "step": 18
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-07-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 52,
+      "step": 18
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-08-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 53,
+      "step": 19
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-08-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 54,
+      "step": 19
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-09-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 55,
+      "step": 20
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-09-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 56,
+      "step": 20
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-10-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 57,
+      "step": 21
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-10-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 58,
+      "step": 21
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-11-27",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 59,
+      "step": 22
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-11-27",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 60,
+      "step": 22
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2020-12-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 61,
+      "step": 23
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2020-12-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 62,
+      "step": 23
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-01-29",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 63,
+      "step": 24
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-01-29",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 64,
+      "step": 24
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-02-26",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 65,
+      "step": 25
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-02-26",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 66,
+      "step": 25
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-03-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 67,
+      "step": 26
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-03-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 68,
+      "step": 26
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-04-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 69,
+      "step": 27
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-04-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 70,
+      "step": 27
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-05-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 71,
+      "step": 28
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-05-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 72,
+      "step": 28
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-06-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 73,
+      "step": 29
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-06-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 74,
+      "step": 29
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-07-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 75,
+      "step": 30
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-07-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 76,
+      "step": 30
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-08-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 77,
+      "step": 31
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-08-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 78,
+      "step": 31
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-09-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 79,
+      "step": 32
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-09-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 80,
+      "step": 32
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-10-29",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 81,
+      "step": 33
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-10-29",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 82,
+      "step": 33
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-11-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 83,
+      "step": 34
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-11-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 84,
+      "step": 34
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2021-12-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 85,
+      "step": 35
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2021-12-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 86,
+      "step": 35
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-01-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 87,
+      "step": 36
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-01-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 88,
+      "step": 36
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-02-28",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 89,
+      "step": 37
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-02-28",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 90,
+      "step": 37
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-03-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 91,
+      "step": 38
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-03-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 92,
+      "step": 38
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-04-29",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 93,
+      "step": 39
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-04-29",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 94,
+      "step": 39
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-05-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 95,
+      "step": 40
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-05-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 96,
+      "step": 40
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-06-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 97,
+      "step": 41
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-06-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 98,
+      "step": 41
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-07-29",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 99,
+      "step": 42
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-07-29",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 100,
+      "step": 42
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-08-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 101,
+      "step": 43
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-08-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 102,
+      "step": 43
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-09-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 103,
+      "step": 44
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-09-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 104,
+      "step": 44
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-10-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 105,
+      "step": 45
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-10-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 106,
+      "step": 45
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-11-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 107,
+      "step": 46
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-11-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 108,
+      "step": 46
+    },
+    {
+      "absorbedFromCash": true,
+      "amountPaise": "__paise_bigint__:11946898",
+      "date": "2022-11-30",
+      "kind": "expense_shock",
+      "label": "Unplanned expense",
+      "seq": 109,
+      "step": 46
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2022-12-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 110,
+      "step": 47
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2022-12-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 111,
+      "step": 47
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-01-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 112,
+      "step": 48
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-01-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 113,
+      "step": 48
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-02-28",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 114,
+      "step": 49
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-02-28",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 115,
+      "step": 49
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-03-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 116,
+      "step": 50
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-03-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 117,
+      "step": 50
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-04-28",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 118,
+      "step": 51
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-04-28",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 119,
+      "step": 51
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-05-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 120,
+      "step": 52
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-05-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 121,
+      "step": 52
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-06-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 122,
+      "step": 53
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-06-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 123,
+      "step": 53
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-07-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 124,
+      "step": 54
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-07-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 125,
+      "step": 54
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-08-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 126,
+      "step": 55
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-08-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 127,
+      "step": 55
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-09-29",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 128,
+      "step": 56
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-09-29",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 129,
+      "step": 56
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-10-31",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 130,
+      "step": 57
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-10-31",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 131,
+      "step": 57
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-11-30",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 132,
+      "step": 58
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-11-30",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 133,
+      "step": 58
+    },
+    {
+      "amountPaise": "__paise_bigint__:2500000",
+      "date": "2023-12-29",
+      "kind": "income",
+      "label": "Monthly income",
+      "seq": 134,
+      "step": 59
+    },
+    {
+      "amountPaise": "__paise_bigint__:1800000",
+      "date": "2023-12-29",
+      "kind": "expense",
+      "label": "Monthly expenses",
+      "seq": 135,
+      "step": 59
+    }
+  ],
+  "finalStep": 59,
+  "perStep": [
+    {
+      "cashPaise": "__paise_bigint__:2452537",
+      "date": "2019-01-31",
+      "holdingsValuePaise": "__paise_bigint__:47499963",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:2935",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5000000"
+        },
+        {
+          "closePaise": "__paise_bigint__:176325",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2499989"
+        },
+        {
+          "closePaise": "__paise_bigint__:36445",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2499999"
+        },
+        {
+          "closePaise": "__paise_bigint__:74955",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2499997"
+        },
+        {
+          "closePaise": "__paise_bigint__:1815",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": true,
+          "valuePaise": "__paise_bigint__:7500000"
+        },
+        {
+          "closePaise": "__paise_bigint__:11347",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:17499999"
+        },
+        {
+          "closePaise": "__paise_bigint__:56101",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4999996"
+        },
+        {
+          "closePaise": "__paise_bigint__:201410",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4999983"
+        }
+      ],
+      "step": 0,
+      "totalValuePaise": "__paise_bigint__:49952500",
+      "usedSyntheticPrices": true
+    },
+    {
+      "cashPaise": "__paise_bigint__:3152537",
+      "date": "2019-02-28",
+      "holdingsValuePaise": "__paise_bigint__:47255985",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:2950",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5025554"
+        },
+        {
+          "closePaise": "__paise_bigint__:173265",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2456603"
+        },
+        {
+          "closePaise": "__paise_bigint__:35015",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2401906"
+        },
+        {
+          "closePaise": "__paise_bigint__:73430",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2449133"
+        },
+        {
+          "closePaise": "__paise_bigint__:1815",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": true,
+          "valuePaise": "__paise_bigint__:7500000"
+        },
+        {
+          "closePaise": "__paise_bigint__:11336",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:17483034"
+        },
+        {
+          "closePaise": "__paise_bigint__:56279",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5015860"
+        },
+        {
+          "closePaise": "__paise_bigint__:198345",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4923895"
+        }
+      ],
+      "step": 1,
+      "totalValuePaise": "__paise_bigint__:50408522",
+      "usedSyntheticPrices": true
+    },
+    {
+      "cashPaise": "__paise_bigint__:3852537",
+      "date": "2019-03-28",
+      "holdingsValuePaise": "__paise_bigint__:49073830",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:2825",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4812606"
+        },
+        {
+          "closePaise": "__paise_bigint__:168390",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2387484"
+        },
+        {
+          "closePaise": "__paise_bigint__:40055",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2747633"
+        },
+        {
+          "closePaise": "__paise_bigint__:73780",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2460806"
+        },
+        {
+          "closePaise": "__paise_bigint__:1815",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": true,
+          "valuePaise": "__paise_bigint__:7500000"
+        },
+        {
+          "closePaise": "__paise_bigint__:12098",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:18658235"
+        },
+        {
+          "closePaise": "__paise_bigint__:62175",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5541341"
+        },
+        {
+          "closePaise": "__paise_bigint__:200030",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4965725"
+        }
+      ],
+      "step": 2,
+      "totalValuePaise": "__paise_bigint__:52926367",
+      "usedSyntheticPrices": true
+    },
+    {
+      "cashPaise": "__paise_bigint__:4552537",
+      "date": "2019-04-30",
+      "holdingsValuePaise": "__paise_bigint__:50408237",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:2815",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4795571"
+        },
+        {
+          "closePaise": "__paise_bigint__:175770",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2492120"
+        },
+        {
+          "closePaise": "__paise_bigint__:40750",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2795307"
+        },
+        {
+          "closePaise": "__paise_bigint__:75135",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2506000"
+        },
+        {
+          "closePaise": "__paise_bigint__:1815",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": true,
+          "valuePaise": "__paise_bigint__:7500000"
+        },
+        {
+          "closePaise": "__paise_bigint__:12341",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:19033004"
+        },
+        {
+          "closePaise": "__paise_bigint__:63674",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5674939"
+        },
+        {
+          "closePaise": "__paise_bigint__:226035",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5611296"
+        }
+      ],
+      "step": 3,
+      "totalValuePaise": "__paise_bigint__:54960774",
+      "usedSyntheticPrices": true
+    },
+    {
+      "cashPaise": "__paise_bigint__:5252537",
+      "date": "2019-05-31",
+      "holdingsValuePaise": "__paise_bigint__:50426993",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:2838",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4834753"
+        },
+        {
+          "closePaise": "__paise_bigint__:178850",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2535789"
+        },
+        {
+          "closePaise": "__paise_bigint__:42370",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2906434"
+        },
+        {
+          "closePaise": "__paise_bigint__:73775",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2460640"
+        },
+        {
+          "closePaise": "__paise_bigint__:1815",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": true,
+          "valuePaise": "__paise_bigint__:7500000"
+        },
+        {
+          "closePaise": "__paise_bigint__:12525",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:19316779"
+        },
+        {
+          "closePaise": "__paise_bigint__:60810",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5419685"
+        },
+        {
+          "closePaise": "__paise_bigint__:219655",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5452913"
+        }
+      ],
+      "step": 4,
+      "totalValuePaise": "__paise_bigint__:55679530",
+      "usedSyntheticPrices": true
+    },
+    {
+      "cashPaise": "__paise_bigint__:5952537",
+      "date": "2019-06-28",
+      "holdingsValuePaise": "__paise_bigint__:50901693",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:2998",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5107325"
+        },
+        {
+          "closePaise": "__paise_bigint__:178760",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2534513"
+        },
+        {
+          "closePaise": "__paise_bigint__:43710",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2998353"
+        },
+        {
+          "closePaise": "__paise_bigint__:73200",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2441462"
+        },
+        {
+          "closePaise": "__paise_bigint__:1940",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8016529"
+        },
+        {
+          "closePaise": "__paise_bigint__:12429",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:19168722"
+        },
+        {
+          "closePaise": "__paise_bigint__:57288",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5105787"
+        },
+        {
+          "closePaise": "__paise_bigint__:222720",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5529002"
+        }
+      ],
+      "step": 5,
+      "totalValuePaise": "__paise_bigint__:56854230",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:6652537",
+      "date": "2019-07-31",
+      "holdingsValuePaise": "__paise_bigint__:49877448",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3066",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5223169"
+        },
+        {
+          "closePaise": "__paise_bigint__:172665",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2448096"
+        },
+        {
+          "closePaise": "__paise_bigint__:42460",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2912607"
+        },
+        {
+          "closePaise": "__paise_bigint__:79365",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2647085"
+        },
+        {
+          "closePaise": "__paise_bigint__:2005",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8285124"
+        },
+        {
+          "closePaise": "__paise_bigint__:11758",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:18133867"
+        },
+        {
+          "closePaise": "__paise_bigint__:53317",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4751872"
+        },
+        {
+          "closePaise": "__paise_bigint__:220570",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5475628"
+        }
+      ],
+      "step": 6,
+      "totalValuePaise": "__paise_bigint__:56529985",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:7352537",
+      "date": "2019-08-30",
+      "holdingsValuePaise": "__paise_bigint__:50932794",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3380",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5758092"
+        },
+        {
+          "closePaise": "__paise_bigint__:188190",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2668214"
+        },
+        {
+          "closePaise": "__paise_bigint__:40965",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2810056"
+        },
+        {
+          "closePaise": "__paise_bigint__:81490",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2717960"
+        },
+        {
+          "closePaise": "__paise_bigint__:2008",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8297521"
+        },
+        {
+          "closePaise": "__paise_bigint__:11661",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:17984268"
+        },
+        {
+          "closePaise": "__paise_bigint__:57080",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5087249"
+        },
+        {
+          "closePaise": "__paise_bigint__:225960",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5609434"
+        }
+      ],
+      "step": 7,
+      "totalValuePaise": "__paise_bigint__:58285331",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:8052537",
+      "date": "2019-09-30",
+      "holdingsValuePaise": "__paise_bigint__:51725796",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3297",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5616695"
+        },
+        {
+          "closePaise": "__paise_bigint__:198195",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2810068"
+        },
+        {
+          "closePaise": "__paise_bigint__:43370",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2975030"
+        },
+        {
+          "closePaise": "__paise_bigint__:80565",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2687109"
+        },
+        {
+          "closePaise": "__paise_bigint__:1996",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8247934"
+        },
+        {
+          "closePaise": "__paise_bigint__:12157",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:18749228"
+        },
+        {
+          "closePaise": "__paise_bigint__:60906",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5428241"
+        },
+        {
+          "closePaise": "__paise_bigint__:209930",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5211491"
+        }
+      ],
+      "step": 8,
+      "totalValuePaise": "__paise_bigint__:59778333",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:8752537",
+      "date": "2019-10-31",
+      "holdingsValuePaise": "__paise_bigint__:53609265",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3407",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5804089"
+        },
+        {
+          "closePaise": "__paise_bigint__:217535",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3084276"
+        },
+        {
+          "closePaise": "__paise_bigint__:46305",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3176361"
+        },
+        {
+          "closePaise": "__paise_bigint__:68560",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2286702"
+        },
+        {
+          "closePaise": "__paise_bigint__:2009",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8301653"
+        },
+        {
+          "closePaise": "__paise_bigint__:12550",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:19355335"
+        },
+        {
+          "closePaise": "__paise_bigint__:66945",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5966466"
+        },
+        {
+          "closePaise": "__paise_bigint__:226965",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5634383"
+        }
+      ],
+      "step": 9,
+      "totalValuePaise": "__paise_bigint__:62361802",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:9452537",
+      "date": "2019-11-29",
+      "holdingsValuePaise": "__paise_bigint__:53850031",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3341",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5691652"
+        },
+        {
+          "closePaise": "__paise_bigint__:203530",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2885709"
+        },
+        {
+          "closePaise": "__paise_bigint__:51260",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3516257"
+        },
+        {
+          "closePaise": "__paise_bigint__:69635",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2322557"
+        },
+        {
+          "closePaise": "__paise_bigint__:2021",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8351240"
+        },
+        {
+          "closePaise": "__paise_bigint__:12751",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:19665329"
+        },
+        {
+          "closePaise": "__paise_bigint__:70913",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6320114"
+        },
+        {
+          "closePaise": "__paise_bigint__:205325",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5097173"
+        }
+      ],
+      "step": 10,
+      "totalValuePaise": "__paise_bigint__:63302568",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:10152537",
+      "date": "2019-12-31",
+      "holdingsValuePaise": "__paise_bigint__:54551988",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3445",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5868824"
+        },
+        {
+          "closePaise": "__paise_bigint__:192300",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2726487"
+        },
+        {
+          "closePaise": "__paise_bigint__:53890",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3696665"
+        },
+        {
+          "closePaise": "__paise_bigint__:73115",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2438627"
+        },
+        {
+          "closePaise": "__paise_bigint__:2025",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8367769"
+        },
+        {
+          "closePaise": "__paise_bigint__:12915",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:19918259"
+        },
+        {
+          "closePaise": "__paise_bigint__:69217",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6168958"
+        },
+        {
+          "closePaise": "__paise_bigint__:216170",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5366399"
+        }
+      ],
+      "step": 11,
+      "totalValuePaise": "__paise_bigint__:64704525",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:10852537",
+      "date": "2020-01-31",
+      "holdingsValuePaise": "__paise_bigint__:54090688",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3587",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6110732"
+        },
+        {
+          "closePaise": "__paise_bigint__:203425",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2884221"
+        },
+        {
+          "closePaise": "__paise_bigint__:52565",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3605775"
+        },
+        {
+          "closePaise": "__paise_bigint__:77595",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2588049"
+        },
+        {
+          "closePaise": "__paise_bigint__:2027",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8376033"
+        },
+        {
+          "closePaise": "__paise_bigint__:12717",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:19612892"
+        },
+        {
+          "closePaise": "__paise_bigint__:64536",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5751765"
+        },
+        {
+          "closePaise": "__paise_bigint__:207905",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5161221"
+        }
+      ],
+      "step": 12,
+      "totalValuePaise": "__paise_bigint__:64943225",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:11552537",
+      "date": "2020-02-28",
+      "holdingsValuePaise": "__paise_bigint__:52672639",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3737",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6366269"
+        },
+        {
+          "closePaise": "__paise_bigint__:217475",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3083426"
+        },
+        {
+          "closePaise": "__paise_bigint__:49725",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3410961"
+        },
+        {
+          "closePaise": "__paise_bigint__:73170",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2440461"
+        },
+        {
+          "closePaise": "__paise_bigint__:2080",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8595041"
+        },
+        {
+          "closePaise": "__paise_bigint__:11929",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:18397593"
+        },
+        {
+          "closePaise": "__paise_bigint__:60741",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5413536"
+        },
+        {
+          "closePaise": "__paise_bigint__:200015",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4965352"
+        }
+      ],
+      "step": 13,
+      "totalValuePaise": "__paise_bigint__:64225176",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:12252537",
+      "date": "2020-03-31",
+      "holdingsValuePaise": "__paise_bigint__:46044733",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3821",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6509370"
+        },
+        {
+          "closePaise": "__paise_bigint__:229850",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3258882"
+        },
+        {
+          "closePaise": "__paise_bigint__:32375",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2220812"
+        },
+        {
+          "closePaise": "__paise_bigint__:64150",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2139614"
+        },
+        {
+          "closePaise": "__paise_bigint__:2097",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8665289"
+        },
+        {
+          "closePaise": "__paise_bigint__:9194",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:14179518"
+        },
+        {
+          "closePaise": "__paise_bigint__:50917",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4537973"
+        },
+        {
+          "closePaise": "__paise_bigint__:182610",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4533275"
+        }
+      ],
+      "step": 14,
+      "totalValuePaise": "__paise_bigint__:58297270",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:12952537",
+      "date": "2020-04-30",
+      "holdingsValuePaise": "__paise_bigint__:51205510",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4257",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7252129"
+        },
+        {
+          "closePaise": "__paise_bigint__:219500",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3112137"
+        },
+        {
+          "closePaise": "__paise_bigint__:38015",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2607696"
+        },
+        {
+          "closePaise": "__paise_bigint__:71550",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2386429"
+        },
+        {
+          "closePaise": "__paise_bigint__:2131",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8805785"
+        },
+        {
+          "closePaise": "__paise_bigint__:10418",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:16067242"
+        },
+        {
+          "closePaise": "__paise_bigint__:67021",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5973240"
+        },
+        {
+          "closePaise": "__paise_bigint__:201445",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5000852"
+        }
+      ],
+      "step": 15,
+      "totalValuePaise": "__paise_bigint__:64158047",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:13652537",
+      "date": "2020-05-29",
+      "holdingsValuePaise": "__paise_bigint__:50123476",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4099",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6982964"
+        },
+        {
+          "closePaise": "__paise_bigint__:205735",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2916973"
+        },
+        {
+          "closePaise": "__paise_bigint__:33195",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2277061"
+        },
+        {
+          "closePaise": "__paise_bigint__:69100",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2304713"
+        },
+        {
+          "closePaise": "__paise_bigint__:2199",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9086777"
+        },
+        {
+          "closePaise": "__paise_bigint__:10138",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:15635410"
+        },
+        {
+          "closePaise": "__paise_bigint__:67582",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6023239"
+        },
+        {
+          "closePaise": "__paise_bigint__:197235",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4896339"
+        }
+      ],
+      "step": 16,
+      "totalValuePaise": "__paise_bigint__:63776013",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:14352537",
+      "date": "2020-06-30",
+      "holdingsValuePaise": "__paise_bigint__:53263475",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4261",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7258944"
+        },
+        {
+          "closePaise": "__paise_bigint__:218000",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3090869"
+        },
+        {
+          "closePaise": "__paise_bigint__:35145",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2410824"
+        },
+        {
+          "closePaise": "__paise_bigint__:73595",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2454636"
+        },
+        {
+          "closePaise": "__paise_bigint__:2173",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8979339"
+        },
+        {
+          "closePaise": "__paise_bigint__:10952",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:16890807"
+        },
+        {
+          "closePaise": "__paise_bigint__:78644",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7009139"
+        },
+        {
+          "closePaise": "__paise_bigint__:208215",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5168917"
+        }
+      ],
+      "step": 17,
+      "totalValuePaise": "__paise_bigint__:67616012",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:15052537",
+      "date": "2020-07-31",
+      "holdingsValuePaise": "__paise_bigint__:58210823",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4714",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8030664"
+        },
+        {
+          "closePaise": "__paise_bigint__:220990",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3133263"
+        },
+        {
+          "closePaise": "__paise_bigint__:34680",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2378927"
+        },
+        {
+          "closePaise": "__paise_bigint__:96600",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3221929"
+        },
+        {
+          "closePaise": "__paise_bigint__:2197",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9078512"
+        },
+        {
+          "closePaise": "__paise_bigint__:11802",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:18201727"
+        },
+        {
+          "closePaise": "__paise_bigint__:95397",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8502248"
+        },
+        {
+          "closePaise": "__paise_bigint__:228140",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5663553"
+        }
+      ],
+      "step": 18,
+      "totalValuePaise": "__paise_bigint__:73263360",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:15752537",
+      "date": "2020-08-31",
+      "holdingsValuePaise": "__paise_bigint__:58287495",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4534",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7724020"
+        },
+        {
+          "closePaise": "__paise_bigint__:211735",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3002042"
+        },
+        {
+          "closePaise": "__paise_bigint__:39460",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2706818"
+        },
+        {
+          "closePaise": "__paise_bigint__:92860",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3097187"
+        },
+        {
+          "closePaise": "__paise_bigint__:2161",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8929752"
+        },
+        {
+          "closePaise": "__paise_bigint__:12103",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:18665946"
+        },
+        {
+          "closePaise": "__paise_bigint__:96024",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8558129"
+        },
+        {
+          "closePaise": "__paise_bigint__:225725",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5603601"
+        }
+      ],
+      "step": 19,
+      "totalValuePaise": "__paise_bigint__:74040032",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:16452537",
+      "date": "2020-09-30",
+      "holdingsValuePaise": "__paise_bigint__:59182380",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4418",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7526405"
+        },
+        {
+          "closePaise": "__paise_bigint__:206825",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2932427"
+        },
+        {
+          "closePaise": "__paise_bigint__:35475",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2433461"
+        },
+        {
+          "closePaise": "__paise_bigint__:100825",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3362846"
+        },
+        {
+          "closePaise": "__paise_bigint__:2191",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9053719"
+        },
+        {
+          "closePaise": "__paise_bigint__:11993",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:18496298"
+        },
+        {
+          "closePaise": "__paise_bigint__:103115",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9190114"
+        },
+        {
+          "closePaise": "__paise_bigint__:249230",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6187110"
+        }
+      ],
+      "step": 20,
+      "totalValuePaise": "__paise_bigint__:75634917",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:17152537",
+      "date": "2020-10-30",
+      "holdingsValuePaise": "__paise_bigint__:60201913",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4432",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7550255"
+        },
+        {
+          "closePaise": "__paise_bigint__:207130",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2936751"
+        },
+        {
+          "closePaise": "__paise_bigint__:39260",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2693099"
+        },
+        {
+          "closePaise": "__paise_bigint__:106060",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3537451"
+        },
+        {
+          "closePaise": "__paise_bigint__:2228",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9206612"
+        },
+        {
+          "closePaise": "__paise_bigint__:12457",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:19211905"
+        },
+        {
+          "closePaise": "__paise_bigint__:94815",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8450377"
+        },
+        {
+          "closePaise": "__paise_bigint__:266485",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6615463"
+        }
+      ],
+      "step": 21,
+      "totalValuePaise": "__paise_bigint__:77354450",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:17852537",
+      "date": "2020-11-27",
+      "holdingsValuePaise": "__paise_bigint__:62412576",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4284",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7298126"
+        },
+        {
+          "closePaise": "__paise_bigint__:213820",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3031604"
+        },
+        {
+          "closePaise": "__paise_bigint__:47335",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3247015"
+        },
+        {
+          "closePaise": "__paise_bigint__:110000",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3668863"
+        },
+        {
+          "closePaise": "__paise_bigint__:2235",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9235537"
+        },
+        {
+          "closePaise": "__paise_bigint__:13838",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:21341763"
+        },
+        {
+          "closePaise": "__paise_bigint__:89060",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7937464"
+        },
+        {
+          "closePaise": "__paise_bigint__:267965",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6652204"
+        }
+      ],
+      "step": 22,
+      "totalValuePaise": "__paise_bigint__:80265113",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:18552537",
+      "date": "2020-12-31",
+      "holdingsValuePaise": "__paise_bigint__:66252164",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4375",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7453152"
+        },
+        {
+          "closePaise": "__paise_bigint__:239540",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3396270"
+        },
+        {
+          "closePaise": "__paise_bigint__:53505",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3670256"
+        },
+        {
+          "closePaise": "__paise_bigint__:125580",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4188507"
+        },
+        {
+          "closePaise": "__paise_bigint__:2246",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9280992"
+        },
+        {
+          "closePaise": "__paise_bigint__:14907",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:22990437"
+        },
+        {
+          "closePaise": "__paise_bigint__:91622",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8165802"
+        },
+        {
+          "closePaise": "__paise_bigint__:286275",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7106748"
+        }
+      ],
+      "step": 23,
+      "totalValuePaise": "__paise_bigint__:84804701",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:19252537",
+      "date": "2021-01-29",
+      "holdingsValuePaise": "__paise_bigint__:65397015",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4265",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7265758"
+        },
+        {
+          "closePaise": "__paise_bigint__:226390",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3209825"
+        },
+        {
+          "closePaise": "__paise_bigint__:53700",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3683632"
+        },
+        {
+          "closePaise": "__paise_bigint__:123905",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4132641"
+        },
+        {
+          "closePaise": "__paise_bigint__:2244",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9272727"
+        },
+        {
+          "closePaise": "__paise_bigint__:14610",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:22532386"
+        },
+        {
+          "closePaise": "__paise_bigint__:85006",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7576151"
+        },
+        {
+          "closePaise": "__paise_bigint__:311135",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7723895"
+        }
+      ],
+      "step": 24,
+      "totalValuePaise": "__paise_bigint__:84649552",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:19952537",
+      "date": "2021-02-26",
+      "holdingsValuePaise": "__paise_bigint__:67064749",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4025",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6856899"
+        },
+        {
+          "closePaise": "__paise_bigint__:213205",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3022884"
+        },
+        {
+          "closePaise": "__paise_bigint__:59775",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4100356"
+        },
+        {
+          "closePaise": "__paise_bigint__:125330",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4180169"
+        },
+        {
+          "closePaise": "__paise_bigint__:2192",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9057851"
+        },
+        {
+          "closePaise": "__paise_bigint__:15615",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:24082356"
+        },
+        {
+          "closePaise": "__paise_bigint__:96260",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8579163"
+        },
+        {
+          "closePaise": "__paise_bigint__:289430",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7185071"
+        }
+      ],
+      "step": 25,
+      "totalValuePaise": "__paise_bigint__:87017286",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:20652537",
+      "date": "2021-03-31",
+      "holdingsValuePaise": "__paise_bigint__:68029012",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3817",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6502555"
+        },
+        {
+          "closePaise": "__paise_bigint__:243150",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3447454"
+        },
+        {
+          "closePaise": "__paise_bigint__:58210",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3993002"
+        },
+        {
+          "closePaise": "__paise_bigint__:136805",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4562898"
+        },
+        {
+          "closePaise": "__paise_bigint__:2216",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9157025"
+        },
+        {
+          "closePaise": "__paise_bigint__:15716",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:24238124"
+        },
+        {
+          "closePaise": "__paise_bigint__:92443",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8238973"
+        },
+        {
+          "closePaise": "__paise_bigint__:317785",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7888981"
+        }
+      ],
+      "step": 26,
+      "totalValuePaise": "__paise_bigint__:88681549",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:21352537",
+      "date": "2021-04-30",
+      "holdingsValuePaise": "__paise_bigint__:68068744",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4059",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6914821"
+        },
+        {
+          "closePaise": "__paise_bigint__:235375",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3337217"
+        },
+        {
+          "closePaise": "__paise_bigint__:60050",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4119220"
+        },
+        {
+          "closePaise": "__paise_bigint__:135435",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4517204"
+        },
+        {
+          "closePaise": "__paise_bigint__:2233",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9227273"
+        },
+        {
+          "closePaise": "__paise_bigint__:15700",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:24213447"
+        },
+        {
+          "closePaise": "__paise_bigint__:92046",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8203591"
+        },
+        {
+          "closePaise": "__paise_bigint__:303565",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7535971"
+        }
+      ],
+      "step": 27,
+      "totalValuePaise": "__paise_bigint__:89421281",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:22052537",
+      "date": "2021-05-31",
+      "holdingsValuePaise": "__paise_bigint__:71508885",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4259",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7255537"
+        },
+        {
+          "closePaise": "__paise_bigint__:234005",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3317793"
+        },
+        {
+          "closePaise": "__paise_bigint__:66275",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4546233"
+        },
+        {
+          "closePaise": "__paise_bigint__:139375",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4648616"
+        },
+        {
+          "closePaise": "__paise_bigint__:2248",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9289256"
+        },
+        {
+          "closePaise": "__paise_bigint__:16679",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:25723318"
+        },
+        {
+          "closePaise": "__paise_bigint__:99698",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8885574"
+        },
+        {
+          "closePaise": "__paise_bigint__:315915",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7842558"
+        }
+      ],
+      "step": 28,
+      "totalValuePaise": "__paise_bigint__:93561422",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:22752537",
+      "date": "2021-06-30",
+      "holdingsValuePaise": "__paise_bigint__:72384104",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4052",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6902896"
+        },
+        {
+          "closePaise": "__paise_bigint__:247130",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3503883"
+        },
+        {
+          "closePaise": "__paise_bigint__:63090",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4327753"
+        },
+        {
+          "closePaise": "__paise_bigint__:158080",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5272490"
+        },
+        {
+          "closePaise": "__paise_bigint__:2252",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9305785"
+        },
+        {
+          "closePaise": "__paise_bigint__:16913",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:26084206"
+        },
+        {
+          "closePaise": "__paise_bigint__:97406",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8681300"
+        },
+        {
+          "closePaise": "__paise_bigint__:334575",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8305791"
+        }
+      ],
+      "step": 29,
+      "totalValuePaise": "__paise_bigint__:95136641",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:23452537",
+      "date": "2021-07-30",
+      "holdingsValuePaise": "__paise_bigint__:72189021",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4192",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7141397"
+        },
+        {
+          "closePaise": "__paise_bigint__:233330",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3308223"
+        },
+        {
+          "closePaise": "__paise_bigint__:68250",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4681711"
+        },
+        {
+          "closePaise": "__paise_bigint__:161050",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5371549"
+        },
+        {
+          "closePaise": "__paise_bigint__:2246",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9280992"
+        },
+        {
+          "closePaise": "__paise_bigint__:16969",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:26170573"
+        },
+        {
+          "closePaise": "__paise_bigint__:93929",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8371413"
+        },
+        {
+          "closePaise": "__paise_bigint__:316745",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7863163"
+        }
+      ],
+      "step": 30,
+      "totalValuePaise": "__paise_bigint__:95641558",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:24152537",
+      "date": "2021-08-31",
+      "holdingsValuePaise": "__paise_bigint__:77889798",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4083",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6955707"
+        },
+        {
+          "closePaise": "__paise_bigint__:272410",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3862311"
+        },
+        {
+          "closePaise": "__paise_bigint__:71905",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4932431"
+        },
+        {
+          "closePaise": "__paise_bigint__:170645",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5691574"
+        },
+        {
+          "closePaise": "__paise_bigint__:2250",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9297521"
+        },
+        {
+          "closePaise": "__paise_bigint__:18455",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:28462368"
+        },
+        {
+          "closePaise": "__paise_bigint__:104214",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9288062"
+        },
+        {
+          "closePaise": "__paise_bigint__:378645",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9399824"
+        }
+      ],
+      "step": 31,
+      "totalValuePaise": "__paise_bigint__:102042335",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:24852537",
+      "date": "2021-09-30",
+      "holdingsValuePaise": "__paise_bigint__:79455881",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:3972",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6766610"
+        },
+        {
+          "closePaise": "__paise_bigint__:270180",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3830693"
+        },
+        {
+          "closePaise": "__paise_bigint__:70085",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4807586"
+        },
+        {
+          "closePaise": "__paise_bigint__:167520",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5587345"
+        },
+        {
+          "closePaise": "__paise_bigint__:2277",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9409091"
+        },
+        {
+          "closePaise": "__paise_bigint__:19011",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:29319863"
+        },
+        {
+          "closePaise": "__paise_bigint__:116263",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10361928"
+        },
+        {
+          "closePaise": "__paise_bigint__:377555",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9372765"
+        }
+      ],
+      "step": 32,
+      "totalValuePaise": "__paise_bigint__:104308418",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:25552537",
+      "date": "2021-10-29",
+      "holdingsValuePaise": "__paise_bigint__:79214620",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4150",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7069847"
+        },
+        {
+          "closePaise": "__paise_bigint__:239315",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3393080"
+        },
+        {
+          "closePaise": "__paise_bigint__:80205",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5501782"
+        },
+        {
+          "closePaise": "__paise_bigint__:166775",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5562497"
+        },
+        {
+          "closePaise": "__paise_bigint__:2260",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9338843"
+        },
+        {
+          "closePaise": "__paise_bigint__:19116",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:29481800"
+        },
+        {
+          "closePaise": "__paise_bigint__:117048",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10431891"
+        },
+        {
+          "closePaise": "__paise_bigint__:339775",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8434880"
+        }
+      ],
+      "step": 33,
+      "totalValuePaise": "__paise_bigint__:104767157",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:26252537",
+      "date": "2021-11-30",
+      "holdingsValuePaise": "__paise_bigint__:77398057",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4151",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7071550"
+        },
+        {
+          "closePaise": "__paise_bigint__:231755",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3285892"
+        },
+        {
+          "closePaise": "__paise_bigint__:71435",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4900191"
+        },
+        {
+          "closePaise": "__paise_bigint__:171265",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5712253"
+        },
+        {
+          "closePaise": "__paise_bigint__:2285",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9442149"
+        },
+        {
+          "closePaise": "__paise_bigint__:18370",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:28331276"
+        },
+        {
+          "closePaise": "__paise_bigint__:111009",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9893666"
+        },
+        {
+          "closePaise": "__paise_bigint__:352915",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8761080"
+        }
+      ],
+      "step": 34,
+      "totalValuePaise": "__paise_bigint__:103650594",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:26952537",
+      "date": "2021-12-31",
+      "holdingsValuePaise": "__paise_bigint__:79194724",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4148",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7066439"
+        },
+        {
+          "closePaise": "__paise_bigint__:236015",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3346291"
+        },
+        {
+          "closePaise": "__paise_bigint__:74015",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5077170"
+        },
+        {
+          "closePaise": "__paise_bigint__:188775",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6296269"
+        },
+        {
+          "closePaise": "__paise_bigint__:2281",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9425620"
+        },
+        {
+          "closePaise": "__paise_bigint__:18779",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:28962059"
+        },
+        {
+          "closePaise": "__paise_bigint__:109290",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9740460"
+        },
+        {
+          "closePaise": "__paise_bigint__:373835",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9280416"
+        }
+      ],
+      "step": 35,
+      "totalValuePaise": "__paise_bigint__:106147261",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:27652537",
+      "date": "2022-01-31",
+      "holdingsValuePaise": "__paise_bigint__:78721390",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4125",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7027257"
+        },
+        {
+          "closePaise": "__paise_bigint__:227375",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3223791"
+        },
+        {
+          "closePaise": "__paise_bigint__:78880",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5410892"
+        },
+        {
+          "closePaise": "__paise_bigint__:173620",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5790800"
+        },
+        {
+          "closePaise": "__paise_bigint__:2236",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9239669"
+        },
+        {
+          "closePaise": "__paise_bigint__:18763",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:28937383"
+        },
+        {
+          "closePaise": "__paise_bigint__:110142",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9816395"
+        },
+        {
+          "closePaise": "__paise_bigint__:373625",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9275203"
+        }
+      ],
+      "step": 36,
+      "totalValuePaise": "__paise_bigint__:106373927",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:28352537",
+      "date": "2022-02-28",
+      "holdingsValuePaise": "__paise_bigint__:77143011",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4359",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7425894"
+        },
+        {
+          "closePaise": "__paise_bigint__:217210",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3079669"
+        },
+        {
+          "closePaise": "__paise_bigint__:74270",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5094662"
+        },
+        {
+          "closePaise": "__paise_bigint__:171560",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5722092"
+        },
+        {
+          "closePaise": "__paise_bigint__:2238",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9247934"
+        },
+        {
+          "closePaise": "__paise_bigint__:18184",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:28044416"
+        },
+        {
+          "closePaise": "__paise_bigint__:108893",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9705078"
+        },
+        {
+          "closePaise": "__paise_bigint__:355420",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8823266"
+        }
+      ],
+      "step": 37,
+      "totalValuePaise": "__paise_bigint__:105495548",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:29052537",
+      "date": "2022-03-31",
+      "holdingsValuePaise": "__paise_bigint__:80366907",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4412",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7516184"
+        },
+        {
+          "closePaise": "__paise_bigint__:204865",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:2904637"
+        },
+        {
+          "closePaise": "__paise_bigint__:73030",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5009602"
+        },
+        {
+          "closePaise": "__paise_bigint__:190685",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6359974"
+        },
+        {
+          "closePaise": "__paise_bigint__:2257",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9326446"
+        },
+        {
+          "closePaise": "__paise_bigint__:18887",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:29128623"
+        },
+        {
+          "closePaise": "__paise_bigint__:121594",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10837053"
+        },
+        {
+          "closePaise": "__paise_bigint__:373995",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9284388"
+        }
+      ],
+      "step": 38,
+      "totalValuePaise": "__paise_bigint__:109419444",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:29752537",
+      "date": "2022-04-29",
+      "holdingsValuePaise": "__paise_bigint__:79195465",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4479",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7630324"
+        },
+        {
+          "closePaise": "__paise_bigint__:223485",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3168637"
+        },
+        {
+          "closePaise": "__paise_bigint__:74330",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5098778"
+        },
+        {
+          "closePaise": "__paise_bigint__:156755",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5228297"
+        },
+        {
+          "closePaise": "__paise_bigint__:2224",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9190083"
+        },
+        {
+          "closePaise": "__paise_bigint__:18543",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:28598086"
+        },
+        {
+          "closePaise": "__paise_bigint__:128770",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:11476613"
+        },
+        {
+          "closePaise": "__paise_bigint__:354670",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8804647"
+        }
+      ],
+      "step": 39,
+      "totalValuePaise": "__paise_bigint__:108948002",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:30452537",
+      "date": "2022-05-31",
+      "holdingsValuePaise": "__paise_bigint__:77039687",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4395",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7487223"
+        },
+        {
+          "closePaise": "__paise_bigint__:235325",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3336508"
+        },
+        {
+          "closePaise": "__paise_bigint__:75285",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5164288"
+        },
+        {
+          "closePaise": "__paise_bigint__:150360",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5015002"
+        },
+        {
+          "closePaise": "__paise_bigint__:2206",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9115702"
+        },
+        {
+          "closePaise": "__paise_bigint__:17987",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:27740591"
+        },
+        {
+          "closePaise": "__paise_bigint__:121497",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10828408"
+        },
+        {
+          "closePaise": "__paise_bigint__:336435",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8351965"
+        }
+      ],
+      "step": 40,
+      "totalValuePaise": "__paise_bigint__:107492224",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:31152537",
+      "date": "2022-06-30",
+      "holdingsValuePaise": "__paise_bigint__:74741028",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4376",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7454855"
+        },
+        {
+          "closePaise": "__paise_bigint__:223060",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3162612"
+        },
+        {
+          "closePaise": "__paise_bigint__:70720",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4851144"
+        },
+        {
+          "closePaise": "__paise_bigint__:146190",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4875919"
+        },
+        {
+          "closePaise": "__paise_bigint__:2213",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9144628"
+        },
+        {
+          "closePaise": "__paise_bigint__:17160",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:26465144"
+        },
+        {
+          "closePaise": "__paise_bigint__:119789",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10676183"
+        },
+        {
+          "closePaise": "__paise_bigint__:326710",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8110543"
+        }
+      ],
+      "step": 41,
+      "totalValuePaise": "__paise_bigint__:105893565",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:31852537",
+      "date": "2022-07-29",
+      "holdingsValuePaise": "__paise_bigint__:78536280",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4406",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7505962"
+        },
+        {
+          "closePaise": "__paise_bigint__:263740",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3739385"
+        },
+        {
+          "closePaise": "__paise_bigint__:81860",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5615309"
+        },
+        {
+          "closePaise": "__paise_bigint__:154970",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5168761"
+        },
+        {
+          "closePaise": "__paise_bigint__:2231",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9219008"
+        },
+        {
+          "closePaise": "__paise_bigint__:18654",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:28769277"
+        },
+        {
+          "closePaise": "__paise_bigint__:115811",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10321644"
+        },
+        {
+          "closePaise": "__paise_bigint__:330190",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8196934"
+        }
+      ],
+      "step": 42,
+      "totalValuePaise": "__paise_bigint__:110388817",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:32552537",
+      "date": "2022-08-30",
+      "holdingsValuePaise": "__paise_bigint__:80417134",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4390",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7478705"
+        },
+        {
+          "closePaise": "__paise_bigint__:265985",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3771215"
+        },
+        {
+          "closePaise": "__paise_bigint__:88730",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6086567"
+        },
+        {
+          "closePaise": "__paise_bigint__:149295",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4979481"
+        },
+        {
+          "closePaise": "__paise_bigint__:2268",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9371901"
+        },
+        {
+          "closePaise": "__paise_bigint__:19392",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:29907463"
+        },
+        {
+          "closePaise": "__paise_bigint__:121741",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10850154"
+        },
+        {
+          "closePaise": "__paise_bigint__:321115",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7971648"
+        }
+      ],
+      "step": 43,
+      "totalValuePaise": "__paise_bigint__:112969671",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:33252537",
+      "date": "2022-09-30",
+      "holdingsValuePaise": "__paise_bigint__:77194641",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4316",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7352640"
+        },
+        {
+          "closePaise": "__paise_bigint__:269645",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3823108"
+        },
+        {
+          "closePaise": "__paise_bigint__:86200",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5913018"
+        },
+        {
+          "closePaise": "__paise_bigint__:141345",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4714322"
+        },
+        {
+          "closePaise": "__paise_bigint__:2260",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9338843"
+        },
+        {
+          "closePaise": "__paise_bigint__:18683",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:28814002"
+        },
+        {
+          "closePaise": "__paise_bigint__:109733",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9779943"
+        },
+        {
+          "closePaise": "__paise_bigint__:300455",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7458765"
+        }
+      ],
+      "step": 44,
+      "totalValuePaise": "__paise_bigint__:110447178",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:33952537",
+      "date": "2022-10-31",
+      "holdingsValuePaise": "__paise_bigint__:80369583",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4323",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7364566"
+        },
+        {
+          "closePaise": "__paise_bigint__:255070",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3616459"
+        },
+        {
+          "closePaise": "__paise_bigint__:90870",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6233364"
+        },
+        {
+          "closePaise": "__paise_bigint__:153765",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5128570"
+        },
+        {
+          "closePaise": "__paise_bigint__:2261",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9342975"
+        },
+        {
+          "closePaise": "__paise_bigint__:19627",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:30269894"
+        },
+        {
+          "closePaise": "__paise_bigint__:117664",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10486792"
+        },
+        {
+          "closePaise": "__paise_bigint__:319315",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7926963"
+        }
+      ],
+      "step": 45,
+      "totalValuePaise": "__paise_bigint__:114322120",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:22705639",
+      "date": "2022-11-30",
+      "holdingsValuePaise": "__paise_bigint__:84167703",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4510",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7683135"
+        },
+        {
+          "closePaise": "__paise_bigint__:268435",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3805952"
+        },
+        {
+          "closePaise": "__paise_bigint__:95290",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6536560"
+        },
+        {
+          "closePaise": "__paise_bigint__:163495",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5453098"
+        },
+        {
+          "closePaise": "__paise_bigint__:2291",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9466942"
+        },
+        {
+          "closePaise": "__paise_bigint__:20470",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:31570017"
+        },
+        {
+          "closePaise": "__paise_bigint__:126052",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:11234372"
+        },
+        {
+          "closePaise": "__paise_bigint__:339080",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8417627"
+        }
+      ],
+      "step": 46,
+      "totalValuePaise": "__paise_bigint__:106873342",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:23405639",
+      "date": "2022-12-30",
+      "holdingsValuePaise": "__paise_bigint__:81372727",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4679",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7971039"
+        },
+        {
+          "closePaise": "__paise_bigint__:256105",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3631134"
+        },
+        {
+          "closePaise": "__paise_bigint__:89085",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6110919"
+        },
+        {
+          "closePaise": "__paise_bigint__:150820",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5030345"
+        },
+        {
+          "closePaise": "__paise_bigint__:2305",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9524793"
+        },
+        {
+          "closePaise": "__paise_bigint__:19804",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:30542873"
+        },
+        {
+          "closePaise": "__paise_bigint__:117553",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10476899"
+        },
+        {
+          "closePaise": "__paise_bigint__:325670",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8084725"
+        }
+      ],
+      "step": 47,
+      "totalValuePaise": "__paise_bigint__:104778366",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:24105639",
+      "date": "2023-01-31",
+      "holdingsValuePaise": "__paise_bigint__:80136351",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4867",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8291312"
+        },
+        {
+          "closePaise": "__paise_bigint__:257675",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3653393"
+        },
+        {
+          "closePaise": "__paise_bigint__:83190",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5706543"
+        },
+        {
+          "closePaise": "__paise_bigint__:153375",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5115562"
+        },
+        {
+          "closePaise": "__paise_bigint__:2303",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9516529"
+        },
+        {
+          "closePaise": "__paise_bigint__:19344",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:29833435"
+        },
+        {
+          "closePaise": "__paise_bigint__:108630",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9681638"
+        },
+        {
+          "closePaise": "__paise_bigint__:335870",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8337939"
+        }
+      ],
+      "step": 48,
+      "totalValuePaise": "__paise_bigint__:104241990",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:24805639",
+      "date": "2023-02-28",
+      "holdingsValuePaise": "__paise_bigint__:79003087",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4741",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8076661"
+        },
+        {
+          "closePaise": "__paise_bigint__:246065",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3488783"
+        },
+        {
+          "closePaise": "__paise_bigint__:85485",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5863972"
+        },
+        {
+          "closePaise": "__paise_bigint__:148755",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4961470"
+        },
+        {
+          "closePaise": "__paise_bigint__:2318",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9578512"
+        },
+        {
+          "closePaise": "__paise_bigint__:18970",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:29256630"
+        },
+        {
+          "closePaise": "__paise_bigint__:107186",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9552942"
+        },
+        {
+          "closePaise": "__paise_bigint__:331285",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8224117"
+        }
+      ],
+      "step": 49,
+      "totalValuePaise": "__paise_bigint__:103808726",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:25505639",
+      "date": "2023-03-31",
+      "holdingsValuePaise": "__paise_bigint__:79653299",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:5107",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8700170"
+        },
+        {
+          "closePaise": "__paise_bigint__:256035",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3630141"
+        },
+        {
+          "closePaise": "__paise_bigint__:87725",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6017628"
+        },
+        {
+          "closePaise": "__paise_bigint__:142795",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4762684"
+        },
+        {
+          "closePaise": "__paise_bigint__:2351",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9714876"
+        },
+        {
+          "closePaise": "__paise_bigint__:18986",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:29281307"
+        },
+        {
+          "closePaise": "__paise_bigint__:107578",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9587878"
+        },
+        {
+          "closePaise": "__paise_bigint__:320590",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7958615"
+        }
+      ],
+      "step": 50,
+      "totalValuePaise": "__paise_bigint__:105158938",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:26205639",
+      "date": "2023-04-28",
+      "holdingsValuePaise": "__paise_bigint__:80909815",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:5125",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8730835"
+        },
+        {
+          "closePaise": "__paise_bigint__:245730",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3484034"
+        },
+        {
+          "closePaise": "__paise_bigint__:91765",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6294758"
+        },
+        {
+          "closePaise": "__paise_bigint__:125275",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4178335"
+        },
+        {
+          "closePaise": "__paise_bigint__:2383",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9847107"
+        },
+        {
+          "closePaise": "__paise_bigint__:19729",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:30427204"
+        },
+        {
+          "closePaise": "__paise_bigint__:111706",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9955786"
+        },
+        {
+          "closePaise": "__paise_bigint__:321925",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:7991756"
+        }
+      ],
+      "step": 51,
+      "totalValuePaise": "__paise_bigint__:107115454",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:26905639",
+      "date": "2023-05-31",
+      "holdingsValuePaise": "__paise_bigint__:83139223",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:5113",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8710392"
+        },
+        {
+          "closePaise": "__paise_bigint__:266755",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3782132"
+        },
+        {
+          "closePaise": "__paise_bigint__:94915",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6510837"
+        },
+        {
+          "closePaise": "__paise_bigint__:131830",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4396966"
+        },
+        {
+          "closePaise": "__paise_bigint__:2421",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10004132"
+        },
+        {
+          "closePaise": "__paise_bigint__:20366",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:31409622"
+        },
+        {
+          "closePaise": "__paise_bigint__:113986",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10158991"
+        },
+        {
+          "closePaise": "__paise_bigint__:328950",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8166151"
+        }
+      ],
+      "step": 52,
+      "totalValuePaise": "__paise_bigint__:110044862",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:27605639",
+      "date": "2023-06-30",
+      "holdingsValuePaise": "__paise_bigint__:84252286",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4931",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8400341"
+        },
+        {
+          "closePaise": "__paise_bigint__:267815",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3797161"
+        },
+        {
+          "closePaise": "__paise_bigint__:93460",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6411029"
+        },
+        {
+          "closePaise": "__paise_bigint__:133550",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4454333"
+        },
+        {
+          "closePaise": "__paise_bigint__:2425",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10020661"
+        },
+        {
+          "closePaise": "__paise_bigint__:21061",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:32481492"
+        },
+        {
+          "closePaise": "__paise_bigint__:117694",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10489466"
+        },
+        {
+          "closePaise": "__paise_bigint__:330225",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8197803"
+        }
+      ],
+      "step": 53,
+      "totalValuePaise": "__paise_bigint__:111857925",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:28305639",
+      "date": "2023-07-31",
+      "holdingsValuePaise": "__paise_bigint__:87036954",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:5066",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8630324"
+        },
+        {
+          "closePaise": "__paise_bigint__:256080",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3630779"
+        },
+        {
+          "closePaise": "__paise_bigint__:99830",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6847989"
+        },
+        {
+          "closePaise": "__paise_bigint__:135570",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4521707"
+        },
+        {
+          "closePaise": "__paise_bigint__:2419",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": true,
+          "valuePaise": "__paise_bigint__:9995868"
+        },
+        {
+          "closePaise": "__paise_bigint__:21758",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:33556445"
+        },
+        {
+          "closePaise": "__paise_bigint__:127463",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:11360127"
+        },
+        {
+          "closePaise": "__paise_bigint__:342145",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8493715"
+        }
+      ],
+      "step": 54,
+      "totalValuePaise": "__paise_bigint__:115342593",
+      "usedSyntheticPrices": true
+    },
+    {
+      "cashPaise": "__paise_bigint__:29005639",
+      "date": "2023-08-31",
+      "holdingsValuePaise": "__paise_bigint__:85425510",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:5035",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8577513"
+        },
+        {
+          "closePaise": "__paise_bigint__:250505",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3551735"
+        },
+        {
+          "closePaise": "__paise_bigint__:95875",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6576689"
+        },
+        {
+          "closePaise": "__paise_bigint__:143545",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4787699"
+        },
+        {
+          "closePaise": "__paise_bigint__:2434",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10057851"
+        },
+        {
+          "closePaise": "__paise_bigint__:21277",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:32814619"
+        },
+        {
+          "closePaise": "__paise_bigint__:120350",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10726182"
+        },
+        {
+          "closePaise": "__paise_bigint__:335680",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8333222"
+        }
+      ],
+      "step": 55,
+      "totalValuePaise": "__paise_bigint__:114431149",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:29705639",
+      "date": "2023-09-29",
+      "holdingsValuePaise": "__paise_bigint__:85922562",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:4929",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8396933"
+        },
+        {
+          "closePaise": "__paise_bigint__:246560",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3495802"
+        },
+        {
+          "closePaise": "__paise_bigint__:95190",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6529701"
+        },
+        {
+          "closePaise": "__paise_bigint__:143545",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4787699"
+        },
+        {
+          "closePaise": "__paise_bigint__:2438",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10074380"
+        },
+        {
+          "closePaise": "__paise_bigint__:21675",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:33428438"
+        },
+        {
+          "closePaise": "__paise_bigint__:117250",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10449895"
+        },
+        {
+          "closePaise": "__paise_bigint__:352860",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8759714"
+        }
+      ],
+      "step": 56,
+      "totalValuePaise": "__paise_bigint__:115628201",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:30405639",
+      "date": "2023-10-31",
+      "holdingsValuePaise": "__paise_bigint__:84359573",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:5206",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8868824"
+        },
+        {
+          "closePaise": "__paise_bigint__:248400",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3521890"
+        },
+        {
+          "closePaise": "__paise_bigint__:91535",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6278981"
+        },
+        {
+          "closePaise": "__paise_bigint__:136840",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4564066"
+        },
+        {
+          "closePaise": "__paise_bigint__:2427",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10028926"
+        },
+        {
+          "closePaise": "__paise_bigint__:21098",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:32538555"
+        },
+        {
+          "closePaise": "__paise_bigint__:114395",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10195443"
+        },
+        {
+          "closePaise": "__paise_bigint__:336875",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8362888"
+        }
+      ],
+      "step": 57,
+      "totalValuePaise": "__paise_bigint__:114765212",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:31105639",
+      "date": "2023-11-30",
+      "holdingsValuePaise": "__paise_bigint__:87589826",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:5315",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9054514"
+        },
+        {
+          "closePaise": "__paise_bigint__:254555",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3609157"
+        },
+        {
+          "closePaise": "__paise_bigint__:93495",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6413430"
+        },
+        {
+          "closePaise": "__paise_bigint__:145515",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:4853405"
+        },
+        {
+          "closePaise": "__paise_bigint__:2456",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10148760"
+        },
+        {
+          "closePaise": "__paise_bigint__:22213",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:34258173"
+        },
+        {
+          "closePaise": "__paise_bigint__:118872",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10594455"
+        },
+        {
+          "closePaise": "__paise_bigint__:348760",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:8657932"
+        }
+      ],
+      "step": 58,
+      "totalValuePaise": "__paise_bigint__:118695465",
+      "usedSyntheticPrices": false
+    },
+    {
+      "cashPaise": "__paise_bigint__:31805639",
+      "date": "2023-12-29",
+      "holdingsValuePaise": "__paise_bigint__:93069972",
+      "positions": [
+        {
+          "closePaise": "__paise_bigint__:5366",
+          "quantity": "__paise_bigint__:17035775",
+          "symbol": "GOLDBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9141397"
+        },
+        {
+          "closePaise": "__paise_bigint__:266395",
+          "quantity": "__paise_bigint__:141783",
+          "symbol": "HINDUNILVR",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:3777028"
+        },
+        {
+          "closePaise": "__paise_bigint__:99660",
+          "quantity": "__paise_bigint__:685965",
+          "symbol": "ICICIBANK",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:6836327"
+        },
+        {
+          "closePaise": "__paise_bigint__:154290",
+          "quantity": "__paise_bigint__:333533",
+          "symbol": "INFY",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:5146081"
+        },
+        {
+          "closePaise": "__paise_bigint__:2486",
+          "quantity": "__paise_bigint__:41322314",
+          "symbol": "LTGILTBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:10272727"
+        },
+        {
+          "closePaise": "__paise_bigint__:23965",
+          "quantity": "__paise_bigint__:15422578",
+          "symbol": "NIFTYBEES",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:36960208"
+        },
+        {
+          "closePaise": "__paise_bigint__:129247",
+          "quantity": "__paise_bigint__:891249",
+          "symbol": "RELIANCE",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:11519126"
+        },
+        {
+          "closePaise": "__paise_bigint__:379340",
+          "quantity": "__paise_bigint__:248249",
+          "symbol": "TCS",
+          "synthetic": false,
+          "valuePaise": "__paise_bigint__:9417078"
+        }
+      ],
+      "step": 59,
+      "totalValuePaise": "__paise_bigint__:124875611",
+      "usedSyntheticPrices": false
+    }
+  ],
+  "run": "passive",
+  "scenario": {
+    "name": "First replay",
+    "seed": "wows-first-replay-v1",
+    "snapshotVersion": 1,
+    "version": 1
+  },
+  "shock": {
+    "absorbedFromCash": true,
+    "amountPaise": "__paise_bigint__:11946898",
+    "occurred": true,
+    "step": 46
+  }
+}

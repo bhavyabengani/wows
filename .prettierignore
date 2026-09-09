@@ -15,3 +15,7 @@ supabase/templates
 # and the loader then refuses it. Not source; never formatted.
 data/raw
 data/snapshots
+
+# Engine golden files. Their bytes are the record of what the engine used to
+# produce, compared byte for byte in CI, so no tool may rewrite them.
+src/engine/__goldens__
