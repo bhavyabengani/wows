@@ -22,6 +22,58 @@ env:
   MAILPIT_URL: http://127.0.0.1:54324
 
 jobs:
+  # The data pipeline is a standalone Python package that is never bundled with
+  # the app (H37), so it gets its own job with its own pinned interpreter. It
+  # also re-runs `check` against every committed snapshot, which is what makes
+  # a hand-edited data file fail the build.
+  ingest:
+    name: market data pipeline (python)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: data/ingest/requirements.txt
+
+      - name: Install pipeline dependencies
+        working-directory: data/ingest
+        run: pip install -r requirements.txt
+
+      - name: Pipeline tests (pytest)
+        working-directory: data/ingest
+        run: python -m pytest -q
+
+      - name: Check every committed snapshot
+        working-directory: data/ingest
+        run: |
+          shopt -s nullglob
+          found=0
+          for dir in ../snapshots/v*/; do
+            version="${dir#../snapshots/v}"
+            version="${version%/}"
+            echo "::group::snapshot v$version"
+            python -m wows_ingest check --version "$version"
+            echo "::endgroup::"
+            found=$((found + 1))
+          done
+          if [ "$found" -eq 0 ]; then
+            echo "No snapshots committed; nothing to check."
+          fi
+
+      - name: Snapshot rebuilds identically from committed raw files
+        working-directory: data/ingest
+        run: |
+          # Determinism is covered by pytest, but this also proves the check
+          # report in the repo is the one the current code produces.
+          python -m wows_ingest check --version 1 --write-report
+          git diff --exit-code -- ../snapshots/v1/check-report.txt
+
   ci:
     name: typecheck, lint, format, unit, db, e2e, restore drill
     runs-on: ubuntu-latest
@@ -68,7 +120,10 @@ jobs:
           npm run db:migrate
           npm run db:seed
 
-      - name: Database invariant and RLS tests
+      - name: Load market data snapshot v1
+        run: npm run db:load-snapshot -- v1
+
+      - name: Database, RLS and snapshot loader tests
         run: npm run test:db
 
       - name: Resolve Playwright version
