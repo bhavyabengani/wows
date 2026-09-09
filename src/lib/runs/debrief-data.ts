@@ -7,6 +7,7 @@
  * whose valuation used a carried-forward close.
  */
 import { eq } from "drizzle-orm";
+import { formatMonthInIST } from "@/lib/time";
 import type { Tx } from "@/db/client";
 import { snapshots } from "@/db/schema";
 import { behaviourMetrics, shockOutcome } from "@/engine/behaviour";
@@ -41,6 +42,11 @@ export interface DebriefView {
   /** The lead figure: player against "did nothing". */
   readonly gapToDidNothingPaise: string;
   readonly gapToDidNothingBps: number;
+  /**
+   * True when the player never traded after their opening allocation, so they
+   * *are* the "did nothing" comparison. A bare zero would read as a bug.
+   */
+  readonly neverTradedAfterOpening: boolean;
   readonly finding: Finding;
   readonly shock: {
     readonly sentence: string;
@@ -147,9 +153,13 @@ export async function buildDebrief(
     synthetic: point.usedSyntheticPrices,
   }));
 
+  const shockDate = inputs.perStep.find(
+    (point) => point.step === shock.step,
+  )?.date;
   const shockWhen =
-    inputs.perStep.find((point) => point.step === shock.step)?.date ??
-    "the run";
+    shockDate === undefined
+      ? "the run"
+      : formatMonthInIST(`${shockDate}T00:00:00Z`);
 
   return {
     runId: loaded.runId,
@@ -164,6 +174,7 @@ export async function buildDebrief(
     })),
     gapToDidNothingPaise: String(gap),
     gapToDidNothingBps: gapBps,
+    neverTradedAfterOpening: metrics.overTrading.tradeCount === 0,
     finding: selectFinding(metrics, inputs.perStep),
     shock: {
       sentence: shockSentence(

@@ -1,4 +1,5 @@
 import type { TimelinePoint } from "@/lib/runs/debrief-data";
+import { formatMonthInIST } from "@/lib/time";
 
 /**
  * Portfolio value across the run, with markers for the months something
@@ -90,8 +91,11 @@ export function Timeline({ points }: { points: readonly TimelinePoint[] }) {
         <span className="text-wows-accent">
           <span aria-hidden="true">●</span> the unplanned expense
         </span>
-        <span className="numeric">
-          {points[0]?.date} to {points[points.length - 1]?.date}
+        <span>
+          {formatMonthInIST(`${points[0]?.date ?? ""}T00:00:00Z`)} to{" "}
+          {formatMonthInIST(
+            `${points[points.length - 1]?.date ?? ""}T00:00:00Z`,
+          )}
         </span>
       </figcaption>
     </figure>

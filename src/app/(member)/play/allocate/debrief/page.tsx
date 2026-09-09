@@ -144,20 +144,33 @@ export default async function DebriefPage({
         <p className="text-[15px] text-wows-muted">
           Against leaving your opening allocation alone
         </p>
-        <p
-          data-testid="gap-to-did-nothing"
-          className={`numeric mt-1 text-[40px] leading-none font-medium tracking-tight sm:text-[52px] ${tone}`}
-        >
-          <span aria-hidden="true">{arrow} </span>
-          <span className="sr-only">{word} </span>
-          {sign > 0 ? "+" : ""}
-          {rupees(view.gapToDidNothingPaise, { paise: true })}
-        </p>
-        <p className={`numeric mt-2 text-[17px] ${tone}`}>
-          {sign > 0 ? "+" : ""}
-          {(view.gapToDidNothingBps / 100).toFixed(2)}%
-          <span className="text-wows-muted"> against doing nothing</span>
-        </p>
+        {view.neverTradedAfterOpening ? (
+          <p
+            data-testid="gap-to-did-nothing"
+            className="numeric mt-1 max-w-prose font-sans text-[19px] leading-snug text-wows-ink"
+          >
+            You set an allocation and never traded again, so this run{" "}
+            <em className="not-italic font-medium">is</em> the do-nothing
+            comparison. There is no gap to report.
+          </p>
+        ) : (
+          <>
+            <p
+              data-testid="gap-to-did-nothing"
+              className={`numeric mt-1 text-[40px] leading-none font-medium tracking-tight sm:text-[52px] ${tone}`}
+            >
+              <span aria-hidden="true">{arrow} </span>
+              <span className="sr-only">{word} </span>
+              {sign > 0 ? "+" : ""}
+              {rupees(view.gapToDidNothingPaise, { paise: true })}
+            </p>
+            <p className={`numeric mt-2 text-[17px] ${tone}`}>
+              {sign > 0 ? "+" : ""}
+              {(view.gapToDidNothingBps / 100).toFixed(2)}%
+              <span className="text-wows-muted"> against doing nothing</span>
+            </p>
+          </>
+        )}
 
         <dl className="mt-6 grid gap-4 sm:grid-cols-3">
           <div>

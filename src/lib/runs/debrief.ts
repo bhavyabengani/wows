@@ -14,7 +14,7 @@
  * survives that test, and any sentence added later must too
  * (docs/ENGINE_RULES.md).
  */
-import { formatInIST } from "@/lib/time";
+import { formatMonthInIST } from "@/lib/time";
 import type { BehaviourMetrics } from "@/engine/behaviour";
 import type { Paise } from "@/engine/money";
 import type { PortfolioState } from "@/engine/types";
@@ -74,7 +74,7 @@ function percent(bps: number): string {
 
 function monthOf(state: PortfolioState | undefined): string {
   if (state === undefined) return "the run";
-  return formatInIST(`${state.date}T00:00:00Z`, { withTime: false });
+  return formatMonthInIST(`${state.date}T00:00:00Z`);
 }
 
 /**
