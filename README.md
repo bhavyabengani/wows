@@ -247,20 +247,25 @@ incident: fix the backup before anything else.
 
 ## Ownership
 
-Who holds the keys after the founding cohort graduates. Record the answer
-here; if it is unknown, say so rather than guessing.
+Who holds the keys after the founding cohort graduates.
 
-| Asset            | Owner                                                            |
-| ---------------- | ---------------------------------------------------------------- |
-| GitHub repo      | `bhavyabengani` (personal account) — **long-term owner unknown** |
-| Vercel project   | **unknown**                                                      |
-| Supabase project | **unknown** (not yet created)                                    |
-| Domain           | **unknown** (none yet)                                           |
+| Asset            | Held by                                                                        |
+| ---------------- | ------------------------------------------------------------------------------ |
+| GitHub repo      | `bhavyabengani`, a **personal** account. A second admin is added for recovery. |
+| Vercel project   | The same personal account, with a second owner added for recovery.             |
+| Supabase project | The same personal account, with a second owner added for recovery.             |
+| Domain           | The same personal account, with a second owner added for recovery.             |
 
-The intended end state is a club-owned GitHub organisation and shared
-accounts whose credentials are held by the current core team and the faculty
-advisor, not by any individual student. Until that exists, this table is a
-risk, and every handover should start by updating it.
+All four sit on a personal account, and migration to a club-owned address is
+**pending**. That is the honest state, written down rather than left as
+"unknown": an unknown cannot be handed over, a recorded risk can. The second
+owner or admin on each service is the recovery path until the migration
+happens.
+
+The intended end state is a club-owned GitHub organisation and shared accounts
+whose credentials are held by the current core team and the faculty advisor,
+not by any individual student. Every handover should start by checking whether
+this table is still true.
 
 ## Contributing
 

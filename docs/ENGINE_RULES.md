@@ -217,6 +217,23 @@ the decisions.
 - **All index.** The whole corpus in the scenario's benchmark, deployed once
   and never touched.
 
+**Describe, never prescribe.** Every sentence the debrief emits must survive
+this test. "You sold 62% of your equity in March 2020 and rebought in August"
+is a description. "You should have held" is advice, and the club has committed
+in writing to giving none. A sentence that names a better decision, implies
+one, or grades the player has failed the test, however gently it is phrased.
+The copy lives in `src/lib/runs/debrief.ts` and every addition to it is
+reviewed against this line.
+
+**One finding, chosen by rule.** Three metrics are computed; one is shown. The
+one displayed is the metric furthest past its stated benchmark, measured as a
+fraction of that benchmark so the three are comparable. Ties break in a fixed
+order: panic selling, then over-trading, then concentration. If nothing is past
+its benchmark, the screen says so rather than manufacturing a finding out of
+the least unremarkable number. Benchmarks are one turn of the portfolio
+(turnover), any episode at all (panic selling), and two fifths of the book in
+one holding (concentration).
+
 **Over-trading.** Turnover is the gross value of every trade **after step 0**,
 over the mean end-of-step portfolio value, in basis points. Step 0 is excluded
 because deploying the corpus is starting, not trading, and counting it would
