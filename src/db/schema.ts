@@ -108,6 +108,14 @@ export const moduleStateEnum = pgEnum("module_state", [
   "published",
 ]);
 
+/**
+ * A ranked run counts for the leaderboard; a practice run never does. One
+ * ranked attempt per scenario version is the rule (Phase 4 enforces it), and
+ * `runs.state` cannot express this because it tracks a run's lifecycle, not
+ * whether it counts.
+ */
+export const runModeEnum = pgEnum("run_mode", ["ranked", "practice"]);
+
 export const rsvpStateEnum = pgEnum("rsvp_state", [
   "going",
   "waitlisted",
@@ -391,6 +399,7 @@ export const runs = pgTable(
       .references(() => users.id, { onDelete: "restrict" }),
     currentStep: integer("current_step").notNull().default(0),
     state: runStateEnum("state").notNull().default("in_progress"),
+    mode: runModeEnum("mode").notNull().default("practice"),
     startedAt: timestamptz("started_at").notNull().defaultNow(),
     completedAt: timestamptz("completed_at"),
   },

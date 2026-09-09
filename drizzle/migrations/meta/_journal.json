@@ -36,6 +36,13 @@
       "when": 1788934944722,
       "tag": "0004_snapshots_table",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1788935991716,
+      "tag": "0005_run_mode",
+      "breakpoints": true
     }
   ]
 }

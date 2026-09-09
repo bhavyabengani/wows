@@ -24,7 +24,9 @@
     "db:restore": "scripts/restore.sh",
     "db:backup-drill": "tsx scripts/lib/run-with-env.ts scripts/backup-drill.sh",
     "db:env": "scripts/local-env.sh",
-    "db:load-snapshot": "tsx scripts/lib/run-with-env.ts tsx scripts/load-snapshot.ts"
+    "db:load-snapshot": "tsx scripts/lib/run-with-env.ts tsx scripts/load-snapshot.ts",
+    "engine:regenerate-goldens": "tsx scripts/regenerate-goldens.ts",
+    "engine:rebuild-cache": "tsx scripts/lib/run-with-env.ts tsx scripts/rebuild-cache.ts"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.73.0",
