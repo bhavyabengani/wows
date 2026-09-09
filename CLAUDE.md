@@ -82,9 +82,10 @@ the engine, stop.
 - Vitest for unit tests, Playwright for end-to-end
 - Sentry for error tracking, plus a request-ID structured logger (both
   scaffolded at the start of Phase 1)
-- Python data ingestion as a standalone script (Phase 2); quant tooling as a
-  separate Streamlit app (later). These are **never** merged into the Next.js
-  app (H37).
+- Python data ingestion as a standalone package in `data/ingest/` (**done,
+  Phase 2**); quant tooling as a separate Streamlit app (later). These are
+  **never** merged into the Next.js app (H37). Market data is a committed,
+  versioned snapshot under `data/snapshots/`; see `docs/DATA.md`.
 - Backups (H35): cron-driven `pg_dump` to a private Supabase Storage bucket,
   built in Phase 1 with a `db:restore` script and a monthly restore drill
   documented in `README.md`. Works on any Supabase tier.
@@ -122,7 +123,7 @@ surface. Confirm or correct this list before starting Phase 1, and update the
 | --- | ----------------------------- | ---------------------------------------------------------------------------------------- |
 | 0   | Foundation                    | Scaffold, tokens, test harness, CI, deployment, this file. **Done.**                     |
 | 1   | Schema, auth, roles, RLS      | Drizzle schema and migrations, Supabase auth, roles, RLS, seed, Sentry + logger, backups |
-| 2   | Market data ingestion         | Standalone Python script, versioned `price_bars` snapshots                               |
+| 2   | Market data ingestion         | Standalone Python pipeline, versioned snapshot, loader, quality checks. **Done.**        |
 | 3   | Simulation engine             | Pure module: ledger, paise money, deterministic seeded replay, golden files              |
 | 4   | Allocation game               | `/play/allocate`, order API, idempotency keys, tick-by-tick prices, persisted runs       |
 | 5   | Season portfolio and theses   | `/play/portfolio`, thesis gate, immutable revisions, positions hidden until settlement   |
@@ -258,7 +259,7 @@ is enforced instead.
 **Simulation engine**
 
 - H11. Market data is historical replay over a pinned, versioned snapshot — never live prices.
-  - Tested by: not yet — Phase 3
+  - Tested by: `src/lib/repo-invariants.test.ts` (no price-source host or client appears anywhere under `src/`, so the app cannot fetch a live price) and `data/ingest/tests/test_build.py` (a snapshot is built offline from committed raw files and is byte-identical on a rebuild). The snapshot itself is the enforcement: the app reads `price_bars`, and only the loader writes them.
 - H12. All money is integer paise. Never floats, never `Number` for currency. Fractional quantities use a fixed-precision decimal with one stated rounding rule applied everywhere.
   - Tested by: `src/db/invariants.db.test.ts` (every `*_paise` column is bigint, no float currency columns, non-positive prices rejected). Engine arithmetic: Phase 3.
 - H13. Append-only transaction ledger; portfolio state is derived by folding the ledger, never a mutable balance. Any cache must be rebuildable from scratch by a single command.
@@ -319,7 +320,7 @@ is enforced instead.
 - H36. Every dependency added must be justified.
   - Tested by: `src/lib/repo-invariants.test.ts` (every direct dependency in `package.json` has a line in `docs/DEPENDENCIES.md`, and vice versa).
 - H37. Python quant tooling is never merged into the Next.js app.
-  - Tested by: `src/lib/repo-invariants.test.ts` (no Python files under `src/`, no Python bridge packages in `package.json`).
+  - Tested by: `src/lib/repo-invariants.test.ts` (no Python files under `src/`, no Python bridge packages in `package.json`, and nothing under `src/` imports from `data/ingest`). The pipeline also runs as its own CI job with its own interpreter, and the only artefact crossing between them is a directory of snapshot files.
 
 **Design**
 

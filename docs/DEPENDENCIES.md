@@ -47,6 +47,18 @@ current phase's tasks? If neither, do not add it.
 | `supabase`             | Supabase CLI, used ONLY to run the local Postgres/Auth/Mailpit instance in dev and CI (`npm run db:start`). Never for migrations.                                                   |
 | `tsx`                  | Runs TypeScript scripts (`scripts/*.ts`: seed, bootstrap, type generation) without a build step.                                                                                    |
 
+## Market data pipeline (Python, `data/ingest/`)
+
+A standalone package with its own pinned `requirements.txt`. It is never
+imported by, bundled with, or merged into the Next.js app (H37), and nothing
+here reaches `package.json`. Listed for the same reason as everything else:
+every dependency is justified.
+
+| Package     | Why                                                                                                                                                                                                                                                                                                                                                                              |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `curl_cffi` | HTTP client that impersonates a browser's TLS fingerprint. The price source answers `429` to plain `requests`/`curl` from most networks; this is the same technique `yfinance` uses internally. We call the endpoint directly rather than using `yfinance` itself, because it decodes prices into Python floats before our code sees them, which `docs/ENGINE_RULES.md` forbids. |
+| `pytest`    | Test runner for the pipeline. Runs as its own CI job with its own pinned interpreter.                                                                                                                                                                                                                                                                                            |
+
 ## Deliberately not installed yet
 
 - **TanStack Query** — added with the first client-side server state.
