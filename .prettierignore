@@ -9,3 +9,9 @@ package-lock.json
 next-env.d.ts
 drizzle/migrations/meta
 supabase/templates
+
+# Committed market-data artefacts. Their bytes are checksummed in each
+# snapshot's manifest, so reformatting one silently invalidates the snapshot
+# and the loader then refuses it. Not source; never formatted.
+data/raw
+data/snapshots

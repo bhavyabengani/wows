@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-09-09T05:30:49+00:00",
+  "built_at": "2026-09-09T05:52:48+00:00",
   "calendar_days": 4849,
   "calendar_rule": "a date is a trading day if at least 10 of 21 priced instruments have a bar on it",
   "calendar_source": "^NSEI",
@@ -17,7 +17,7 @@
     "corporate-actions.csv": "973fe2469064ebb03f96d75e95a087969764bceb6dccf373483d70c80a9f7efa",
     "excluded-rows.csv": "40f287791656b38aafd28c4f910ad17d3cf5f350d50a1986efc2f1a1f183a57a",
     "instruments.csv": "d59d11571ec5e77a432b28f8836eb546cc8f623bb6313ce24483bc835da67b8b",
-    "policy.json": "8da7a59185260a185517d94a2bf3b7f53096db850191672c74661cd899f6e34f"
+    "policy.json": "95aa2d6877851a3c0a17b86506fb2e59a67ee5ab01f2c88b0462d9aafa149752"
   },
   "per_instrument": {
     "ASIANPAINT": {
@@ -175,87 +175,87 @@
     },
     {
       "path": "raw/yahoo/2026-09-09/ASIANPAINT.json",
-      "sha256": "bd36abb5557cee0d51ff1f44a47365819a27f2bd3e4f6b53f83ddd84fc4a3966"
+      "sha256": "cab13863333951e7610052c6b1724dadca575c935f1c74b4ab4b89b68e7159de"
     },
     {
       "path": "raw/yahoo/2026-09-09/AXISBANK.json",
-      "sha256": "92146195c3da7e580dce2b6c04868670aa231b6c1655d68984b4b65d0b22247d"
+      "sha256": "39fcb42c9dc3527be9fa96085ba9ae4cece1e7a7e6e87f97420f47713bda8e6b"
     },
     {
       "path": "raw/yahoo/2026-09-09/BAJFINANCE.json",
-      "sha256": "967acbb1d4fc68ff3e4ae6e0d5368c8fb742006fd4a3cd2cd98997cd23e57043"
+      "sha256": "6dc2f1df6ff143553315b2231cffb4c31696139b6975211891efd98bbeb5a98a"
     },
     {
       "path": "raw/yahoo/2026-09-09/GOLDBEES.json",
-      "sha256": "bfe1fa7cc42124884bacb042d8ec045f479b2ecfecb2691f38bbc5b9bb77d711"
+      "sha256": "e67d9aaa763153c983a473094f08e38ddb45f23c68ce767b7699a1fc91fdcd7e"
     },
     {
       "path": "raw/yahoo/2026-09-09/HINDUNILVR.json",
-      "sha256": "be17014d35c96e2c00dedf03bd5322a37bee4beb1e511fdbbd1282ed1acbef04"
+      "sha256": "dbe7740ebd6feece582bf9baae8060058874367f632bd90df369bd635588365d"
     },
     {
       "path": "raw/yahoo/2026-09-09/ICICIBANK.json",
-      "sha256": "493a0b4949192642cfb92625531dba181a04d641da3d43a08ced3968f3294cda"
+      "sha256": "d184040f9c4afa52d13fd72912a2e0966224efb37e7c6766c1ef5adebbe5eeb4"
     },
     {
       "path": "raw/yahoo/2026-09-09/INFY.json",
-      "sha256": "6d8b2d928b356db4d25a3335ab4896077f922bb72906555c5a36e92d3478e8fd"
+      "sha256": "9baf70df8c9400980df8817f3762168f9e85fdf25a81a748eef723e01595db8b"
     },
     {
       "path": "raw/yahoo/2026-09-09/ITC.json",
-      "sha256": "b3377ee29df92ee1fb74f878444753aa6c7ada550c56e17fb4b8645882945635"
+      "sha256": "76a85921203e24105279b14a00e7b0d7f708645c6f50d7232e3106826807f5f6"
     },
     {
       "path": "raw/yahoo/2026-09-09/KOTAKBANK.json",
-      "sha256": "f555a4b1f2c60c740cb56a7cb33a1feb1cf5d0c5c66584881d51c3179806f3e6"
+      "sha256": "f2634324c60490f30c7e3bbfb303f0bebe0f304c813803c2ed83f930fee4114c"
     },
     {
       "path": "raw/yahoo/2026-09-09/LT.json",
-      "sha256": "374ad533644a94f95fbf46c0e2ade557b0b764e5cdab2cc3d9cb736d0292d299"
+      "sha256": "74b9fa5e7af417f806e0d14ce53a8158961d0ae24bff53e11b3dab4def8a4d4d"
     },
     {
       "path": "raw/yahoo/2026-09-09/LTGILTBEES.json",
-      "sha256": "611462d6d32f8c0d8b12f3ae2298dcd9bb51b446218ea5669a77e9d5d4a737fb"
+      "sha256": "47cc6c1b6de03347593f48ea537a8093516bd5a51327fc1b772afc0ff5bbfc92"
     },
     {
       "path": "raw/yahoo/2026-09-09/MARUTI.json",
-      "sha256": "315731523aa357ca0a759d9f468b6ab199e33285b6561d213172a625204a96a4"
+      "sha256": "50c3bdb764be63546c108c8463acbba73150345f15fd256ed74f33e67da1cbdd"
     },
     {
       "path": "raw/yahoo/2026-09-09/NIFTY50.json",
-      "sha256": "6988ba729c20fc8deb681b5de1b277d9db4a22449e8c84b63ca7ad26646055e6"
+      "sha256": "6d26810d113bc46c3b90adf40934c2339eb008a74bb232a5d8d370972d95eb81"
     },
     {
       "path": "raw/yahoo/2026-09-09/NIFTY500.json",
-      "sha256": "ef83abe89da16be94887ab5a0ff7751938b746c250cb2b84be715fcde5c2c963"
+      "sha256": "3636cd88d135384b179732b66868f912b0d537f9bb417913512bc0cad6d35f73"
     },
     {
       "path": "raw/yahoo/2026-09-09/NIFTYBEES.json",
-      "sha256": "cff5ec29ddeb6d96e32c0f86dca8cabfb17baad3b902d767e556d15659ac48fc"
+      "sha256": "e74443a94fcfb9fbd5db96b17fe0afe1919ae36baf706e02cc7657a9205a89f3"
     },
     {
       "path": "raw/yahoo/2026-09-09/RELIANCE.json",
-      "sha256": "f607f59da7df2cdc11445d9857c10fec83eabcc07214529c97f9e0ceb3fa10c5"
+      "sha256": "733492ba21072ecbc102e622986eba3c4be1a97875b91ab58795a4a8d1486c49"
     },
     {
       "path": "raw/yahoo/2026-09-09/SBIN.json",
-      "sha256": "b18637a3f6ee2982ff7eb8c55615ad7130127038f8c26ed7e2fd5095e94b31a1"
+      "sha256": "afd0e398dbb346430bba7a44218e8dbe84ed2b62cb225d0fb9268390e526c48a"
     },
     {
       "path": "raw/yahoo/2026-09-09/SUNPHARMA.json",
-      "sha256": "ebd6afefdbdb154228a03d3dce948d5cfc502d2de78a52f5fe28c294b7fc30aa"
+      "sha256": "c746a86de6d9ad79a86cdcda8aa81765e7069d7d13a6d7d01ddeba5369a0e3be"
     },
     {
       "path": "raw/yahoo/2026-09-09/TCS.json",
-      "sha256": "8b77ea0bf785a421ebc16c73c630ab09189d79bb1729ec0c5251c458c42cb24d"
+      "sha256": "08a9b53cabfbbb96dc82cb03ce101ad931d999d155569ab57d7a807df4b35887"
     },
     {
       "path": "raw/yahoo/2026-09-09/TITAN.json",
-      "sha256": "6c085e8e8050fc8bd1ba6cf43b35ec12dd80ccbc6f75291c24e1d41c57393217"
+      "sha256": "45a38ff0b7e1a26db6378ca4106c44f09e2d14962298b6565258f6d8f657969a"
     },
     {
       "path": "raw/yahoo/2026-09-09/ULTRACEMCO.json",
-      "sha256": "8240695ac567da943337a1f8f65d7bb21458c2a8431bc9c812ffeaea7d48d29c"
+      "sha256": "41abc7705c9a73172391c0515736e23b20f2e5432703bbdec18e68611e8ab9b8"
     }
   ]
 }
