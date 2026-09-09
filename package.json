@@ -23,7 +23,8 @@
     "test:db": "tsx scripts/lib/run-with-env.ts vitest run --config vitest.db.config.ts",
     "db:restore": "scripts/restore.sh",
     "db:backup-drill": "tsx scripts/lib/run-with-env.ts scripts/backup-drill.sh",
-    "db:env": "scripts/local-env.sh"
+    "db:env": "scripts/local-env.sh",
+    "db:load-snapshot": "tsx scripts/lib/run-with-env.ts tsx scripts/load-snapshot.ts"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.73.0",

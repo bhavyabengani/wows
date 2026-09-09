@@ -282,7 +282,10 @@ async function main() {
           "I run a small paper portfolio and want to learn to write a thesis properly.",
       });
 
-      // --- instruments (no price bars: Phase 2) ------------------------------
+      // --- instruments -------------------------------------------------------
+      // Symbols match the v1 snapshot so that `npm run db:load-snapshot -- v1`
+      // updates these rows rather than colliding with them. Price bars come
+      // only from a snapshot; the seed never writes one.
       const instrumentRows = await tx
         .insert(s.instruments)
         .values([
@@ -296,14 +299,27 @@ async function main() {
             name: "Tata Consultancy Services",
             assetClass: "equity",
           },
-          { symbol: "HDFCBANK", name: "HDFC Bank", assetClass: "equity" },
           { symbol: "INFY", name: "Infosys", assetClass: "equity" },
           {
             symbol: "NIFTYBEES",
             name: "Nippon India ETF Nifty 50 BeES",
             assetClass: "etf",
           },
-          { symbol: "INR", name: "Indian Rupee (cash)", assetClass: "cash" },
+          {
+            symbol: "GOLDBEES",
+            name: "Nippon India ETF Gold BeES",
+            assetClass: "commodity",
+          },
+          {
+            symbol: "FD1Y",
+            name: "Fixed deposit, 1-3 year rolling reinvestment index",
+            assetClass: "fixed_deposit",
+          },
+          {
+            symbol: "CASH",
+            name: "Indian rupee, uninvested",
+            assetClass: "cash",
+          },
         ])
         .returning();
       const instrumentId = (symbol: string) => {
@@ -321,11 +337,24 @@ async function main() {
           seed: "20260908",
           configJson: {
             placeholder: true,
-            note: "No price snapshot exists yet. Phase 2 ingests one; Phase 3 defines the config shape.",
+            note:
+              "The universe and dates below are real, from snapshot v1. The config " +
+              "itself is still a placeholder: Phase 3 defines its shape, and writing " +
+              "fields the engine has not defined yet would be inventing an interface.",
           },
-          universe: ["RELIANCE", "TCS", "HDFCBANK", "INFY", "NIFTYBEES"],
-          startDate: "2024-01-01",
-          endDate: "2024-06-28",
+          // A real universe and window from snapshot v1. Bars for these
+          // symbols exist only after `npm run db:load-snapshot -- v1`.
+          universe: [
+            "RELIANCE",
+            "TCS",
+            "INFY",
+            "NIFTYBEES",
+            "GOLDBEES",
+            "FD1Y",
+            "CASH",
+          ],
+          startDate: "2019-01-01",
+          endDate: "2023-12-31",
         })
         .returning();
       if (!scenario) throw new Error("scenario");
@@ -411,7 +440,7 @@ async function main() {
           authorId: author(i),
           seasonId: open.id,
           instrumentId: instrumentId(
-            ["RELIANCE", "TCS", "HDFCBANK", "INFY", "NIFTYBEES", "RELIANCE"][
+            ["RELIANCE", "TCS", "GOLDBEES", "INFY", "NIFTYBEES", "RELIANCE"][
               i
             ]!,
           ),

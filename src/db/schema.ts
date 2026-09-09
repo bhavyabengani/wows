@@ -67,12 +67,19 @@ export const applicationStateEnum = pgEnum("application_state", [
   "rejected",
 ]);
 
+/**
+ * The seven asset classes the game plays with. `fixed_deposit` is separate
+ * from `cash` because a deposit earns a published rate and carries a lock-in,
+ * while cash earns nothing; storing it as cash would also contradict the rule
+ * that cash has no price bars.
+ */
 export const assetClassEnum = pgEnum("asset_class", [
   "equity",
   "etf",
   "index",
   "bond",
   "commodity",
+  "fixed_deposit",
   "cash",
 ]);
 
