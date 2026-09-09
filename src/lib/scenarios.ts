@@ -22,10 +22,31 @@ export function scenarioDir(slug: string, version: number): string {
  * a run.
  */
 export function loadScenario(slug: string, version: number): ScenarioConfig {
+  return loadScenarioFile(slug, version).config;
+}
+
+export interface ScenarioFile {
+  readonly config: ScenarioConfig;
+  /** The file's own JSON, for storing in `scenarios.config_json` unchanged. */
+  readonly raw: Record<string, unknown> & { universe: string[] };
+  readonly name: string;
+  readonly version: number;
+  readonly seed: string;
+  readonly window: { start: string; end: string };
+}
+
+/**
+ * Reads a scenario and returns both the validated config and the raw JSON.
+ *
+ * The seed stores the raw form so the database row and the committed file
+ * cannot drift; the engine gets the parsed one. Validating here means a
+ * malformed scenario fails at seed time rather than in the middle of a run.
+ */
+export function loadScenarioFile(slug: string, version: number): ScenarioFile {
   const dir = scenarioDir(slug, version);
-  const config = JSON.parse(
+  const raw = JSON.parse(
     readFileSync(join(dir, "config.json"), "utf8"),
-  ) as Record<string, unknown>;
+  ) as Record<string, unknown> & { universe: string[] };
 
   let news: unknown = [];
   try {
@@ -35,5 +56,13 @@ export function loadScenario(slug: string, version: number): ScenarioConfig {
     news = [];
   }
 
-  return parseScenarioConfig({ ...config, news });
+  const config = parseScenarioConfig({ ...raw, news });
+  return {
+    config,
+    raw,
+    name: config.name,
+    version: config.version,
+    seed: config.seed,
+    window: config.window,
+  };
 }
