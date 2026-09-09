@@ -269,6 +269,37 @@ export const instruments = pgTable(
   (t) => [uniqueIndex("instruments_symbol_key").on(t.symbol)],
 ).enableRLS();
 
+/**
+ * One row per loaded market-data snapshot: how to read the prices in it.
+ *
+ * Prices are adjusted for splits and bonuses up to the day they were fetched,
+ * including events *after* the replay window, so a stored level is not the
+ * level that traded. Screens must say so rather than printing a bare rupee
+ * figure, which is what `isAdjusted` and `adjustedAsOf` are for. The engine
+ * carries these through without acting on them.
+ *
+ * `priceBasis` is `price_return`: dividends are not in the series at all, for
+ * any instrument, so comparisons between them are consistent but understate
+ * real equity returns. See docs/DATA.md.
+ */
+export const snapshots = pgTable(
+  "snapshots",
+  {
+    version: integer("version").primaryKey(),
+    builtAt: timestamptz("built_at").notNull(),
+    fetchDate: date("fetch_date", { mode: "string" }).notNull(),
+    isAdjusted: boolean("is_adjusted").notNull(),
+    adjustedAsOf: date("adjusted_as_of", { mode: "string" }).notNull(),
+    priceBasis: text("price_basis").notNull(),
+    dividendsIncluded: boolean("dividends_included").notNull(),
+    /** False until the RBI deposit series is replaced from the published source. */
+    fdSeriesVerified: boolean("fd_series_verified").notNull(),
+    barsSha256: text("bars_sha256").notNull(),
+    loadedAt: createdAt(),
+  },
+  (t) => [check("snapshots_version_positive", sql`${t.version} >= 1`)],
+).enableRLS();
+
 /** Append-only (H7). Corrections are a new `snapshot_version`, never an update. */
 export const priceBars = pgTable(
   "price_bars",

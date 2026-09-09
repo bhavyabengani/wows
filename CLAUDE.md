@@ -202,6 +202,14 @@ surface. Confirm or correct this list before starting Phase 1, and update the
 - **Commits.** Small and reviewable. The message says what changed and why.
 - **Dependencies.** Every direct dependency has one justifying line in
   `docs/DEPENDENCIES.md` (H36, guarded by `src/lib/repo-invariants.test.ts`).
+- **Anything whose checksum is recorded in a manifest is off limits to every
+  formatter, linter and code generator.** Its bytes are the artefact. A tool
+  that reformats it does not change its meaning but does invalidate the
+  snapshot, and the failure surfaces far away: Prettier reformatting one
+  `policy.json` in Phase 2 made the loader refuse the entire snapshot. Today
+  that means `data/raw` and `data/snapshots`, both in `.prettierignore`; from
+  Phase 3 it also means the engine's golden files. When you add a tool that
+  rewrites files, add these paths to its ignore list in the same commit.
 
 ---
 

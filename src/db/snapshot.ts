@@ -34,6 +34,13 @@ const CHECKED_FILES = [
 export interface Manifest {
   snapshot_version: number;
   built_at: string;
+  fetch_date: string;
+  /** Prices carry corporate-action adjustments up to `adjusted_as_of`. */
+  is_adjusted: boolean;
+  adjusted_as_of: string;
+  /** "price_return": dividends are not in the series, for any instrument. */
+  price_basis: string;
+  dividends_included: boolean;
   fd_series_verified: boolean;
   per_instrument: Record<
     string,
@@ -64,6 +71,32 @@ export class SnapshotError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "SnapshotError";
+  }
+}
+
+/**
+ * A snapshot must say how to read its prices. A build from before this
+ * metadata existed would otherwise load with the fields quietly undefined, and
+ * a screen would print an adjusted level as though it were what traded.
+ */
+export function assertManifestDescribesPrices(manifest: Manifest): void {
+  for (const field of [
+    "fetch_date",
+    "adjusted_as_of",
+    "price_basis",
+  ] as const) {
+    if (typeof manifest[field] !== "string" || manifest[field].length === 0) {
+      throw new SnapshotError(
+        `manifest is missing ${field}; rebuild the snapshot with the current pipeline`,
+      );
+    }
+  }
+  for (const field of ["is_adjusted", "dividends_included"] as const) {
+    if (typeof manifest[field] !== "boolean") {
+      throw new SnapshotError(
+        `manifest is missing ${field}; rebuild the snapshot with the current pipeline`,
+      );
+    }
   }
 }
 
@@ -136,6 +169,7 @@ export function readSnapshot(version: number): {
     throw new SnapshotError(`no snapshot at ${dir}: build it before loading`);
   }
   const manifest = JSON.parse(manifestText) as Manifest;
+  assertManifestDescribesPrices(manifest);
   if (manifest.snapshot_version !== version) {
     throw new SnapshotError(
       `manifest says version ${manifest.snapshot_version} but it is filed under v${version}`,
@@ -207,6 +241,9 @@ export interface LoadResult {
   instruments: number;
   bars: number;
   fdSeriesVerified: boolean;
+  isAdjusted: boolean;
+  adjustedAsOf: string;
+  priceBasis: string;
 }
 
 /**
@@ -277,11 +314,32 @@ export async function loadSnapshot(
       await tx.insert(schema.priceBars).values(values.slice(i, i + BATCH));
     }
 
+    // How to read these prices travels with them. Without it a screen has no
+    // way to know that a stored level is adjusted rather than what traded.
+    const barsSha256 = manifest.files["bars.csv"];
+    if (!barsSha256) {
+      throw new SnapshotError("manifest records no checksum for bars.csv");
+    }
+    await tx.insert(schema.snapshots).values({
+      version,
+      builtAt: new Date(manifest.built_at),
+      fetchDate: manifest.fetch_date,
+      isAdjusted: manifest.is_adjusted,
+      adjustedAsOf: manifest.adjusted_as_of,
+      priceBasis: manifest.price_basis,
+      dividendsIncluded: manifest.dividends_included,
+      fdSeriesVerified: manifest.fd_series_verified,
+      barsSha256,
+    });
+
     return {
       version,
       instruments: instruments.length,
       bars: values.length,
       fdSeriesVerified: manifest.fd_series_verified,
+      isAdjusted: manifest.is_adjusted,
+      adjustedAsOf: manifest.adjusted_as_of,
+      priceBasis: manifest.price_basis,
     };
   });
 }

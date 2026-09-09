@@ -14,6 +14,7 @@ import { sql } from "drizzle-orm";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { createSystemDb } from "./system";
 import {
+  assertManifestDescribesPrices,
   loadSnapshot,
   loadedChecksum,
   readSnapshot,
@@ -34,6 +35,7 @@ async function clearBars(): Promise<void> {
   await db.execute(sql`ALTER TABLE price_bars DISABLE TRIGGER USER`);
   await db.execute(sql`DELETE FROM price_bars`);
   await db.execute(sql`ALTER TABLE price_bars ENABLE TRIGGER USER`);
+  await db.execute(sql`DELETE FROM snapshots`);
 }
 
 beforeEach(async () => {
@@ -130,6 +132,52 @@ describe("loadSnapshot", () => {
     expect(second).toBe(first);
     expect(first).not.toBe("empty");
   }, 300_000);
+
+  it("records how the prices in the snapshot should be read", async () => {
+    const result = await loadSnapshot(db, VERSION);
+    expect(result.isAdjusted).toBe(true);
+    expect(result.priceBasis).toBe("price_return");
+
+    const [row] = await db.execute<{
+      is_adjusted: boolean;
+      adjusted_as_of: string;
+      price_basis: string;
+      dividends_included: boolean;
+      fd_series_verified: boolean;
+    }>(sql`SELECT * FROM snapshots WHERE version = ${VERSION}`);
+
+    // A stored level is adjusted for corporate actions up to the fetch, not
+    // the level that traded, so a screen has to say so. This row is how it
+    // knows (docs/DATA.md).
+    expect(row?.is_adjusted).toBe(true);
+    expect(row?.adjusted_as_of).toBe(result.adjustedAsOf);
+    expect(row?.price_basis).toBe("price_return");
+    // Dividends are in no series, for any instrument, so comparisons between
+    // them are consistent and all of them understate real equity returns.
+    expect(row?.dividends_included).toBe(false);
+    // Still unverified: the deposit series has not been replaced from RBI.
+    expect(row?.fd_series_verified).toBe(false);
+  }, 180_000);
+
+  it("refuses a manifest that does not say how to read its prices", () => {
+    // A build from before this metadata existed must fail loudly rather than
+    // load with the fields quietly undefined.
+    const { manifest } = readSnapshot(VERSION);
+    expect(() => assertManifestDescribesPrices(manifest)).not.toThrow();
+
+    for (const field of [
+      "is_adjusted",
+      "adjusted_as_of",
+      "price_basis",
+      "dividends_included",
+    ] as const) {
+      const damaged = { ...manifest };
+      delete (damaged as Record<string, unknown>)[field];
+      expect(() => assertManifestDescribesPrices(damaged), field).toThrow(
+        new RegExp(field),
+      );
+    }
+  });
 
   it("stores no bars for cash", async () => {
     await loadSnapshot(db, VERSION);

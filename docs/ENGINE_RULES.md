@@ -34,10 +34,28 @@ writes to `orders`, `fills`, `holdings_cache`, `scores` or `price_bars`.
 Recorded here so these do not live only in a data file's comments. See
 `docs/DATA.md` for the evidence behind each.
 
-**A day with no trade.** `LTGILTBEES` has no bar on about one trading day in
-ten, because long-dated gilt ETFs on the NSE are thinly traded. The data layer
-does not invent a price. The engine must mark a holding on such a day by
-carrying the last close forward, and must say so wherever a value is shown.
+**A day with no trade: carry forward, and record that you did.** Decided
+9 September 2026; applies to every missing bar, whatever the cause.
+
+Two causes exist today and the policy is the same for both. `LTGILTBEES` has
+no bar on about one trading day in ten because long-dated gilt ETFs on the NSE
+are thinly traded. Separately, four rows were removed from the snapshot as
+recorded source defects, so `GOLDBEES` and `NIFTYBEES` have no bar on 19 and
+20 December 2019, inside the replay window.
+
+The data layer never invents a price. The engine, on a day the calendar says
+the market was open but an instrument has no bar:
+
+- values the holding at that instrument's **previous available close**;
+- marks the valuation as having used a **synthetic bar**, carrying the date of
+  the close it actually used;
+- surfaces that marking in whatever it returns, so a run touching those days
+  is auditable rather than merely plausible.
+
+It must never fall out of a null. A missing bar that silently becomes zero, or
+that propagates as `undefined` into a valuation, is the kind of defect this
+whole pipeline exists to prevent. The same policy applies to any future
+removal, so a new recorded defect never needs a new rule.
 
 **Fixed deposits are not just a price series.** `FD1Y` is a rolling
 reinvestment index: it re-rates whenever the published rate changes and knows
@@ -52,7 +70,17 @@ That penalty is the actual educational content of a deposit against equity. A
 game that lets a member move in and out of a deposit without cost teaches the
 opposite of the intended lesson.
 
-**Prices are adjusted to the fetch date.** Stored levels are not the levels
-that traded, because the source adjusts history for later splits. Returns are
-correct; absolute levels are not comparable to a contemporary newspaper. If a
-screen shows a price, it should say which snapshot version it came from.
+**Prices are adjusted to the fetch date, and carry no dividends.** Stored
+levels are not the levels that traded, because the source adjusts history for
+later splits. Returns are correct; absolute levels are not comparable to a
+contemporary newspaper.
+
+The `snapshots` table records this per version: `is_adjusted`,
+`adjusted_as_of`, `price_basis` and `dividends_included`. The engine carries
+these through to whatever it returns and does **not** act on them; a screen
+renders "adjusted close (as of ...)" rather than a bare rupee figure. Deciding
+to un-adjust was considered and rejected: see docs/DATA.md.
+
+Every instrument is `price_return`, so comparisons between them, including the
+debrief's counterfactuals, are consistent. All of them understate real equity
+returns by roughly the dividend yield, which the debrief copy must say.

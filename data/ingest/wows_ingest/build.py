@@ -272,6 +272,16 @@ def build(raw_root: Path, snapshot_dir: Path, fetch_date: str) -> dict:
             "the source returned them, which means they are adjusted for splits occurring "
             "AFTER the window; see docs/DATA.md."
         ),
+        # How to read every price in this snapshot. Carried through the loader
+        # onto the snapshot record so a screen can say "adjusted close (as of
+        # ...)" rather than printing a bare rupee figure that does not match
+        # what traded. See docs/DATA.md.
+        "is_adjusted": True,
+        "adjusted_as_of": fetch_date,
+        "adjusted_for": ["splits", "bonuses"],
+        "not_adjusted_for": ["dividends", "rights issues"],
+        "price_basis": "price_return",
+        "dividends_included": False,
         "calendar_source": config.CALENDAR_SOURCE_SYMBOL,
         "calendar_days": len(calendar),
         "rounding": "half away from zero to paise, per docs/ENGINE_RULES.md",

@@ -29,6 +29,10 @@ async function main(): Promise<void> {
       `Loaded snapshot v${result.version}: ${result.instruments} instruments, ` +
         `${result.bars.toLocaleString()} price bars.`,
     );
+    console.log(
+      `Prices are ${result.priceBasis}, adjusted for corporate actions as of ` +
+        `${result.adjustedAsOf}. Show them as adjusted, not as traded levels.`,
+    );
     if (!result.fdSeriesVerified) {
       console.warn(
         "WARNING: the fixed-deposit rate series in this snapshot is unverified. " +

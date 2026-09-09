@@ -107,10 +107,29 @@ What this does and does not affect:
   again. A refetch would produce different numbers for the same dates, which
   is precisely why refetching is not part of a build.
 
-Un-adjusting is possible: it is one multiplication per instrument by the
-cumulative ratio of splits after the window. It was **not** done, because it is
-an adjustment, and the club chose restriction over adjustment. If the level
-matters more than that principle, it belongs in v2 as a deliberate decision.
+Un-adjusting was considered for v2 and **rejected**, on 9 September 2026. It
+looks like one multiplication per instrument by the cumulative ratio of splits
+after the window, but it requires a _complete_ corporate-action history, and
+the next section shows the source does not report rights issues at all. A v2
+un-adjust would therefore correct for the events it can see and silently miss
+the ones it cannot, and the result would look authoritative while being wrong
+in an unknown number of places. That is worse than the current state, which is
+merely inconsistent with a newspaper and says so. Restriction was chosen
+precisely so that no adjustment ledger is needed.
+
+What this costs is display honesty, so it is paid explicitly. Every snapshot
+records how its prices must be read, the loader copies it onto the `snapshots`
+table, and the engine carries it through without acting on it:
+
+| Field                | v1             | Meaning                                                                                                            |
+| -------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `is_adjusted`        | `true`         | Levels carry corporate-action adjustments.                                                                         |
+| `adjusted_as_of`     | `2026-09-09`   | The fetch date: every split with an ex-date on or before this is baked in, including ones after the replay window. |
+| `price_basis`        | `price_return` | Dividends are not in the series.                                                                                   |
+| `dividends_included` | `false`        | Same, stated as a boolean for a screen to branch on.                                                               |
+
+A screen must render "adjusted close (as of 9 September 2026)", never a bare
+rupee figure.
 
 Rights issues are a related gap: the source adjusts for them but does **not**
 report them as events, so neither the events test nor the discontinuity check
@@ -118,6 +137,34 @@ can see one. Reliance had a rights issue in 2020, inside the window. There is
 no automated defence against this today; the honest options are a manual
 corporate-actions cross-check against NSE announcements, or accepting it and
 saying so. This is said here.
+
+## Dividends are in no series at all
+
+Checked on 9 September 2026, offline, against the committed raw files, because
+a series that was total-return for equities and price-return for gold would
+make the debrief's "all-index" counterfactual compare two different things.
+
+It does not. The source returns both a split-adjusted `close` and a
+`adjclose` that also carries dividends. The snapshot stores `close`. For every
+equity the two differ across essentially the whole history, which means the
+stored series is **not** dividend-adjusted; for `NIFTYBEES`, `GOLDBEES`,
+`LTGILTBEES` and the index they are byte-identical, because the source records
+no dividend for them.
+
+So every instrument in the snapshot is **price-return**, and comparisons
+between them, including both counterfactuals, are consistent. Two consequences
+have to be said out loud rather than discovered later:
+
+- **The game understates equity returns**, by roughly the dividend yield of a
+  large-cap Indian portfolio. Over a five-year window that is not a rounding
+  error, and it tilts every comparison slightly against equities and towards
+  gold and, once verified, the fixed deposit. The debrief copy must say so.
+- **Switching to `adjclose` would break the bars.** Only the closing price has
+  a dividend-adjusted counterpart; open, high and low do not. Storing an
+  adjusted close beside an unadjusted low would routinely put the close below
+  the low, which our own OHLC check would reject, and rightly. A total-return
+  series would have to be built as a separate series, not swapped into these
+  bars.
 
 ## The trading calendar is derived, not transcribed
 
@@ -144,6 +191,12 @@ dropped; those exclusions are listed in `excluded-rows.csv`.
 
 Holiday circulars remain a reasonable manual cross-check if anyone wants one.
 They are not needed to build or to check a snapshot.
+
+**Do not change this back to the index alone.** It looks like the simpler
+design and it is wrong for a reason that is easy to miss: the holes are on
+1 January, so a maintainer glancing at the series sees a plausible holiday
+rather than a defect. The dates above are the evidence; check them against any
+other instrument in the snapshot before touching the rule.
 
 ## Money
 
@@ -211,10 +264,44 @@ an approximation** so that the pipeline, the model and the tests are complete
 and exercisable. They are not authoritative.
 
 The manifest records `fd_series_verified: false`, the check report repeats the
-warning, and `npm run db:load-snapshot` prints it on every load, so nothing
-downstream can quietly assume otherwise. Before any real season uses the fixed
-deposit: download the RBI table, replace that file wholesale keeping the same
-three columns, and build a **new snapshot version**.
+warning, and `npm run db:load-snapshot` prints it on every load. Those guards
+are real but they are all passive, and a warning printed on a terminal in
+September is invisible by March. So the series is also **kept out of the v1
+scenario's playable universe**: `FD1Y` exists as an instrument and has bars,
+and no scenario a member can play lists it. The first scenario runs on the
+other asset classes. This is the guard that does not depend on anyone reading
+anything.
+
+### Replacing it: what to download
+
+RBI blocks automated requests, not people. A person with a browser can fetch
+the table in a minute; the file then enters the pipeline like any other
+committed raw input, which turns the manual step into a one-time recorded act
+rather than a standing exception.
+
+**The table:** Reserve Bank of India, _Handbook of Statistics on the Indian
+Economy_, the annual table **"Deposit and Lending Rates of Scheduled Commercial
+Banks"**, and within it the column for the **term deposit rate of over 1 year
+and up to 3 years for five major banks**. It is published as a range, for
+example `6.25-6.75`. The same series appears monthly in the RBI _Bulletin_
+under "Deposit and Lending Rates"; either is acceptable, but say which one was
+used in the file's header comment.
+
+- Start: **2007**, to cover the full snapshot range. Any cadence RBI publishes
+  is fine, annual, quarterly or monthly; the model reads an effective date and
+  holds the rate until the next one.
+- Landing at: `data/raw/rbi/<fetch-date>/term-deposit-rates-1-3y.csv`.
+- Format: exactly three columns, `effective_from,rate_range_percent,note`,
+  with `effective_from` as `YYYY-MM-DD`. Lines beginning with `#` are
+  provenance notes and are ignored by the parser, so record the source URL,
+  the publication, the table name and the download date there.
+- Ranges are converted to their midpoint. A row the parser cannot read raises
+  rather than guessing, so a stray footnote marker will stop the build instead
+  of silently becoming a rate.
+
+Then: build a **new snapshot version** (never edit v1), flip
+`fd_series_verified` to true in `wows_ingest/build.py`, and add `FD1Y` to the
+scenario universe.
 
 ## Known source defects
 

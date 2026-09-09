@@ -1,9 +1,15 @@
 {
-  "built_at": "2026-09-09T05:52:48+00:00",
+  "adjusted_as_of": "2026-09-09",
+  "adjusted_for": [
+    "splits",
+    "bonuses"
+  ],
+  "built_at": "2026-09-09T06:23:00+00:00",
   "calendar_days": 4849,
   "calendar_rule": "a date is a trading day if at least 10 of 21 priced instruments have a bar on it",
   "calendar_source": "^NSEI",
   "corporate_action_policy": "Restriction, not adjustment. An instrument is admissible only if the source reports no split or bonus event inside a scenario window. Prices are stored as the source returned them, which means they are adjusted for splits occurring AFTER the window; see docs/DATA.md.",
+  "dividends_included": false,
   "excluded_rows": 311,
   "fd_series_verified": false,
   "fetch_date": "2026-09-09",
@@ -19,6 +25,11 @@
     "instruments.csv": "d59d11571ec5e77a432b28f8836eb546cc8f623bb6313ce24483bc835da67b8b",
     "policy.json": "95aa2d6877851a3c0a17b86506fb2e59a67ee5ab01f2c88b0462d9aafa149752"
   },
+  "is_adjusted": true,
+  "not_adjusted_for": [
+    "dividends",
+    "rights issues"
+  ],
   "per_instrument": {
     "ASIANPAINT": {
       "first_date": "2007-01-02",
@@ -136,6 +147,7 @@
       "rows": 4849
     }
   },
+  "price_basis": "price_return",
   "rounding": "half away from zero to paise, per docs/ENGINE_RULES.md",
   "scenario_windows": [
     {

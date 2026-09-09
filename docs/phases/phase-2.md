@@ -136,17 +136,48 @@ first-number-wins behaviour the brief warned about.
   every data file.
 - Locally green: typecheck, lint, format, 22 unit, 72 pytest, 28 database.
 
+## Follow-ups completed after review (9 September 2026)
+
+- **Adjusted levels are kept, and un-adjusting is rejected for good**, because
+  it would need a complete corporate-action history and the source does not
+  report rights issues. The reasoning is recorded in `docs/DATA.md` so it is
+  not reopened. The cost is paid as display honesty instead: the manifest now
+  carries `is_adjusted`, `adjusted_as_of`, `price_basis` and
+  `dividends_included`, a new `snapshots` table carries them into the database,
+  and the loader prints them.
+- **Dividends: checked, and the answer is clean.** The stored series is
+  price-return for every instrument, so the counterfactual comparison is
+  apples to apples. The equity `close` differs from its dividend-adjusted
+  counterpart across nearly all history, while the ETFs and the index are
+  byte-identical to theirs. Two consequences are written up: the game
+  understates equity returns by roughly the dividend yield, and switching to
+  the adjusted close would put the close below the low and fail our own OHLC
+  check.
+- **Missing bars have a policy**, recorded in `docs/ENGINE_RULES.md`: carry the
+  previous close forward and mark the valuation as having used a synthetic bar,
+  with the date of the close actually used. It applies to every missing bar,
+  whatever the cause, so a future recorded defect needs no new rule.
+- **The fixed deposit is out of the v1 scenario's playable universe** until its
+  series is verified. A printed warning is invisible six months later; an
+  absent instrument is not. `docs/DATA.md` now specifies exactly which RBI
+  table to download and the file format to drop it into.
+- **The formatter rule is generalised** in `CLAUDE.md`: anything whose checksum
+  is in a manifest is off limits to every formatter, linter and code
+  generator, and a new tool must be given those ignore paths in the same
+  commit.
+- **The calendar evidence is hardened** in `docs/DATA.md` with a note saying
+  not to revert it, because the holes fall on 1 January and look like holidays.
+
 ## Open questions for Phase 3
 
-1. **Adjusted price levels.** Show them as they are and say so in the
-   interface, or un-adjust to traded levels in v2? A decision is needed before
-   any price reaches a screen.
-2. **Rights issues.** Accept that neither net catches them, or add a manual
-   corporate-actions cross-check against NSE announcements?
-3. **The gilt proxy.** `LTGILTBEES` has no trade on about one day in ten and
+1. **Rights issues.** Accept that neither net catches them, or add a manual
+   corporate-actions cross-check against NSE announcements? Settled for
+   adjustment purposes, since un-adjusting is rejected; still open as a data
+   quality question.
+2. **The gilt proxy.** `LTGILTBEES` has no trade on about one day in ten and
    no history before 2018. Keep it and let the engine carry the last close, or
    find a better instrument before scenarios need one?
-4. **Nifty 500 and the deposit index are reference-only series.** Should
+3. **Nifty 500 and the deposit index are reference-only series.** Should
    members be able to hold them, or are they display-only?
-5. **Ownership** of GitHub, Vercel, Supabase and the domain: still unrecorded,
+4. **Ownership** of GitHub, Vercel, Supabase and the domain: still unrecorded,
    carried from Phase 0.

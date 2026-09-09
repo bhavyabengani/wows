@@ -29,6 +29,13 @@
       "when": 1788932064367,
       "tag": "0003_asset_class_fixed_deposit",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1788934944722,
+      "tag": "0004_snapshots_table",
+      "breakpoints": true
     }
   ]
 }
