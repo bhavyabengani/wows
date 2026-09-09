@@ -1,0 +1,29 @@
+{
+  "name": "First replay",
+  "version": 1,
+  "seed": "wows-first-replay-v1",
+  "snapshotVersion": 1,
+  "window": { "start": "2019-01-01", "end": "2023-12-31" },
+  "cadence": "monthly",
+  "universe": [
+    "NIFTYBEES",
+    "GOLDBEES",
+    "LTGILTBEES",
+    "RELIANCE",
+    "TCS",
+    "INFY",
+    "ICICIBANK",
+    "HINDUNILVR"
+  ],
+  "benchmarkSymbol": "NIFTYBEES",
+  "startingCorpus": "500000.00",
+  "monthlyIncome": "25000.00",
+  "monthlyExpense": "18000.00",
+  "shock": {
+    "min": "60000.00",
+    "max": "120000.00",
+    "label": "Unplanned expense",
+    "windowFraction": 0.6
+  },
+  "transactionCostBps": 10
+}
