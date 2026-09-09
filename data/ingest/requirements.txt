@@ -1,0 +1,16 @@
+# Pinned. This environment is standalone: it is never imported by, bundled
+# with, or merged into the Next.js app (H37). The only link between the two
+# is the snapshot files this pipeline writes under data/snapshots/.
+#
+#   python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+#
+# curl_cffi: HTTP client that impersonates a real browser's TLS fingerprint.
+#   Yahoo's chart endpoint answers 429 to plain curl/requests from most
+#   networks; impersonation is the only reliable way in, and it is what
+#   yfinance itself uses underneath. We call the endpoint directly rather
+#   than through yfinance because yfinance decodes prices into Python floats
+#   before any of our code sees them, which ENGINE_RULES.md forbids.
+curl_cffi==0.7.4
+
+# pytest: the test runner for this package. CI runs it as its own job.
+pytest==8.3.4

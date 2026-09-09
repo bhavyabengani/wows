@@ -36,3 +36,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+
+# Python virtual environment for the standalone data pipeline
+data/ingest/.venv/
+data/ingest/**/__pycache__/
+data/ingest/.pytest_cache/

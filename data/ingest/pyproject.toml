@@ -1,0 +1,10 @@
+[project]
+name = "wows-ingest"
+version = "1.0.0"
+description = "Standalone market-data ingestion for the WOWS Portal. Never merged into the Next.js app (H37)."
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["error"]
