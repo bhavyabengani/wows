@@ -1,0 +1,24 @@
+symbol,name,asset_class,is_active,role,rationale
+RELIANCE,Reliance Industries,equity,true,individual equity,Largest NSE constituent by weight.
+TCS,Tata Consultancy Services,equity,true,individual equity,IT services bellwether.
+INFY,Infosys,equity,true,individual equity,"Second IT name, for sector-versus-stock questions."
+ICICIBANK,ICICI Bank,equity,true,individual equity,"Private bank, high beta through the window."
+HINDUNILVR,Hindustan Unilever,equity,true,individual equity,Defensive FMCG; no split in living memory.
+ITC,ITC,equity,true,individual equity,FMCG with a distinct regulatory risk story.
+KOTAKBANK,Kotak Mahindra Bank,equity,true,individual equity,Private bank with a governance episode in window.
+LT,Larsen & Toubro,equity,true,individual equity,"Capital goods, the domestic capex cycle."
+SBIN,State Bank of India,equity,true,individual equity,"Public sector bank, contrast with private peers."
+ASIANPAINT,Asian Paints,equity,true,individual equity,Long compounder that de-rated late in the window.
+MARUTI,Maruti Suzuki,equity,true,individual equity,"Autos, exposed to the 2019 slowdown."
+TITAN,Titan Company,equity,true,individual equity,Discretionary consumption.
+SUNPHARMA,Sun Pharmaceutical,equity,true,individual equity,"Pharma, the 2020 re-rating."
+ULTRACEMCO,UltraTech Cement,equity,true,individual equity,"Cement, commodity cost pass-through."
+AXISBANK,Axis Bank,equity,true,individual equity,"Third private bank, for dispersion within a sector."
+BAJFINANCE,Bajaj Finance,equity,true,individual equity,"NBFC, the sharpest drawdown and recovery in window."
+NIFTY50,Nifty 50 index,index,true,large-cap index,Headline index; also defines the trading calendar.
+NIFTY500,Nifty 500 index,index,true,mid/small-cap breadth,Broader index for breadth comparisons.
+NIFTYBEES,Nippon India ETF Nifty 50 BeES,etf,true,investable large-cap index fund,The index itself cannot be bought; this is the investable stand-in.
+GOLDBEES,Nippon India ETF Gold BeES,commodity,true,gold,"Rupee-denominated, NSE-traded, liquid from 2009; avoids an FX assumption."
+LTGILTBEES,Nippon India ETF Long Term Gilt,bond,true,government bonds,"Investable gilt exposure. History starts 2018-05-11, so it covers the 2019-2023 window but rules out a 2007-2011 scenario."
+FD1Y,"Fixed deposit, 1-3 year rolling reinvestment index",fixed_deposit,true,fixed deposit,"A value index, not a traded price. See docs/DATA.md for the model and its limits."
+CASH,"Indian rupee, uninvested",cash,true,cash,Holds value; earns nothing. No bars.

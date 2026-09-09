@@ -1,0 +1,63 @@
+# PROVISIONAL AND UNVERIFIED. Read this before trusting the fixed deposit.
+#
+# Intended source: Reserve Bank of India, "Deposit and Lending Rates of
+# Scheduled Commercial Banks", the 1-3 year term deposit rate range of five
+# major banks, published in the Handbook of Statistics on the Indian Economy
+# and in the monthly Bulletin.
+#
+# The rows below could NOT be downloaded: rbi.org.in answered 403 to every
+# automated request made while this snapshot was built, and the DBIE portal
+# serves its data only through a JavaScript application. They were entered by
+# hand as an approximation of the published series so that the pipeline, the
+# model and the tests are complete and exercisable end to end.
+#
+# They are NOT authoritative. Before any real season uses the fixed deposit:
+#   1. Download the RBI table for 2007 onward.
+#   2. Replace this file wholesale, keeping the same three columns.
+#   3. Rebuild as a NEW snapshot version (v2). Never edit v1 in place (H7).
+#   4. Set fd_series_verified to true in the build once the source is real.
+# The manifest records fd_series_verified: false, and the check report repeats
+# this warning, so nothing downstream can quietly assume otherwise.
+#
+# Ranges are converted to their MIDPOINT by wows_ingest.fd.parse_rate. A row
+# that cannot be interpreted raises rather than taking the first number.
+effective_from,rate_range_percent,note
+2007-01-01,8.00-9.00,provisional
+2007-07-01,8.25-9.50,provisional
+2008-01-01,8.50-9.50,provisional
+2008-07-01,9.00-10.00,provisional
+2009-01-01,7.50-8.75,provisional
+2009-07-01,6.00-7.50,provisional
+2010-01-01,6.00-7.25,provisional
+2010-07-01,6.75-7.75,provisional
+2011-01-01,8.25-9.00,provisional
+2011-07-01,9.00-9.50,provisional
+2012-01-01,9.00-9.50,provisional
+2012-07-01,8.50-9.25,provisional
+2013-01-01,8.50-9.00,provisional
+2013-07-01,8.00-9.00,provisional
+2014-01-01,8.75-9.25,provisional
+2014-07-01,8.50-9.10,provisional
+2015-01-01,8.25-8.75,provisional
+2015-07-01,7.50-8.25,provisional
+2016-01-01,7.25-7.75,provisional
+2016-07-01,7.00-7.50,provisional
+2017-01-01,6.75-7.25,provisional
+2017-07-01,6.25-6.90,provisional
+2018-01-01,6.25-6.90,provisional
+2018-07-01,6.50-7.10,provisional
+2019-01-01,6.75-7.25,provisional
+2019-07-01,6.25-7.00,provisional
+2020-01-01,6.00-6.50,provisional
+2020-07-01,5.10-5.60,provisional
+2021-01-01,4.90-5.50,provisional
+2021-07-01,4.90-5.40,provisional
+2022-01-01,5.00-5.50,provisional
+2022-07-01,5.45-6.10,provisional
+2023-01-01,6.25-7.10,provisional
+2023-07-01,6.50-7.25,provisional
+2024-01-01,6.50-7.25,provisional
+2024-07-01,6.50-7.25,provisional
+2025-01-01,6.40-7.10,provisional
+2025-07-01,6.10-6.80,provisional
+2026-01-01,6.00-6.60,provisional

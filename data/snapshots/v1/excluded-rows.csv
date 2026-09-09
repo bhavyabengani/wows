@@ -1,0 +1,312 @@
+symbol,trade_date,reason
+ASIANPAINT,2019-10-27,date did not reach quorum as a trading day
+ASIANPAINT,2020-11-14,date did not reach quorum as a trading day
+ASIANPAINT,2025-02-01,date did not reach quorum as a trading day
+AXISBANK,2019-10-27,date did not reach quorum as a trading day
+AXISBANK,2020-11-14,date did not reach quorum as a trading day
+AXISBANK,2025-02-01,date did not reach quorum as a trading day
+BAJFINANCE,2019-10-27,date did not reach quorum as a trading day
+BAJFINANCE,2020-11-14,date did not reach quorum as a trading day
+BAJFINANCE,2025-02-01,date did not reach quorum as a trading day
+GOLDBEES,2009-01-02,source reported a zero or negative price
+GOLDBEES,2009-01-05,source reported a zero or negative price
+GOLDBEES,2009-01-06,source reported a zero or negative price
+GOLDBEES,2009-01-07,source reported a zero or negative price
+GOLDBEES,2009-01-09,source reported a zero or negative price
+GOLDBEES,2009-01-12,source reported a zero or negative price
+GOLDBEES,2009-01-13,source reported a zero or negative price
+GOLDBEES,2009-01-14,source reported a zero or negative price
+GOLDBEES,2009-01-15,source reported a zero or negative price
+GOLDBEES,2009-01-16,source reported a zero or negative price
+GOLDBEES,2009-01-19,source reported a zero or negative price
+GOLDBEES,2009-01-20,source reported a zero or negative price
+GOLDBEES,2009-01-21,source reported a zero or negative price
+GOLDBEES,2009-01-22,source reported a zero or negative price
+GOLDBEES,2009-01-23,source reported a zero or negative price
+GOLDBEES,2009-01-27,source reported a zero or negative price
+GOLDBEES,2009-01-28,source reported a zero or negative price
+GOLDBEES,2009-01-29,source reported a zero or negative price
+GOLDBEES,2009-01-30,source reported a zero or negative price
+GOLDBEES,2009-02-02,source reported a zero or negative price
+GOLDBEES,2009-02-03,source reported a zero or negative price
+GOLDBEES,2009-02-04,source reported a zero or negative price
+GOLDBEES,2009-02-05,source reported a zero or negative price
+GOLDBEES,2009-02-06,source reported a zero or negative price
+GOLDBEES,2009-02-09,source reported a zero or negative price
+GOLDBEES,2009-02-10,source reported a zero or negative price
+GOLDBEES,2009-02-11,source reported a zero or negative price
+GOLDBEES,2009-02-12,source reported a zero or negative price
+GOLDBEES,2009-02-13,source reported a zero or negative price
+GOLDBEES,2009-02-16,source reported a zero or negative price
+GOLDBEES,2009-02-17,source reported a zero or negative price
+GOLDBEES,2009-02-18,source reported a zero or negative price
+GOLDBEES,2009-02-19,source reported a zero or negative price
+GOLDBEES,2009-02-20,source reported a zero or negative price
+GOLDBEES,2009-02-24,source reported a zero or negative price
+GOLDBEES,2009-02-25,source reported a zero or negative price
+GOLDBEES,2009-02-26,source reported a zero or negative price
+GOLDBEES,2009-02-27,source reported a zero or negative price
+GOLDBEES,2009-03-02,source reported a zero or negative price
+GOLDBEES,2009-03-03,source reported a zero or negative price
+GOLDBEES,2009-03-04,source reported a zero or negative price
+GOLDBEES,2009-03-05,source reported a zero or negative price
+GOLDBEES,2009-03-06,source reported a zero or negative price
+GOLDBEES,2009-03-09,source reported a zero or negative price
+GOLDBEES,2009-03-12,source reported a zero or negative price
+GOLDBEES,2009-03-13,source reported a zero or negative price
+GOLDBEES,2009-03-16,source reported a zero or negative price
+GOLDBEES,2009-03-17,source reported a zero or negative price
+GOLDBEES,2009-03-18,source reported a zero or negative price
+GOLDBEES,2009-03-19,source reported a zero or negative price
+GOLDBEES,2009-03-20,source reported a zero or negative price
+GOLDBEES,2009-03-23,source reported a zero or negative price
+GOLDBEES,2009-03-24,source reported a zero or negative price
+GOLDBEES,2009-03-25,source reported a zero or negative price
+GOLDBEES,2009-03-26,source reported a zero or negative price
+GOLDBEES,2009-03-27,source reported a zero or negative price
+GOLDBEES,2009-03-30,source reported a zero or negative price
+GOLDBEES,2009-03-31,source reported a zero or negative price
+GOLDBEES,2009-04-01,source reported a zero or negative price
+GOLDBEES,2009-04-02,source reported a zero or negative price
+GOLDBEES,2009-04-06,source reported a zero or negative price
+GOLDBEES,2009-04-08,source reported a zero or negative price
+GOLDBEES,2009-04-09,source reported a zero or negative price
+GOLDBEES,2009-04-13,source reported a zero or negative price
+GOLDBEES,2009-04-15,source reported a zero or negative price
+GOLDBEES,2009-04-16,source reported a zero or negative price
+GOLDBEES,2009-04-17,source reported a zero or negative price
+GOLDBEES,2009-04-20,source reported a zero or negative price
+GOLDBEES,2009-04-21,source reported a zero or negative price
+GOLDBEES,2009-04-22,source reported a zero or negative price
+GOLDBEES,2009-04-23,source reported a zero or negative price
+GOLDBEES,2009-04-24,source reported a zero or negative price
+GOLDBEES,2009-04-27,source reported a zero or negative price
+GOLDBEES,2009-04-28,source reported a zero or negative price
+GOLDBEES,2009-04-29,source reported a zero or negative price
+GOLDBEES,2009-05-04,source reported a zero or negative price
+GOLDBEES,2009-05-05,source reported a zero or negative price
+GOLDBEES,2009-05-06,source reported a zero or negative price
+GOLDBEES,2009-05-07,source reported a zero or negative price
+GOLDBEES,2009-05-08,source reported a zero or negative price
+GOLDBEES,2009-05-11,source reported a zero or negative price
+GOLDBEES,2009-05-12,source reported a zero or negative price
+GOLDBEES,2009-05-13,source reported a zero or negative price
+GOLDBEES,2009-05-14,source reported a zero or negative price
+GOLDBEES,2009-05-15,source reported a zero or negative price
+GOLDBEES,2009-05-18,source reported a zero or negative price
+GOLDBEES,2009-05-19,source reported a zero or negative price
+GOLDBEES,2009-05-20,source reported a zero or negative price
+GOLDBEES,2009-05-21,source reported a zero or negative price
+GOLDBEES,2009-05-22,source reported a zero or negative price
+GOLDBEES,2009-05-25,source reported a zero or negative price
+GOLDBEES,2009-05-26,source reported a zero or negative price
+GOLDBEES,2009-05-27,source reported a zero or negative price
+GOLDBEES,2009-05-28,source reported a zero or negative price
+GOLDBEES,2009-05-29,source reported a zero or negative price
+GOLDBEES,2009-06-01,source reported a zero or negative price
+GOLDBEES,2009-06-02,source reported a zero or negative price
+GOLDBEES,2009-06-03,source reported a zero or negative price
+GOLDBEES,2009-06-04,source reported a zero or negative price
+GOLDBEES,2009-06-05,source reported a zero or negative price
+GOLDBEES,2009-06-08,source reported a zero or negative price
+GOLDBEES,2009-06-09,source reported a zero or negative price
+GOLDBEES,2009-06-10,source reported a zero or negative price
+GOLDBEES,2009-06-11,source reported a zero or negative price
+GOLDBEES,2009-06-12,source reported a zero or negative price
+GOLDBEES,2009-06-15,source reported a zero or negative price
+GOLDBEES,2009-06-16,source reported a zero or negative price
+GOLDBEES,2009-06-18,source reported a zero or negative price
+GOLDBEES,2009-06-19,source reported a zero or negative price
+GOLDBEES,2009-06-22,source reported a zero or negative price
+GOLDBEES,2009-06-23,source reported a zero or negative price
+GOLDBEES,2009-06-24,source reported a zero or negative price
+GOLDBEES,2009-06-25,source reported a zero or negative price
+GOLDBEES,2009-06-26,source reported a zero or negative price
+GOLDBEES,2009-06-29,source reported a zero or negative price
+GOLDBEES,2009-06-30,source reported a zero or negative price
+GOLDBEES,2009-07-01,source reported a zero or negative price
+GOLDBEES,2009-07-02,source reported a zero or negative price
+GOLDBEES,2009-07-03,source reported a zero or negative price
+GOLDBEES,2009-07-06,source reported a zero or negative price
+GOLDBEES,2009-07-07,source reported a zero or negative price
+GOLDBEES,2009-07-08,source reported a zero or negative price
+GOLDBEES,2009-07-09,source reported a zero or negative price
+GOLDBEES,2009-07-10,source reported a zero or negative price
+GOLDBEES,2009-07-13,source reported a zero or negative price
+GOLDBEES,2009-07-14,source reported a zero or negative price
+GOLDBEES,2009-07-15,source reported a zero or negative price
+GOLDBEES,2009-07-16,source reported a zero or negative price
+GOLDBEES,2009-07-17,source reported a zero or negative price
+GOLDBEES,2009-07-20,source reported a zero or negative price
+GOLDBEES,2009-07-21,source reported a zero or negative price
+GOLDBEES,2009-07-22,source reported a zero or negative price
+GOLDBEES,2009-07-23,source reported a zero or negative price
+GOLDBEES,2009-07-24,source reported a zero or negative price
+GOLDBEES,2009-07-27,source reported a zero or negative price
+GOLDBEES,2009-07-28,source reported a zero or negative price
+GOLDBEES,2009-07-29,source reported a zero or negative price
+GOLDBEES,2009-07-30,source reported a zero or negative price
+GOLDBEES,2009-07-31,source reported a zero or negative price
+GOLDBEES,2009-08-03,source reported a zero or negative price
+GOLDBEES,2009-08-04,source reported a zero or negative price
+GOLDBEES,2009-08-05,source reported a zero or negative price
+GOLDBEES,2009-08-06,source reported a zero or negative price
+GOLDBEES,2009-08-07,source reported a zero or negative price
+GOLDBEES,2009-08-10,source reported a zero or negative price
+GOLDBEES,2009-08-11,source reported a zero or negative price
+GOLDBEES,2009-08-12,source reported a zero or negative price
+GOLDBEES,2009-08-13,source reported a zero or negative price
+GOLDBEES,2009-08-14,source reported a zero or negative price
+GOLDBEES,2009-08-17,source reported a zero or negative price
+GOLDBEES,2009-08-24,source reported a zero or negative price
+GOLDBEES,2009-08-25,source reported a zero or negative price
+GOLDBEES,2009-08-26,source reported a zero or negative price
+GOLDBEES,2009-08-27,source reported a zero or negative price
+GOLDBEES,2009-08-28,source reported a zero or negative price
+GOLDBEES,2009-08-31,source reported a zero or negative price
+GOLDBEES,2009-09-01,source reported a zero or negative price
+GOLDBEES,2009-09-02,source reported a zero or negative price
+GOLDBEES,2009-09-03,source reported a zero or negative price
+GOLDBEES,2009-09-04,source reported a zero or negative price
+GOLDBEES,2009-09-07,source reported a zero or negative price
+GOLDBEES,2009-09-08,source reported a zero or negative price
+GOLDBEES,2009-09-09,source reported a zero or negative price
+GOLDBEES,2009-09-10,source reported a zero or negative price
+GOLDBEES,2009-09-11,source reported a zero or negative price
+GOLDBEES,2009-09-14,source reported a zero or negative price
+GOLDBEES,2009-09-15,source reported a zero or negative price
+GOLDBEES,2009-09-16,source reported a zero or negative price
+GOLDBEES,2009-09-17,source reported a zero or negative price
+GOLDBEES,2009-09-18,source reported a zero or negative price
+GOLDBEES,2009-09-22,source reported a zero or negative price
+GOLDBEES,2009-09-23,source reported a zero or negative price
+GOLDBEES,2009-09-24,source reported a zero or negative price
+GOLDBEES,2009-09-25,source reported a zero or negative price
+GOLDBEES,2009-09-29,source reported a zero or negative price
+GOLDBEES,2009-09-30,source reported a zero or negative price
+GOLDBEES,2009-10-01,source reported a zero or negative price
+GOLDBEES,2009-10-05,source reported a zero or negative price
+GOLDBEES,2009-10-06,source reported a zero or negative price
+GOLDBEES,2009-10-07,source reported a zero or negative price
+GOLDBEES,2009-10-08,source reported a zero or negative price
+GOLDBEES,2009-10-09,source reported a zero or negative price
+GOLDBEES,2009-10-12,source reported a zero or negative price
+GOLDBEES,2009-10-14,source reported a zero or negative price
+GOLDBEES,2009-10-15,source reported a zero or negative price
+GOLDBEES,2009-10-16,source reported a zero or negative price
+GOLDBEES,2009-10-20,source reported a zero or negative price
+GOLDBEES,2009-10-21,source reported a zero or negative price
+GOLDBEES,2009-10-22,source reported a zero or negative price
+GOLDBEES,2009-10-23,source reported a zero or negative price
+GOLDBEES,2009-10-26,source reported a zero or negative price
+GOLDBEES,2009-10-27,source reported a zero or negative price
+GOLDBEES,2009-10-28,source reported a zero or negative price
+GOLDBEES,2009-10-29,source reported a zero or negative price
+GOLDBEES,2009-10-30,source reported a zero or negative price
+GOLDBEES,2009-11-03,source reported a zero or negative price
+GOLDBEES,2009-11-04,source reported a zero or negative price
+GOLDBEES,2009-11-05,source reported a zero or negative price
+GOLDBEES,2009-11-06,source reported a zero or negative price
+GOLDBEES,2009-11-09,source reported a zero or negative price
+GOLDBEES,2009-11-10,source reported a zero or negative price
+GOLDBEES,2009-11-11,source reported a zero or negative price
+GOLDBEES,2009-11-12,source reported a zero or negative price
+GOLDBEES,2009-11-13,source reported a zero or negative price
+GOLDBEES,2009-11-16,source reported a zero or negative price
+GOLDBEES,2009-11-17,source reported a zero or negative price
+GOLDBEES,2009-11-18,source reported a zero or negative price
+GOLDBEES,2009-11-19,source reported a zero or negative price
+GOLDBEES,2009-11-20,source reported a zero or negative price
+GOLDBEES,2009-11-23,source reported a zero or negative price
+GOLDBEES,2009-11-24,source reported a zero or negative price
+GOLDBEES,2009-11-25,source reported a zero or negative price
+GOLDBEES,2009-11-26,source reported a zero or negative price
+GOLDBEES,2009-11-27,source reported a zero or negative price
+GOLDBEES,2009-11-30,source reported a zero or negative price
+GOLDBEES,2009-12-01,source reported a zero or negative price
+GOLDBEES,2009-12-02,source reported a zero or negative price
+GOLDBEES,2009-12-03,source reported a zero or negative price
+GOLDBEES,2009-12-04,source reported a zero or negative price
+GOLDBEES,2009-12-07,source reported a zero or negative price
+GOLDBEES,2009-12-08,source reported a zero or negative price
+GOLDBEES,2009-12-09,source reported a zero or negative price
+GOLDBEES,2009-12-10,source reported a zero or negative price
+GOLDBEES,2009-12-11,source reported a zero or negative price
+GOLDBEES,2009-12-14,source reported a zero or negative price
+GOLDBEES,2009-12-15,source reported a zero or negative price
+GOLDBEES,2009-12-16,source reported a zero or negative price
+GOLDBEES,2009-12-17,source reported a zero or negative price
+GOLDBEES,2009-12-18,source reported a zero or negative price
+GOLDBEES,2009-12-21,source reported a zero or negative price
+GOLDBEES,2009-12-22,source reported a zero or negative price
+GOLDBEES,2009-12-23,source reported a zero or negative price
+GOLDBEES,2009-12-24,source reported a zero or negative price
+GOLDBEES,2009-12-29,source reported a zero or negative price
+GOLDBEES,2009-12-30,source reported a zero or negative price
+GOLDBEES,2009-12-31,source reported a zero or negative price
+GOLDBEES,2010-01-04,source reported a zero or negative price
+GOLDBEES,2010-01-05,source reported a zero or negative price
+GOLDBEES,2010-01-06,source reported a zero or negative price
+GOLDBEES,2010-01-07,source reported a zero or negative price
+GOLDBEES,2010-01-08,source reported a zero or negative price
+GOLDBEES,2010-01-11,source reported a zero or negative price
+GOLDBEES,2010-01-12,source reported a zero or negative price
+GOLDBEES,2010-01-13,source reported a zero or negative price
+GOLDBEES,2010-01-14,source reported a zero or negative price
+GOLDBEES,2010-01-15,source reported a zero or negative price
+GOLDBEES,2010-01-18,source reported a zero or negative price
+GOLDBEES,2019-10-27,date did not reach quorum as a trading day
+GOLDBEES,2019-12-19,"recorded source defect: Source has both days at one hundredth of the true scale: close is 0.30 and 0.34 against 33.60 on 18 Dec and 33.65 on 23 Dec, with volume inflated by roughly the same factor (166,442,200 against a typical 500,000). Requesting the two days on their own returns the same values, so it is wrong in the source's stored history, not an artefact of the request. No split or bonus is reported anywhere near the date. The rows are removed rather than rescaled: a corrected price would be our invention, and the club chose not to have those in the data layer."
+GOLDBEES,2019-12-20,"recorded source defect: Source has both days at one hundredth of the true scale: close is 0.30 and 0.34 against 33.60 on 18 Dec and 33.65 on 23 Dec, with volume inflated by roughly the same factor (166,442,200 against a typical 500,000). Requesting the two days on their own returns the same values, so it is wrong in the source's stored history, not an artefact of the request. No split or bonus is reported anywhere near the date. The rows are removed rather than rescaled: a corrected price would be our invention, and the club chose not to have those in the data layer."
+GOLDBEES,2020-11-14,date did not reach quorum as a trading day
+GOLDBEES,2025-02-01,date did not reach quorum as a trading day
+HINDUNILVR,2019-10-27,date did not reach quorum as a trading day
+HINDUNILVR,2020-11-14,date did not reach quorum as a trading day
+HINDUNILVR,2025-02-01,date did not reach quorum as a trading day
+ICICIBANK,2019-10-27,date did not reach quorum as a trading day
+ICICIBANK,2020-11-14,date did not reach quorum as a trading day
+ICICIBANK,2025-02-01,date did not reach quorum as a trading day
+INFY,2019-10-27,date did not reach quorum as a trading day
+INFY,2020-11-14,date did not reach quorum as a trading day
+INFY,2025-02-01,date did not reach quorum as a trading day
+ITC,2019-10-27,date did not reach quorum as a trading day
+ITC,2020-11-14,date did not reach quorum as a trading day
+ITC,2025-02-01,date did not reach quorum as a trading day
+KOTAKBANK,2019-10-27,date did not reach quorum as a trading day
+KOTAKBANK,2020-11-14,date did not reach quorum as a trading day
+KOTAKBANK,2025-02-01,date did not reach quorum as a trading day
+LT,2019-10-27,date did not reach quorum as a trading day
+LT,2020-11-14,date did not reach quorum as a trading day
+LT,2025-02-01,date did not reach quorum as a trading day
+LTGILTBEES,2019-10-27,date did not reach quorum as a trading day
+LTGILTBEES,2020-11-14,date did not reach quorum as a trading day
+LTGILTBEES,2025-02-01,date did not reach quorum as a trading day
+MARUTI,2019-10-27,date did not reach quorum as a trading day
+MARUTI,2020-11-14,date did not reach quorum as a trading day
+MARUTI,2025-02-01,date did not reach quorum as a trading day
+NIFTY50,2025-02-01,date did not reach quorum as a trading day
+NIFTYBEES,2009-07-07,source reported a zero or negative price
+NIFTYBEES,2015-02-28,date did not reach quorum as a trading day
+NIFTYBEES,2019-10-27,date did not reach quorum as a trading day
+NIFTYBEES,2019-12-19,"recorded source defect: The same defect on the same two days, at one tenth of the true scale: close is 13.02 and 13.03 against 129.25 on 18 Dec and 129.93 on 23 Dec, with volume inflated about tenfold. Removed for the same reason."
+NIFTYBEES,2019-12-20,"recorded source defect: The same defect on the same two days, at one tenth of the true scale: close is 13.02 and 13.03 against 129.25 on 18 Dec and 129.93 on 23 Dec, with volume inflated about tenfold. Removed for the same reason."
+NIFTYBEES,2020-11-14,date did not reach quorum as a trading day
+NIFTYBEES,2025-02-01,date did not reach quorum as a trading day
+RELIANCE,2019-10-27,date did not reach quorum as a trading day
+RELIANCE,2020-11-14,date did not reach quorum as a trading day
+RELIANCE,2025-02-01,date did not reach quorum as a trading day
+SBIN,2019-10-27,date did not reach quorum as a trading day
+SBIN,2020-11-14,date did not reach quorum as a trading day
+SBIN,2025-02-01,date did not reach quorum as a trading day
+SUNPHARMA,2019-10-27,date did not reach quorum as a trading day
+SUNPHARMA,2020-11-14,date did not reach quorum as a trading day
+SUNPHARMA,2025-02-01,date did not reach quorum as a trading day
+TCS,2019-10-27,date did not reach quorum as a trading day
+TCS,2020-11-14,date did not reach quorum as a trading day
+TCS,2025-02-01,date did not reach quorum as a trading day
+TITAN,2019-10-27,date did not reach quorum as a trading day
+TITAN,2020-11-14,date did not reach quorum as a trading day
+TITAN,2025-02-01,date did not reach quorum as a trading day
+ULTRACEMCO,2019-10-27,date did not reach quorum as a trading day
+ULTRACEMCO,2020-11-14,date did not reach quorum as a trading day
+ULTRACEMCO,2025-02-01,date did not reach quorum as a trading day

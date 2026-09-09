@@ -1,0 +1,41 @@
+{
+  "_comment": "Hand-maintained. `discontinuity_band` bounds the day-over-day close ratio inside a scenario window. `exceptions` excuses a single dated jump that a real market event explains. `source_defects` removes rows the data source itself has wrong; each needs a reason a reader can check, and each leaves a documented gap rather than an invented price.",
+  "discontinuity_band": {
+    "max_ratio": "1.6",
+    "min_ratio": "0.6"
+  },
+  "exceptions": [],
+  "illiquid_instruments": [
+    {
+      "max_missing_fraction": "0.15",
+      "reason": "Long-dated gilt ETFs on the NSE are thinly traded: this one has no trade on 131 of the 1,233 trading days in the 2019-2023 window, about one day in ten. The absence is real, not a fetch failure, so no bar is invented here. How a holding is marked on a day with no trade is an engine rule owed by Phase 3 (carry the last close), recorded in docs/ENGINE_RULES.md. The tolerance is set just above the observed rate so a series that quietly gets worse still fails this check.",
+      "symbol": "LTGILTBEES"
+    }
+  ],
+  "known_source_gaps": [
+    {
+      "dates": ["2019-01-01"],
+      "reason": "The index series has no bar on this date although a quorum of constituents traded. A reference series only; nothing is priced off it.",
+      "symbol": "NIFTY50"
+    },
+    {
+      "dates": ["2021-01-01", "2022-12-26"],
+      "reason": "Same: holes in the broad index series on dates the market was open. Reference only.",
+      "symbol": "NIFTY500"
+    }
+  ],
+  "source_defects": [
+    {
+      "from": "2019-12-19",
+      "reason": "Source has both days at one hundredth of the true scale: close is 0.30 and 0.34 against 33.60 on 18 Dec and 33.65 on 23 Dec, with volume inflated by roughly the same factor (166,442,200 against a typical 500,000). Requesting the two days on their own returns the same values, so it is wrong in the source's stored history, not an artefact of the request. No split or bonus is reported anywhere near the date. The rows are removed rather than rescaled: a corrected price would be our invention, and the club chose not to have those in the data layer.",
+      "symbol": "GOLDBEES",
+      "to": "2019-12-20"
+    },
+    {
+      "from": "2019-12-19",
+      "reason": "The same defect on the same two days, at one tenth of the true scale: close is 13.02 and 13.03 against 129.25 on 18 Dec and 129.93 on 23 Dec, with volume inflated about tenfold. Removed for the same reason.",
+      "symbol": "NIFTYBEES",
+      "to": "2019-12-20"
+    }
+  ]
+}

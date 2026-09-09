@@ -1,0 +1,261 @@
+{
+  "built_at": "2026-09-09T05:30:49+00:00",
+  "calendar_days": 4849,
+  "calendar_rule": "a date is a trading day if at least 10 of 21 priced instruments have a bar on it",
+  "calendar_source": "^NSEI",
+  "corporate_action_policy": "Restriction, not adjustment. An instrument is admissible only if the source reports no split or bonus event inside a scenario window. Prices are stored as the source returned them, which means they are adjusted for splits occurring AFTER the window; see docs/DATA.md.",
+  "excluded_rows": 311,
+  "fd_series_verified": false,
+  "fetch_date": "2026-09-09",
+  "fetch_range": {
+    "end": "2026-08-31",
+    "start": "2007-01-01"
+  },
+  "files": {
+    "bars.csv": "4b977649c2c68bdc03a459ededca4a9e88b6ff9e22052a09ecc340260e430628",
+    "calendar.csv": "69ba61402f12717081a940c490c06644ce87427ad195bfdd8eaec5e7b6a9261d",
+    "corporate-actions.csv": "973fe2469064ebb03f96d75e95a087969764bceb6dccf373483d70c80a9f7efa",
+    "excluded-rows.csv": "40f287791656b38aafd28c4f910ad17d3cf5f350d50a1986efc2f1a1f183a57a",
+    "instruments.csv": "d59d11571ec5e77a432b28f8836eb546cc8f623bb6313ce24483bc835da67b8b",
+    "policy.json": "8da7a59185260a185517d94a2bf3b7f53096db850191672c74661cd899f6e34f"
+  },
+  "per_instrument": {
+    "ASIANPAINT": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "AXISBANK": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "BAJFINANCE": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "CASH": {
+      "first_date": null,
+      "last_date": null,
+      "rows": 0
+    },
+    "FD1Y": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "GOLDBEES": {
+      "first_date": "2009-06-17",
+      "last_date": "2026-08-28",
+      "rows": 4102
+    },
+    "HINDUNILVR": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "ICICIBANK": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "INFY": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "ITC": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "KOTAKBANK": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "LT": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "LTGILTBEES": {
+      "first_date": "2018-05-11",
+      "last_date": "2026-08-28",
+      "rows": 1787
+    },
+    "MARUTI": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "NIFTY50": {
+      "first_date": "2007-09-17",
+      "last_date": "2026-08-28",
+      "rows": 4648
+    },
+    "NIFTY500": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4834
+    },
+    "NIFTYBEES": {
+      "first_date": "2009-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4348
+    },
+    "RELIANCE": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "SBIN": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "SUNPHARMA": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "TCS": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "TITAN": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    },
+    "ULTRACEMCO": {
+      "first_date": "2007-01-02",
+      "last_date": "2026-08-28",
+      "rows": 4849
+    }
+  },
+  "rounding": "half away from zero to paise, per docs/ENGINE_RULES.md",
+  "scenario_windows": [
+    {
+      "end": "2023-12-31",
+      "name": "first-scenario",
+      "start": "2019-01-01"
+    }
+  ],
+  "skipped_null_rows": {
+    "ASIANPAINT": 7,
+    "AXISBANK": 7,
+    "BAJFINANCE": 7,
+    "GOLDBEES": 11,
+    "HINDUNILVR": 7,
+    "ICICIBANK": 7,
+    "INFY": 7,
+    "ITC": 7,
+    "KOTAKBANK": 7,
+    "LT": 7,
+    "LTGILTBEES": 264,
+    "MARUTI": 7,
+    "NIFTY50": 34,
+    "NIFTY500": 25,
+    "NIFTYBEES": 10,
+    "RELIANCE": 7,
+    "SBIN": 7,
+    "SUNPHARMA": 7,
+    "TCS": 7,
+    "TITAN": 7,
+    "ULTRACEMCO": 7
+  },
+  "snapshot_version": 1,
+  "source_files": [
+    {
+      "path": "raw/rbi/2026-09-09/term-deposit-rates-1-3y.csv",
+      "sha256": "f3b593c489e2693f3a9e44f2e7ffa14a98c57c07d37f5fc99e1d42f033832574"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/ASIANPAINT.json",
+      "sha256": "bd36abb5557cee0d51ff1f44a47365819a27f2bd3e4f6b53f83ddd84fc4a3966"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/AXISBANK.json",
+      "sha256": "92146195c3da7e580dce2b6c04868670aa231b6c1655d68984b4b65d0b22247d"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/BAJFINANCE.json",
+      "sha256": "967acbb1d4fc68ff3e4ae6e0d5368c8fb742006fd4a3cd2cd98997cd23e57043"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/GOLDBEES.json",
+      "sha256": "bfe1fa7cc42124884bacb042d8ec045f479b2ecfecb2691f38bbc5b9bb77d711"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/HINDUNILVR.json",
+      "sha256": "be17014d35c96e2c00dedf03bd5322a37bee4beb1e511fdbbd1282ed1acbef04"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/ICICIBANK.json",
+      "sha256": "493a0b4949192642cfb92625531dba181a04d641da3d43a08ced3968f3294cda"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/INFY.json",
+      "sha256": "6d8b2d928b356db4d25a3335ab4896077f922bb72906555c5a36e92d3478e8fd"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/ITC.json",
+      "sha256": "b3377ee29df92ee1fb74f878444753aa6c7ada550c56e17fb4b8645882945635"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/KOTAKBANK.json",
+      "sha256": "f555a4b1f2c60c740cb56a7cb33a1feb1cf5d0c5c66584881d51c3179806f3e6"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/LT.json",
+      "sha256": "374ad533644a94f95fbf46c0e2ade557b0b764e5cdab2cc3d9cb736d0292d299"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/LTGILTBEES.json",
+      "sha256": "611462d6d32f8c0d8b12f3ae2298dcd9bb51b446218ea5669a77e9d5d4a737fb"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/MARUTI.json",
+      "sha256": "315731523aa357ca0a759d9f468b6ab199e33285b6561d213172a625204a96a4"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/NIFTY50.json",
+      "sha256": "6988ba729c20fc8deb681b5de1b277d9db4a22449e8c84b63ca7ad26646055e6"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/NIFTY500.json",
+      "sha256": "ef83abe89da16be94887ab5a0ff7751938b746c250cb2b84be715fcde5c2c963"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/NIFTYBEES.json",
+      "sha256": "cff5ec29ddeb6d96e32c0f86dca8cabfb17baad3b902d767e556d15659ac48fc"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/RELIANCE.json",
+      "sha256": "f607f59da7df2cdc11445d9857c10fec83eabcc07214529c97f9e0ceb3fa10c5"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/SBIN.json",
+      "sha256": "b18637a3f6ee2982ff7eb8c55615ad7130127038f8c26ed7e2fd5095e94b31a1"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/SUNPHARMA.json",
+      "sha256": "ebd6afefdbdb154228a03d3dce948d5cfc502d2de78a52f5fe28c294b7fc30aa"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/TCS.json",
+      "sha256": "8b77ea0bf785a421ebc16c73c630ab09189d79bb1729ec0c5251c458c42cb24d"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/TITAN.json",
+      "sha256": "6c085e8e8050fc8bd1ba6cf43b35ec12dd80ccbc6f75291c24e1d41c57393217"
+    },
+    {
+      "path": "raw/yahoo/2026-09-09/ULTRACEMCO.json",
+      "sha256": "8240695ac567da943337a1f8f65d7bb21458c2a8431bc9c812ffeaea7d48d29c"
+    }
+  ]
+}
