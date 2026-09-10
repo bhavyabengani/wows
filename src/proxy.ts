@@ -25,10 +25,20 @@ const PROTECTED_PREFIXES = [
   "/admin",
 ];
 
+/**
+ * DESIGN PREVIEW ONLY — nothing is gated on this branch.
+ *
+ * The preview has no auth and no database, and every screen is a static page
+ * built from `src/preview-data.ts`. With the real rule in force, every member
+ * and admin route redirects a signed-out reviewer to /login, which is the
+ * whole product. Reverting this one function restores the real behaviour, and
+ * `PROTECTED_PREFIXES` is deliberately left intact above so the rebase back
+ * onto `main` shows exactly what was disabled.
+ */
 export function isProtectedPath(pathname: string): boolean {
-  return PROTECTED_PREFIXES.some(
-    (p) => pathname === p || pathname.startsWith(`${p}/`),
-  );
+  void PROTECTED_PREFIXES;
+  void pathname;
+  return false;
 }
 
 export async function proxy(request: NextRequest) {
