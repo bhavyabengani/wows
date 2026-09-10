@@ -11,7 +11,7 @@ import {
   When,
   buttonClass,
 } from "@/components/preview/ui";
-import { positions } from "@/preview-data";
+import { closedPositions, positions } from "@/preview-data";
 
 const MIN_WORDS = 150;
 const countWords = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
@@ -95,7 +95,107 @@ export function PortfolioView() {
       </Section>
 
       <OpenPositionForm />
+      <ClosedPositions />
     </div>
+  );
+}
+
+/**
+ * A closed position, judged against what its author said at the time. The
+ * falsifier is the whole point of writing one down, so the screen puts the
+ * outcome directly beside it rather than on a separate history page.
+ */
+function ClosedPositions() {
+  return (
+    <Section title="Closed positions">
+      <ul className="flex flex-col gap-8">
+        {closedPositions.map((p) => {
+          const pnl = (p.exitPaise - p.entryPaise) * BigInt(p.quantity);
+          const bps = Number(
+            ((p.exitPaise - p.entryPaise) * 10000n) / p.entryPaise,
+          );
+          return (
+            <li key={p.id} className="border-t border-wows-ink pt-4">
+              <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:items-start">
+                <div>
+                  <p className="text-[20px] font-semibold tracking-tight text-wows-ink">
+                    {p.ticker}{" "}
+                    <span className="text-[15px] font-normal text-wows-muted">
+                      {p.name}
+                    </span>
+                  </p>
+                  <p className="numeric text-[12.5px] text-wows-muted">
+                    <When iso={p.openedAt} withTime={false} /> –{" "}
+                    <When iso={p.closedAt} withTime={false} /> · {p.quantity} ×{" "}
+                    <Money paise={p.entryPaise} />
+                  </p>
+                </div>
+                <Sparkline
+                  values={p.series}
+                  width={96}
+                  height={28}
+                  tone="muted"
+                  className="sm:mt-1"
+                />
+                <div className="sm:text-right">
+                  <p className="numeric text-[22px] leading-none text-wows-ink">
+                    <Money paise={p.exitPaise} />
+                  </p>
+                  <p className="mt-1 text-[15px]">
+                    <SignedFigure paise={pnl} />{" "}
+                    <SignedFigure bps={bps} className="text-[12.5px]" />
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div className="border-l-[3px] border-wows-rule pl-4">
+                  <p className="text-[12.5px] text-wows-muted">
+                    What you said, before the fact
+                  </p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-wows-ink">
+                    {p.falsifier}
+                  </p>
+                  <p className="mt-3 text-[12.5px] text-wows-muted">Key risk</p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-wows-ink">
+                    {p.keyRisk}
+                  </p>
+                </div>
+                <div className="border-l-[3px] border-wows-accent pl-4">
+                  <p className="flex items-center gap-2 text-[12.5px] text-wows-muted">
+                    What happened
+                    {p.falsifierTriggered ? (
+                      <Chip tone="warn">Falsifier triggered</Chip>
+                    ) : (
+                      <Chip>Falsifier did not trigger</Chip>
+                    )}
+                  </p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-wows-ink">
+                    {p.outcome}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 border-t border-wows-rule pt-3">
+                <p className="text-[12.5px] text-wows-muted">
+                  Your note on closing
+                </p>
+                <p className="mt-1 max-w-prose text-[15px] leading-relaxed text-wows-ink">
+                  {p.reflection}
+                </p>
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                <Chip>Revision 1 · immutable</Chip>
+                <span className="text-[12.5px] text-wows-muted">
+                  Visible to the club once the season settles.
+                </span>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </Section>
   );
 }
 

@@ -1,6 +1,7 @@
 import { cn } from "cn";
 import { PageHeader, When, td, th, TableWrap } from "@/components/preview/ui";
 import { auditEntries } from "@/preview-data";
+import { AdminNav } from "../nav";
 
 export const metadata = { title: "Audit log" };
 
@@ -11,6 +12,7 @@ export default function AuditPage() {
         title="Audit log"
         lede="Every admin action that changes what members see: who, what, before, after, when. Append-only; nothing here can be edited or deleted. Score overrides require a reason."
       />
+      <AdminNav />
       <TableWrap>
         <thead>
           <tr>

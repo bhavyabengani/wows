@@ -1723,3 +1723,991 @@ export const auditEntries: AuditEntry[] = [
     after: '{"capacity":40}',
   },
 ];
+
+// ===========================================================================
+// PASS 3 — the rest of the product
+// ===========================================================================
+
+// ---------------------------------------------------------------------------
+// Public: about and apply
+// ---------------------------------------------------------------------------
+
+export const about = {
+  lede: "Wolves of Wall Street is the student finance club at Ashoka University. We run a members' portal instead of a WhatsApp group, and we assess people on how they reason, not on what they returned.",
+  what: [
+    {
+      title: "We are a teaching club, not a fund",
+      body: "No money passes through WOWS at any point. There is no pooled capital, no brokerage account, no paid entry and no cash prize. Every number in the portal is a simulation over historical data that has already happened.",
+    },
+    {
+      title: "We publish reasoning, not calls",
+      body: "Members write research notes with an explicit thesis, the risks that would break it, and a falsifier stated before the fact. A note that says what to buy is sent back. A note that says what would prove its author wrong is published.",
+    },
+    {
+      title: "We keep score on calibration",
+      body: "The most prominent leaderboard is not returns. It is the Brier score across resolved forecasts: whether the things you said were 70% likely happened about 70% of the time.",
+    },
+  ],
+  verticals: [
+    {
+      name: "Equities",
+      lead: "Aarav Mehta",
+      body: "Single-name work on Indian listed companies. Reading filings, building a view, and writing it down in a form somebody else can attack.",
+      members: 24,
+    },
+    {
+      name: "Macro & Fixed Income",
+      lead: "Kabir Sethi",
+      body: "Rates, inflation prints, the RBI's policy corridor, and the arithmetic of a bond. The vertical that produces most of the forecast questions.",
+      members: 17,
+    },
+    {
+      name: "Quant",
+      lead: "Sara Qureshi",
+      body: "Backtests that survive their own assumptions, position sizing, and why most published edges are a survivorship artefact. Python, not spreadsheets.",
+      members: 19,
+    },
+  ],
+  faculty: {
+    name: "Dr. Anjali Varma",
+    title: "Faculty adviser, Department of Economics",
+    body: "Every piece of member-authored content that becomes visible to the club passes a review state. Curriculum modules require faculty approval before publication. The adviser can withdraw any note at any time.",
+  },
+  policy: [
+    "No real money at any stage: no payments, brokerage linking, wallets, cash prizes, or paid entry.",
+    "No buy, sell or hold recommendations under the club's name, and no ranked list of picks.",
+    "Every screen that shows a simulated figure says that it is simulated.",
+    "Member-authored content that becomes club-visible carries a review state and a faculty gate.",
+  ],
+  contact: {
+    email: "wows@ashoka.edu.in",
+    discord:
+      "The club runs its conversation on Discord. The portal is deliberately not a chat product.",
+  },
+};
+
+export interface ApplicationField {
+  name: string;
+  label: string;
+  help: string;
+  kind: "short" | "long" | "select";
+  options?: string[];
+  minWords?: number;
+  required: boolean;
+}
+
+export const application = {
+  windowCloses: "2026-09-19T18:30:00Z",
+  cohortSize: 30,
+  applicants: 118,
+  fields: [
+    {
+      name: "name",
+      label: "Full name",
+      help: "As it appears on your university record.",
+      kind: "short",
+      required: true,
+    },
+    {
+      name: "email",
+      label: "Ashoka email",
+      help: "Must end in @ashoka.edu.in. This is how you will sign in; there is no password.",
+      kind: "short",
+      required: true,
+    },
+    {
+      name: "cohort",
+      label: "Cohort",
+      help: "Your expected graduating year.",
+      kind: "select",
+      options: ["UG 2027", "UG 2028", "UG 2029", "ASP 2027", "PhD"],
+      required: true,
+    },
+    {
+      name: "vertical",
+      label: "Vertical you are applying to",
+      help: "You can move later. Pick where you want to spend this semester.",
+      kind: "select",
+      options: ["Equities", "Macro & Fixed Income", "Quant"],
+      required: true,
+    },
+    {
+      name: "why",
+      label: "Why this club, and not a trading Discord?",
+      help: "We are looking for a reason that survives the first boring week.",
+      kind: "long",
+      minWords: 100,
+      required: true,
+    },
+    {
+      name: "wrong",
+      label:
+        "Describe something you believed about markets that turned out to be wrong.",
+      help: "What you believed, what changed your mind, and how long it took. This is the question we actually read.",
+      kind: "long",
+      minWords: 150,
+      required: true,
+    },
+    {
+      name: "commitment",
+      label: "Hours a week you can commit",
+      help: "Be honest. Four real hours beats ten aspirational ones.",
+      kind: "select",
+      options: ["2–4", "4–6", "6–10", "More than 10"],
+      required: true,
+    },
+    {
+      name: "portfolio",
+      label: "A link to anything you have written (optional)",
+      help: "A blog, a Substack, a GitHub, a course essay. Any subject. We are reading for clarity, not finance.",
+      kind: "short",
+      required: false,
+    },
+  ] satisfies ApplicationField[],
+  states: [
+    {
+      key: "submitted",
+      label: "Submitted",
+      body: "Your application is in. Nothing is expected from you until the review closes on 19 September.",
+      when: "2026-09-11T10:12:00Z",
+    },
+    {
+      key: "in_review",
+      label: "In review",
+      body: "Two members of core are reading your answers independently. Applications are read without names attached.",
+      when: "2026-09-20T05:00:00Z",
+    },
+    {
+      key: "interview",
+      label: "Conversation scheduled",
+      body: "A twenty-minute conversation, in person, about the answer you gave on being wrong. There is nothing to prepare.",
+      when: "2026-09-24T11:30:00Z",
+    },
+    {
+      key: "decided",
+      label: "Decision",
+      body: "You will hear either way. Members who are not offered a place this semester are told what would make the next application stronger.",
+      when: "2026-09-30T12:00:00Z",
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// Quiz
+// ---------------------------------------------------------------------------
+
+export interface QuizOption {
+  key: string;
+  text: string;
+}
+
+export interface QuizQuestion {
+  id: string;
+  topic: string;
+  prompt: string;
+  options: QuizOption[];
+  answer: string;
+  explanation: string;
+}
+
+export const quiz = {
+  title: "Bonds and rates",
+  bank: "Curriculum · Macro track · module 2",
+  questionCount: 8,
+  questions: [
+    {
+      id: "q1",
+      topic: "Duration",
+      prompt:
+        "A ten-year government bond and a two-year government bond both yield 7%. Yields rise by 50 basis points across the curve. Which statement is true?",
+      options: [
+        { key: "a", text: "Both bonds fall by roughly the same percentage." },
+        { key: "b", text: "The ten-year falls by roughly four times as much." },
+        {
+          key: "c",
+          text: "The two-year falls more, because it reprices sooner.",
+        },
+        { key: "d", text: "Neither falls; the coupon is unchanged." },
+      ],
+      answer: "b",
+      explanation:
+        "Price sensitivity to yield is duration, and duration rises with maturity. The ten-year has roughly four times the duration of the two-year, so it loses roughly four times as much. The coupon being unchanged is exactly why the price must move: the only way a fixed coupon can yield more is for the price to fall.",
+    },
+    {
+      id: "q2",
+      topic: "Real rates",
+      prompt:
+        "Inflation prints at 6% and the policy rate is 5.5%. What is the real policy rate, and what does it usually imply?",
+      options: [
+        { key: "a", text: "+0.5%, mildly restrictive" },
+        { key: "b", text: "−0.5%, accommodative in real terms" },
+        { key: "c", text: "11.5%, strongly restrictive" },
+        { key: "d", text: "Cannot be computed without the repo corridor" },
+      ],
+      answer: "b",
+      explanation:
+        "The real rate is roughly the nominal rate minus inflation: 5.5 − 6 = −0.5%. A negative real policy rate means a saver holding cash loses purchasing power, which is ordinarily stimulative. Central banks rarely hold a negative real rate through a sustained inflation overshoot, which is what makes this configuration a useful forecasting question.",
+    },
+    {
+      id: "q3",
+      topic: "Curve shape",
+      prompt:
+        "The two-year yield rises above the ten-year yield. What has happened, in the language everyone uses?",
+      options: [
+        { key: "a", text: "The curve has steepened" },
+        { key: "b", text: "The curve has inverted" },
+        { key: "c", text: "A bull flattening" },
+        { key: "d", text: "The term premium has widened" },
+      ],
+      answer: "b",
+      explanation:
+        "Short yields above long yields is an inverted curve. It says the market expects policy rates to be lower in the future than they are now, usually because it expects growth to slow. Inversion is a statement about expectations, not a mechanism that causes anything.",
+    },
+    {
+      id: "q4",
+      topic: "Credit",
+      prompt:
+        "A corporate bond yields 9% while the equivalent-maturity government bond yields 7%. The 200 bp difference is compensation for what?",
+      options: [
+        { key: "a", text: "Default risk only" },
+        { key: "b", text: "Default risk, liquidity, and the tax treatment" },
+        { key: "c", text: "Inflation risk the government bond does not carry" },
+        { key: "d", text: "The higher coupon" },
+      ],
+      answer: "b",
+      explanation:
+        "The spread is not purely a default probability. A meaningful part of it pays for the fact that the corporate bond is harder to sell in size, and part reflects differing tax treatment. Attributing the whole spread to default risk consistently overstates the implied default rate, which is one of the oldest results in credit research.",
+    },
+    {
+      id: "q5",
+      topic: "Reinvestment",
+      prompt:
+        "You buy a bond at par yielding 8% and hold it to maturity. Rates fall to 5% the following year. Your realised return over the full holding period will be:",
+      options: [
+        { key: "a", text: "Exactly 8%, because you held to maturity" },
+        { key: "b", text: "Above 8%, because prices rose" },
+        { key: "c", text: "Below 8%, because coupons reinvest at 5%" },
+        { key: "d", text: "Unknowable without the credit rating" },
+      ],
+      answer: "c",
+      explanation:
+        "Yield to maturity quietly assumes every coupon is reinvested at the same yield. If rates fall, coupons reinvest at less, and the realised return comes in below the quoted YTM. Holding to maturity removes price risk; it does not remove reinvestment risk. This is the single most common misreading of a bond quote.",
+    },
+  ] satisfies QuizQuestion[],
+  /** A finished attempt, for the summary screen. */
+  attempt: {
+    score: 4,
+    of: 5,
+    takenAt: "2026-09-09T14:20:00Z",
+    medianScore: 3,
+    weakest: "Reinvestment risk",
+    note: "Quiz results are formative. They do not enter any leaderboard and are visible only to you and to the module's author.",
+  },
+};
+
+export const kiosk = {
+  stall: "Orientation week · Mess lawn · Stall 4",
+  questions: quiz.questions.slice(0, 3),
+  leaderboard: [
+    { name: "Priya S.", score: 3, seconds: 41 },
+    { name: "Rehan", score: 3, seconds: 58 },
+    { name: "Anonymous", score: 2, seconds: 33 },
+    { name: "Kavya M.", score: 2, seconds: 47 },
+    { name: "T. Krishnan", score: 1, seconds: 29 },
+  ],
+  note: "Kiosk mode is a sandbox. Nothing entered at a stall touches a member account, and the names here are stored only for the length of the event.",
+};
+
+// ---------------------------------------------------------------------------
+// Research: submission, the author's own notes, and the review queue
+// ---------------------------------------------------------------------------
+
+export const researchRubric = [
+  {
+    criterion: "Falsifiability",
+    weight: "Gate",
+    body: 'The note states, before the fact, what observation would prove it wrong. A note without a falsifier is returned unread. "The thesis plays out over a longer horizon" is not a falsifier.',
+  },
+  {
+    criterion: "Evidence",
+    weight: "30%",
+    body: "Claims are sourced to filings, transcripts or published data, and the source is linked. A number without a source is treated as an assertion.",
+  },
+  {
+    criterion: "Risks",
+    weight: "25%",
+    body: 'At least three risks, each one capable of breaking the thesis rather than decorating it. "Market volatility" is not a risk.',
+  },
+  {
+    criterion: "Clarity",
+    weight: "25%",
+    body: "A first-year in another vertical can follow the argument. Jargon is defined at first use or removed.",
+  },
+  {
+    criterion: "Originality",
+    weight: "20%",
+    body: "The note says something the sell-side consensus does not already say, and is explicit about where it departs.",
+  },
+];
+
+export const researchGuidelines = [
+  'Never frame a price target as an instruction. "Fair value is ₹4,600 on 22× FY28 EPS" is analysis; "buy below ₹4,000" is a call, and the club does not make calls.',
+  "Disclose any position you hold in the season portfolio. It does not disqualify the note; concealing it does.",
+  "Write the falsifier first. If you cannot state one, you do not yet have a thesis.",
+];
+
+export interface MyNote {
+  id: string;
+  title: string;
+  ticker: string;
+  state:
+    "draft" | "submitted" | "in_review" | "changes_requested" | "published";
+  updatedAt: string;
+  words: number;
+  reviewer?: string;
+  comments?: { author: string; at: string; body: string; criterion: string }[];
+}
+
+export const myNotes: MyNote[] = [
+  {
+    id: "n1",
+    title: "TCS: the margin recovery the market is not pricing",
+    ticker: "TCS",
+    state: "published",
+    updatedAt: "2026-09-01T09:30:00Z",
+    words: 1840,
+  },
+  {
+    id: "n2",
+    title: "Marico: rural volume recovery is already in the price",
+    ticker: "MARICO",
+    state: "changes_requested",
+    updatedAt: "2026-09-07T11:05:00Z",
+    words: 1120,
+    reviewer: "Aarav Mehta",
+    comments: [
+      {
+        author: "Aarav Mehta",
+        at: "2026-09-07T11:05:00Z",
+        criterion: "Falsifiability",
+        body: 'The falsifier as written — "if rural demand does not recover" — is not observable on a date. Give me a number and a quarter: which volume growth print, in which result, would make you drop this?',
+      },
+      {
+        author: "Aarav Mehta",
+        at: "2026-09-07T11:09:00Z",
+        criterion: "Evidence",
+        body: "Paragraph 4 cites a 9% rural volume figure with no source. If that is from the Q1 transcript, link the transcript and quote the line.",
+      },
+      {
+        author: "Dr. Anjali Varma",
+        at: "2026-09-07T15:40:00Z",
+        criterion: "Clarity",
+        body: 'Good structure. The last paragraph edges toward a recommendation — rewrite "worth accumulating" as a statement about value, not action.',
+      },
+    ],
+  },
+  {
+    id: "n3",
+    title: "Why the RBI will hold through the December meeting",
+    ticker: "MACRO",
+    state: "in_review",
+    updatedAt: "2026-09-08T18:22:00Z",
+    words: 1360,
+    reviewer: "Kabir Sethi",
+  },
+  {
+    id: "n4",
+    title: "Nifty IT: dispersion is at a five-year high",
+    ticker: "NIFTYIT",
+    state: "submitted",
+    updatedAt: "2026-09-09T07:44:00Z",
+    words: 980,
+  },
+  {
+    id: "n5",
+    title: "Bajaj Finance: the AUM growth question nobody asks",
+    ticker: "BAJFINANCE",
+    state: "draft",
+    updatedAt: "2026-09-09T21:15:00Z",
+    words: 410,
+  },
+];
+
+export interface ReviewItem {
+  id: string;
+  title: string;
+  authorId: string;
+  ticker: string;
+  vertical: Member["vertical"];
+  submittedAt: string;
+  words: number;
+  state: "awaiting_review" | "awaiting_faculty" | "changes_requested";
+  reviewer?: string;
+  flags: string[];
+}
+
+export const reviewQueue: ReviewItem[] = [
+  {
+    id: "r1",
+    title: "Why the RBI will hold through the December meeting",
+    authorId: "m04",
+    ticker: "MACRO",
+    vertical: "Macro & Fixed Income",
+    submittedAt: "2026-09-08T18:22:00Z",
+    words: 1360,
+    state: "awaiting_review",
+    flags: [],
+  },
+  {
+    id: "r2",
+    title: "Nifty IT: dispersion is at a five-year high",
+    authorId: "m04",
+    ticker: "NIFTYIT",
+    vertical: "Quant",
+    submittedAt: "2026-09-09T07:44:00Z",
+    words: 980,
+    state: "awaiting_review",
+    flags: ["No falsifier detected in the falsifier field"],
+  },
+  {
+    id: "r3",
+    title: "Zomato: unit economics past the inflection",
+    authorId: "m05",
+    ticker: "ZOMATO",
+    vertical: "Equities",
+    submittedAt: "2026-09-06T13:10:00Z",
+    words: 2140,
+    state: "awaiting_faculty",
+    reviewer: "Aarav Mehta",
+    flags: ["Author holds an open position in this name (disclosed)"],
+  },
+  {
+    id: "r4",
+    title: "Marico: rural volume recovery is already in the price",
+    authorId: "m04",
+    ticker: "MARICO",
+    vertical: "Equities",
+    submittedAt: "2026-09-05T09:00:00Z",
+    words: 1120,
+    state: "changes_requested",
+    reviewer: "Aarav Mehta",
+    flags: ['Phrase flagged for review: "worth accumulating"'],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Directory and the member's own profile
+// ---------------------------------------------------------------------------
+
+export type MemberRole = "member" | "lead" | "core" | "faculty" | "alum";
+
+export interface DirectoryEntry {
+  memberId: string;
+  role: MemberRole;
+  joined: string;
+  published: number;
+  /** Slug of one published note, if any. */
+  latestNote?: string;
+}
+
+export const directory: DirectoryEntry[] = [
+  {
+    memberId: "m01",
+    role: "lead",
+    joined: "2024-08-20",
+    published: 6,
+    latestNote: "hdfc-bank-ldr-normalisation",
+  },
+  { memberId: "m02", role: "member", joined: "2025-08-19", published: 2 },
+  { memberId: "m03", role: "lead", joined: "2024-08-20", published: 5 },
+  {
+    memberId: "m04",
+    role: "member",
+    joined: "2025-08-19",
+    published: 1,
+    latestNote: "tcs-margin-trajectory-fy27",
+  },
+  { memberId: "m05", role: "member", joined: "2025-08-19", published: 3 },
+  { memberId: "m06", role: "core", joined: "2024-01-15", published: 8 },
+  { memberId: "m07", role: "member", joined: "2026-08-24", published: 0 },
+  { memberId: "m08", role: "alum", joined: "2022-08-22", published: 11 },
+  { memberId: "m09", role: "member", joined: "2026-08-24", published: 0 },
+  { memberId: "m10", role: "member", joined: "2025-08-19", published: 2 },
+  { memberId: "m11", role: "core", joined: "2023-08-21", published: 7 },
+  { memberId: "m12", role: "member", joined: "2026-08-24", published: 1 },
+  { memberId: "m13", role: "member", joined: "2025-08-19", published: 4 },
+  { memberId: "m14", role: "member", joined: "2026-08-24", published: 0 },
+  { memberId: "m15", role: "member", joined: "2026-08-24", published: 0 },
+];
+
+export const faculty = {
+  name: "Dr. Anjali Varma",
+  role: "faculty" as MemberRole,
+  title: "Faculty adviser, Department of Economics",
+};
+
+export const profile = {
+  joined: "2025-08-19",
+  standing: [
+    {
+      track: "calibration" as TrackKey,
+      label: "Calibration",
+      rank: 4,
+      of: 41,
+      value: "0.163",
+      qualifies: true,
+    },
+    {
+      track: "research" as TrackKey,
+      label: "Research",
+      rank: 9,
+      of: 41,
+      value: "72",
+      qualifies: true,
+    },
+    {
+      track: "risk" as TrackKey,
+      label: "Risk discipline",
+      rank: 6,
+      of: 41,
+      value: "0.81",
+      qualifies: true,
+    },
+    {
+      track: "scenario" as TrackKey,
+      label: "Scenario",
+      rank: 22,
+      of: 41,
+      value: "—",
+      qualifies: false,
+    },
+    {
+      track: "contribution" as TrackKey,
+      label: "Contribution",
+      rank: 11,
+      of: 41,
+      value: "34",
+      qualifies: true,
+    },
+  ],
+  curriculum: [
+    {
+      track: "Foundations",
+      done: 6,
+      of: 6,
+      completedAt: "2026-08-30T00:00:00Z",
+    },
+    { track: "Equity research", done: 3, of: 7 },
+    { track: "Quant methods", done: 0, of: 5 },
+  ],
+  forecastHistory: [
+    {
+      question:
+        "Will the RBI change the repo rate at the October 2026 meeting?",
+      said: 25,
+      outcome: false,
+      brier: 0.0625,
+      resolvedAt: "2026-10-08T06:00:00Z",
+    },
+    {
+      question: "Will CPI inflation for August 2026 print above 5.0%?",
+      said: 70,
+      outcome: true,
+      brier: 0.09,
+      resolvedAt: "2026-09-12T12:30:00Z",
+    },
+    {
+      question: "Will Nifty 50 close above 26,000 on 30 September 2026?",
+      said: 55,
+      outcome: false,
+      brier: 0.3025,
+      resolvedAt: "2026-09-30T10:00:00Z",
+    },
+    {
+      question: "Will TCS report constant-currency growth above 3% in Q2 FY27?",
+      said: 80,
+      outcome: true,
+      brier: 0.04,
+      resolvedAt: "2026-10-11T05:00:00Z",
+    },
+    {
+      question:
+        "Will the US Fed cut by 50 bp or more at the September meeting?",
+      said: 15,
+      outcome: false,
+      brier: 0.0225,
+      resolvedAt: "2026-09-18T18:00:00Z",
+    },
+    {
+      question: "Will India's Q1 FY27 GDP growth print above 7.0%?",
+      said: 60,
+      outcome: false,
+      brier: 0.36,
+      resolvedAt: "2026-08-30T12:00:00Z",
+    },
+  ],
+  attendance: [
+    {
+      title: "Reading a cash-flow statement backwards",
+      at: "2026-08-27T11:30:00Z",
+      attended: true,
+    },
+    {
+      title: "Guest: buy-side research, ten years in",
+      at: "2026-09-03T12:00:00Z",
+      attended: true,
+    },
+    {
+      title: "Quant workshop: backtest survivorship",
+      at: "2026-09-10T11:30:00Z",
+      attended: false,
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// Admin
+// ---------------------------------------------------------------------------
+
+export interface AdminSeason {
+  name: string;
+  state: "draft" | "open" | "closed" | "settled" | "archived";
+  startsAt: string;
+  endsAt: string;
+  members: number;
+  forecastQuestions: number;
+  notes: number;
+  minResolvedForecasts: number;
+}
+
+export const adminSeasons: AdminSeason[] = [
+  {
+    name: "Monsoon 2026",
+    state: "open",
+    startsAt: "2026-08-24T00:00:00Z",
+    endsAt: "2026-12-04T00:00:00Z",
+    members: 41,
+    forecastQuestions: 14,
+    notes: 9,
+    minResolvedForecasts: 8,
+  },
+  {
+    name: "Spring 2026",
+    state: "settled",
+    startsAt: "2026-01-12T00:00:00Z",
+    endsAt: "2026-04-24T00:00:00Z",
+    members: 38,
+    forecastQuestions: 22,
+    notes: 17,
+    minResolvedForecasts: 8,
+  },
+  {
+    name: "Monsoon 2025",
+    state: "archived",
+    startsAt: "2025-08-18T00:00:00Z",
+    endsAt: "2025-11-28T00:00:00Z",
+    members: 33,
+    forecastQuestions: 19,
+    notes: 12,
+    minResolvedForecasts: 6,
+  },
+  {
+    name: "Spring 2027",
+    state: "draft",
+    startsAt: "2027-01-11T00:00:00Z",
+    endsAt: "2027-04-23T00:00:00Z",
+    members: 0,
+    forecastQuestions: 0,
+    notes: 0,
+    minResolvedForecasts: 8,
+  },
+];
+
+export const settlementWarning = [
+  "Every leaderboard in the season is frozen at its current values and pinned to the scenario versions in use.",
+  "Open season-portfolio positions are marked at their last snapshot close and closed; theses become visible club-wide.",
+  "Unresolved forecast questions must be resolved or voided first. Two are currently unresolved.",
+  "Nothing inside a settled season can be edited afterwards. A correction becomes a new compensating record, never an edit.",
+];
+
+export interface AdminGame {
+  scenario: string;
+  version: number;
+  window: string;
+  steps: number;
+  universe: number;
+  instanceSeason: string;
+  state: "draft" | "open" | "closed";
+  runs: { completed: number; inProgress: number; abandoned: number };
+  pinnedTo?: string;
+}
+
+export const adminGames: AdminGame[] = [
+  {
+    scenario: "First replay",
+    version: 1,
+    window: "Jan 2019 – Dec 2023",
+    steps: 60,
+    universe: 12,
+    instanceSeason: "Monsoon 2026",
+    state: "open",
+    runs: { completed: 6, inProgress: 11, abandoned: 2 },
+    pinnedTo: "Scenario track, Monsoon 2026",
+  },
+  {
+    scenario: "First replay",
+    version: 2,
+    window: "Jan 2019 – Dec 2023",
+    steps: 60,
+    universe: 13,
+    instanceSeason: "—",
+    state: "draft",
+    runs: { completed: 0, inProgress: 0, abandoned: 0 },
+  },
+  {
+    scenario: "Rate shock",
+    version: 1,
+    window: "Jan 2021 – Dec 2024",
+    steps: 48,
+    universe: 9,
+    instanceSeason: "Spring 2026",
+    state: "closed",
+    runs: { completed: 31, inProgress: 0, abandoned: 4 },
+    pinnedTo: "Scenario track, Spring 2026",
+  },
+];
+
+export interface AdminContentItem {
+  id: string;
+  kind: "Forecast question" | "Curriculum module" | "Quiz bank" | "News card";
+  title: string;
+  state: "draft" | "in_review" | "published" | "voided";
+  author: string;
+  when: string;
+  detail: string;
+  gate?: string;
+}
+
+export const adminContent: AdminContentItem[] = [
+  {
+    id: "c1",
+    kind: "Forecast question",
+    title: "Will the RBI change the repo rate at the December 2026 meeting?",
+    state: "published",
+    author: "Kabir Sethi",
+    when: "2026-12-05T06:00:00Z",
+    detail:
+      "Closes 5 Dec, 11:30 IST. Resolves from the RBI's published policy statement. 31 forecasts so far.",
+  },
+  {
+    id: "c2",
+    kind: "Forecast question",
+    title: "Will CPI inflation for October 2026 print above 5.0%?",
+    state: "published",
+    author: "Zara Fernandes",
+    when: "2026-11-12T12:00:00Z",
+    detail:
+      "Closes 12 Nov, 17:30 IST. Resolves from MoSPI's release. 28 forecasts so far.",
+  },
+  {
+    id: "c3",
+    kind: "Forecast question",
+    title: "Will the monsoon deficit narrow to under 4% by 30 September?",
+    state: "voided",
+    author: "Vihaan Nair",
+    when: "2026-09-30T12:00:00Z",
+    detail:
+      "Voided: the IMD changed its regional weighting mid-season, so the stated resolution source no longer produces a comparable number. Excluded from all scoring and from every member's forecast count.",
+  },
+  {
+    id: "c4",
+    kind: "Forecast question",
+    title: "Is Reliance a good buy at current levels?",
+    state: "draft",
+    author: "Ishaan Kapoor",
+    when: "2026-09-09T10:00:00Z",
+    detail:
+      "Rejected by the template: no named observable and no resolution source. A forecast question must be settleable by a published number, not by opinion.",
+  },
+  {
+    id: "c5",
+    kind: "Curriculum module",
+    title: "Writing a falsifiable thesis",
+    state: "published",
+    author: "Sara Qureshi",
+    when: "2026-08-26T04:00:00Z",
+    detail: "Foundations, module 3. 34 members completed.",
+    gate: "Faculty approved by Dr. Anjali Varma, 25 Aug",
+  },
+  {
+    id: "c6",
+    kind: "Curriculum module",
+    title: "Position sizing and the Kelly trap",
+    state: "in_review",
+    author: "Diya Raghunathan",
+    when: "2026-09-08T09:00:00Z",
+    detail:
+      "Quant methods, module 4. Awaiting the faculty gate before it can publish.",
+    gate: "Awaiting faculty approval",
+  },
+  {
+    id: "c7",
+    kind: "Quiz bank",
+    title: "Bonds and rates",
+    state: "published",
+    author: "Kabir Sethi",
+    when: "2026-08-30T04:00:00Z",
+    detail:
+      "8 questions. Used by the Macro track module 2 and by the orientation kiosk.",
+  },
+  {
+    id: "c8",
+    kind: "News card",
+    title: "Step 15 — March 2020: markets fall sharply on pandemic news",
+    state: "draft",
+    author: "Aarav Mehta",
+    when: "2020-03-31T00:00:00Z",
+    detail:
+      "Written from sources dated on or before 31 Mar 2020. The written-from check is what stops a card describing what happened next.",
+  },
+];
+
+export interface AdminMember {
+  memberId: string;
+  role: MemberRole;
+  status: "active" | "inactive";
+  forecasts: number;
+  notes: number;
+  lastSeen: string;
+}
+
+export const adminMembers: AdminMember[] = directory.map((d, i) => ({
+  memberId: d.memberId,
+  role: d.role,
+  status: i % 7 === 5 ? "inactive" : "active",
+  forecasts: [14, 9, 12, 11, 8, 15, 2, 0, 1, 7, 13, 5, 10, 3, 0][i] ?? 0,
+  notes: d.published,
+  lastSeen: [
+    "2026-09-09T18:00:00Z",
+    "2026-09-09T12:00:00Z",
+    "2026-09-08T09:00:00Z",
+  ][i % 3]!,
+}));
+
+export interface Applicant {
+  id: string;
+  name: string;
+  cohort: string;
+  vertical: Member["vertical"];
+  appliedAt: string;
+  state: "submitted" | "in_review" | "interview" | "offered" | "declined";
+  readBy: string[];
+}
+
+export const applicants: Applicant[] = [
+  {
+    id: "a1",
+    name: "Neha Raghavan",
+    cohort: "UG 2029",
+    vertical: "Equities",
+    appliedAt: "2026-09-08T07:20:00Z",
+    state: "in_review",
+    readBy: ["Sara Qureshi"],
+  },
+  {
+    id: "a2",
+    name: "Farhan Sheikh",
+    cohort: "UG 2028",
+    vertical: "Quant",
+    appliedAt: "2026-09-08T11:02:00Z",
+    state: "interview",
+    readBy: ["Sara Qureshi", "Arjun Menon"],
+  },
+  {
+    id: "a3",
+    name: "Lakshmi Iyengar",
+    cohort: "UG 2029",
+    vertical: "Macro & Fixed Income",
+    appliedAt: "2026-09-09T05:45:00Z",
+    state: "submitted",
+    readBy: [],
+  },
+  {
+    id: "a4",
+    name: "Oliver D'Souza",
+    cohort: "ASP 2027",
+    vertical: "Equities",
+    appliedAt: "2026-09-09T09:31:00Z",
+    state: "submitted",
+    readBy: [],
+  },
+  {
+    id: "a5",
+    name: "Riya Kulkarni",
+    cohort: "UG 2028",
+    vertical: "Quant",
+    appliedAt: "2026-09-07T16:12:00Z",
+    state: "offered",
+    readBy: ["Sara Qureshi", "Arjun Menon"],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// A closed position, with the outcome beside what the author originally said
+// ---------------------------------------------------------------------------
+
+export interface ClosedPosition extends Position {
+  closedAt: string;
+  exitPaise: bigint;
+  /** Did the falsifier trigger, and was it acted on? */
+  falsifierTriggered: boolean;
+  outcome: string;
+  reflection: string;
+}
+
+export const closedPositions: ClosedPosition[] = [
+  {
+    id: "p3",
+    ticker: "ASIANPAINT",
+    name: "Asian Paints",
+    openedAt: "2026-02-11T04:15:00Z",
+    closedAt: "2026-04-21T09:45:00Z",
+    entryPaise: 2_884_50n,
+    exitPaise: 2_512_75n,
+    lastPaise: 2_512_75n,
+    quantity: 30,
+    thesis:
+      "Crude-linked input costs have fallen 18% from the peak and the company has not yet passed the benefit through to margins, so the next two quarters should show gross-margin expansion of 150–200 bp while volume growth holds at high single digits. The market is treating the input-cost move as already reflected.",
+    keyRisk:
+      "A new entrant with a large balance sheet starts a price war, so the input-cost benefit is competed away rather than kept.",
+    falsifier:
+      "Gross margin flat or down in either of the next two quarters, or volume growth below 5%.",
+    status: "closed",
+    series: [2884, 2901, 2860, 2795, 2740, 2688, 2601, 2512],
+    falsifierTriggered: true,
+    outcome:
+      "Gross margin fell 40 bp in the March quarter and volume growth printed 3.1%. Both halves of the falsifier triggered in the same result. The position was closed nine days later at a loss of ₹11,152.50.",
+    reflection:
+      "The falsifier worked exactly as written and I still waited nine days to act on it, which is the part worth recording. The thesis was not wrong about input costs; it was wrong that the benefit would be kept rather than competed away — which is what the key risk said, and I sized as though the risk were remote.",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Sparse variants: what September actually looks like
+// ---------------------------------------------------------------------------
+
+export const sparse = {
+  note: "Sparse view — the club's first weeks, when there is not much data yet. This is the state most screens will be in for the first month of a season.",
+  /** Six members, not fifteen. */
+  memberIds: ["m01", "m04", "m05", "m06", "m09", "m14"],
+  /** Four resolved forecasts is not a calibration curve. */
+  resolvedForecasts: 4,
+  calibrationBins: [
+    { bin: 30, predicted: 0.3, observed: 0, count: 1 },
+    { bin: 60, predicted: 0.6, observed: 0.5, count: 2 },
+    { bin: 80, predicted: 0.8, observed: 1, count: 1 },
+  ],
+  /** Two published notes. */
+  noteSlugs: ["tcs-margin-trajectory-fy27"],
+  rsvps: 3,
+};
