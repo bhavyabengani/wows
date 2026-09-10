@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Chip, When, buttonClass } from "@/components/preview/ui";
-import { memberById, researchNotes } from "@/preview-data";
+import {
+  memberById,
+  researchNotes,
+  sparse as sparseData,
+} from "@/preview-data";
 
 const STATE_LABEL = {
   published: "Published",
@@ -11,15 +15,18 @@ const STATE_LABEL = {
   changes_requested: "Changes requested",
 } as const;
 
-export function ResearchArchive() {
+export function ResearchArchive({ sparse = false }: { sparse?: boolean }) {
+  const notes = sparse
+    ? researchNotes.filter((n) => sparseData.noteSlugs.includes(n.slug))
+    : researchNotes;
   const [query, setQuery] = useState("");
   const [vertical, setVertical] = useState("all");
   const [company, setCompany] = useState("all");
   const companies = useMemo(
-    () => [...new Set(researchNotes.map((n) => n.company))].sort(),
-    [],
+    () => [...new Set(notes.map((n) => n.company))].sort(),
+    [notes],
   );
-  const results = researchNotes.filter((n) => {
+  const results = notes.filter((n) => {
     const q = query.trim().toLowerCase();
     return (
       (vertical === "all" || n.vertical === vertical) &&
@@ -77,7 +84,7 @@ export function ResearchArchive() {
       </form>
 
       <p className="numeric text-xs text-wows-muted" role="status">
-        {results.length} of {researchNotes.length} notes
+        {results.length} of {notes.length} notes
       </p>
 
       <ul className="divide-y divide-wows-rule border-t border-wows-rule">

@@ -2,28 +2,43 @@
 
 import { useState } from "react";
 import { Chip, Section, When, buttonClass } from "@/components/preview/ui";
-import { events, type ClubEvent } from "@/preview-data";
+import { events, sparse as sparseData, type ClubEvent } from "@/preview-data";
 
-export function EventList() {
+export function EventList({ sparse = false }: { sparse?: boolean }) {
+  // The sparse view is one event that three people have said yes to: what an
+  // events page looks like in the first fortnight of a season.
+  const upcoming = events.filter((e) => !e.past);
+  const shown = sparse
+    ? upcoming.slice(0, 1).map((e) => ({ ...e, going: sparseData.rsvps }))
+    : upcoming;
   return (
     <>
       <Section title="Upcoming">
+        {sparse ? (
+          <p className="mb-3 max-w-prose text-[12.5px] leading-relaxed text-wows-muted">
+            {sparseData.note}
+          </p>
+        ) : null}
         <ul className="divide-y divide-wows-rule">
-          {events
-            .filter((e) => !e.past)
-            .map((e) => (
-              <EventRow key={e.id} e={e} />
-            ))}
+          {shown.map((e) => (
+            <EventRow key={e.id} e={e} />
+          ))}
         </ul>
       </Section>
       <Section title="Past">
-        <ul className="divide-y divide-wows-rule">
-          {events
-            .filter((e) => e.past)
-            .map((e) => (
-              <EventRow key={e.id} e={e} />
-            ))}
-        </ul>
+        {sparse ? (
+          <p className="text-[15px] text-wows-muted">
+            Nothing has happened yet. The first session is next week.
+          </p>
+        ) : (
+          <ul className="divide-y divide-wows-rule">
+            {events
+              .filter((e) => e.past)
+              .map((e) => (
+                <EventRow key={e.id} e={e} />
+              ))}
+          </ul>
+        )}
       </Section>
     </>
   );

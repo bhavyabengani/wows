@@ -22,10 +22,10 @@ import {
   type TrackKey,
 } from "@/preview-data";
 
-export function LeaderboardTabs() {
+export function LeaderboardTabs({ sparse = false }: { sparse?: boolean }) {
   const [track, setTrack] = useState<TrackKey>("calibration");
   const info = trackInfo.find((t) => t.key === track)!;
-  const rows = leaderboards[track];
+  const rows = sparse ? leaderboards[track].slice(0, 6) : leaderboards[track];
 
   return (
     <Tabs.Root value={track} onValueChange={(v) => setTrack(v as TrackKey)}>

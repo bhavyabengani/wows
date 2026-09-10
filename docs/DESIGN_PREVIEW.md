@@ -1,18 +1,41 @@
 # Design preview
 
-Branch `design-preview`, branched from the Phase 0 commit on `main`
-(`d39734a`). **Throwaway.** It exists so the team can react to the look,
-density and flows before the backend shapes them. Later phases may borrow
-layout and components from it, but this branch is **not the implementation
-and is not to be merged to `main` as-is.**
+Branch `design-preview`. **Throwaway.** It exists so the club can react to the
+look, the density and the flows of the whole product before committing to the
+remaining build. Later phases may borrow layout and components from it, but
+this branch is **not the implementation and is not to be merged to `main`.**
 
-## Why it branches from Phase 0, not the current `main`
+Start at [`/preview`](../src/app/preview/page.tsx): every screen in the
+product, in one list, linked. The preview banner links it from every page.
 
-The preview's ground rules are "no auth, no Supabase, no Drizzle, existing
-tests must pass". `main` had already received Phase 1 (auth, RLS, a login
-end-to-end test that expects `/dashboard` behind a sign-in) when the preview
-was built. A static `/dashboard` cannot satisfy that test, so the branch
-starts from the last Phase 0 commit, where both rules hold.
+## It is now rebased onto `main`, and that broke things worth knowing about
+
+Passes 1 and 2 branched from the last Phase 0 commit, because `main` already
+had Phase 1's auth and a login test that a static `/dashboard` could not
+satisfy. Pass 3 rebases onto current `main`, which carries Phase 2 (the
+snapshot), Phase 3 (the engine) and Phase 4 (the real allocation game). Three
+collisions had to be resolved, and each was resolved in favour of the preview,
+because a review artefact that needs a database is not a review artefact:
+
+1. **Duplicate routes.** `main` has the real `/dashboard`, `/play/allocate`
+   and `/play/allocate/debrief` under the `(member)` route group; the preview
+   has static versions at the bare paths. Two pages cannot resolve to one URL,
+   so `src/app/(member)` is deleted **on this branch only**.
+2. **The auth proxy gated everything.** `src/proxy.ts` sends signed-out
+   visitors of `/dashboard`, `/play`, `/leaderboard`, `/research/submit`,
+   `/research/mine`, `/learn`, `/events`, `/members`, `/me` and `/admin` to
+   `/login` — which is to say, the entire product. `isProtectedPath` returns
+   `false` on this branch, with `PROTECTED_PREFIXES` left in place above it so
+   a rebase back shows exactly what was disabled.
+3. **Two end-to-end specs test the real app.** `e2e/login.spec.ts` and
+   `e2e/allocate.spec.ts` need Supabase, a seeded database and the `(member)`
+   routes. Both are deleted here. They are untouched on `main`.
+
+**The smoke test was passing against the login page.** Every route asserted a
+banner, a footer and an `h1` — and `/login` has all three, so thirty-five
+redirects to sign-in read as thirty-five rendering screens. The spec now
+asserts where it actually landed. That fix is worth keeping when this branch
+is thrown away.
 
 ## Pass 2: what changed
 
@@ -58,27 +81,40 @@ dashboard, leaderboard and allocation page are in `docs/screenshots/`.
   record, the leaderboard drawer. Reduced motion disables all of them; the
   loading state is a plain "Loading standings…" line.
 
-## What was built
+## Pass 3: the rest of the product
 
-Every route in the brief, as static pages with hardcoded sample data:
+Every route in the site map is now reachable by clicking. New in this pass:
 
-| Route                           | What it shows                                                                                                                                         |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/`                             | What WOWS is, the four things the portal does, faculty oversight, apply, the no-advice policy stated plainly.                                         |
-| `/dashboard`                    | Standing across tracks, active game with progress, deadlines, next event. `?state=loading`, `empty`, `error` render the other states.                 |
-| `/leaderboard`                  | Six tracks as tabs, Calibration default. Method paragraph, last updated, minimum note, table; rows expand to their components. Overall shows weights. |
-| `/play/allocate`                | One replay step: date, corpus, class sliders that must total 100%, news card, cash lines, Advance (shows a saved state). In-simulation disclaimer.    |
-| `/play/allocate/debrief`        | Final corpus vs did-nothing and all-index, four behaviours with rupee cost, decision timeline with flags, what to try next.                           |
-| `/play/forecast`                | Open, submitted and locked questions in IST; probability slider and rationale; SVG reliability curve with Brier score.                                |
-| `/play/portfolio`               | Own positions with thesis, key risk and falsifier beside performance; open-position form with the 150-word gate.                                      |
-| `/research`, `/research/[slug]` | Search and filters, staleness flag, review-state chips; note page with metadata block, body, disclaimer top and bottom.                               |
-| `/learn`, `/learn/[slug]`       | Three tracks with progress; a module page with content, links and the Python-environment link on Quant modules.                                       |
-| `/events`                       | Upcoming and past, one at capacity with a waitlist button, RSVP state changes, `.ics` dead link.                                                      |
-| `/admin/audit`                  | Actor, action, entity, before, after, timestamp, reason.                                                                                              |
+| Route              | What it shows                                                                                                                     |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| `/about`           | The club, three verticals with leads and headcount, faculty oversight, and the four things it has committed in writing not to do. |
+| `/apply`           | The application form with word gates; submitting shows the applicant's own view of the four review states.                        |
+| `/play/quiz`       | A question, immediate feedback with the reasoning, and a summary against the club median. Explicitly not scored.                  |
+| `/play/quiz/kiosk` | Kiosk mode: an oxblood field, name entry, three questions, a score and a stall board. States that it touches no member account.   |
+| `/research/submit` | The submission form, with the falsifier as a gate rather than a field, and the rubric beside it while you write.                  |
+| `/research/mine`   | The author's own notes across draft, submitted, in review, changes requested and published, with reviewer comments on one.        |
+| `/members`         | The directory by vertical: name, cohort, role, published count. Deliberately no performance figures.                              |
+| `/me`              | Standing per track, curriculum progress, the full forecast history with Brier scores, published notes, attendance.                |
+| `/play/portfolio`  | Extended with closed positions: the outcome set directly beside the falsifier its author wrote before the fact.                   |
+| `/admin/members`   | Roster, roles, verticals, promote controls, and applicant review with a two-reader rule.                                          |
+| `/admin/seasons`   | The state machine, all four seasons, and what settling warns about — blocked while two questions are unresolved.                  |
+| `/admin/games`     | Scenarios, versions, instances, run counts, and the ranked-attempt rule stated where an admin will read it.                       |
+| `/admin/content`   | Forecast questions, curriculum, quiz banks and news cards, each with a state; includes a voided question and a rejected one.      |
+| `/admin/review`    | The research queue in three stages, the rubric, the faculty gate, and lint flags that a human still reads.                        |
+| `/preview`         | The index of every screen, linked, so a reviewer never guesses a URL.                                                             |
 
-Shell: header with logo placeholder, primary nav, fake user menu, mobile
-navigation (Radix Dialog), the fixed preview banner, and the persistent
-educational footer from Phase 0.
+Navigation: `Members` is not in the primary bar — the account menu carries
+the profile, portfolio, own research, quiz, kiosk and directory, plus About
+and Apply, plus the preview index. `Admin` sits in the masthead and every
+admin page carries a second-level nav.
+
+### The sparse states
+
+The club's first month is the normal case, not the edge case, so five screens
+have a `?state=sparse` variant: `/leaderboard` (six names), `/members` (six
+members), `/me` (four resolved forecasts, below the threshold and told so),
+`/research` (one note) and `/events` (one event, three RSVPs). They are linked
+from the preview index.
 
 ## What is fake
 
@@ -94,6 +130,52 @@ Two small pieces are real and worth keeping:
 - `src/components/preview/ui.tsx`: `SignedFigure` (sign + arrow + colour,
   H38), `When` (goes through the one timezone conversion point), table
   classes and the in-simulation disclaimer.
+
+## What looks wrong once you have seen every screen at once
+
+Nobody had seen the whole product in one sitting before this pass. These are
+contradictions between screens rather than problems with any one of them, so
+none of them would surface in a phase that builds a module at a time.
+
+1. **`/dashboard` and `/me` are the same screen twice.** Both open with
+   standing across tracks. One of them has to be the answer to "how am I
+   doing" and the other has to be something else, or members will learn to
+   check both.
+2. **The leaderboard is a dead end.** Fifteen names, none of them clickable.
+   There is no public member page at all — `/me` is the only profile, and it
+   is yours. Either names link somewhere or the directory absorbs the job.
+3. **A closed position and a research note about the same company never
+   meet.** The most interesting question a debrief raises — "what did I write
+   about this at the time?" — has no link to follow in either direction.
+4. **Only the most recent completed run has a debrief.** `/play/allocate/debrief`
+   shows the latest one and there is no list of past runs, so a member's first
+   attempt becomes unreachable the moment they finish a second.
+5. **`/play/quiz` has no idea which module it belongs to.** A quiz is part of a
+   curriculum module, but the route stands alone, so a member can land on it
+   with no context and no way back to the thing it was testing.
+6. **Applicants have nowhere to return to.** `/apply` submits and shows the
+   review states, but there is no route an applicant can come back to next
+   week. `/me` assumes membership, and the site map has no applicant home.
+7. **Two review queues that are the same job.** Forecast questions wait in
+   `/admin/content` and research notes wait in `/admin/review`. Both are
+   "member-authored things awaiting a state change", and a reviewer has to
+   already know which queue a thing is in to find it.
+8. **`/events` has no detail route.** An event has a description, a location
+   and an attendee list, and nowhere to put them. RSVP is the only thing you
+   can do to one.
+9. **Sparse data does not just look thinner, it wants a different screen.** Six
+   people is a list, not a ranked table. Four resolved forecasts is not a
+   reliability curve, and drawing one implies a confidence the data cannot
+   support. The `?state=sparse` variants make this visible rather than fixing
+   it.
+10. **Nothing on any screen says what to do next.** Every page reports state
+    accurately and none of them tells a member what they owe the club this
+    week. That is the difference between a portal people open twice a week and
+    one they open when reminded.
+11. **Kiosk mode cannot be what it needs to be inside this shell.** It should
+    replace the chrome entirely on a borrowed laptop at a stall; in the
+    preview it cannot, because the banner and footer must appear on every
+    route. Judge its _content_, not its containment.
 
 ## Design questions for the team
 
