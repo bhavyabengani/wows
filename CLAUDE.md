@@ -175,6 +175,13 @@ surface. Confirm or correct this list before starting Phase 1, and update the
   `revised_count` on every revision. The Phase 5 criterion "a submitted
   forecast cannot be edited" is to be read as "cannot be edited after
   `closes_at`", and the Phase 5 test must assert exactly that.
+- **Forecast rationales become club-visible once their question resolves.**
+  This is deliberate, decided 10 September 2026. It arrived in Phase 1 as a
+  clause in the `forecasts_select` policy rather than as a stated decision,
+  which is why it is written down here: reading how other people reasoned is
+  most of the educational value, and it follows the same pattern as H4's
+  theses-after-settlement. Until a question resolves, a member sees only
+  their own forecast; staff see all. Do not narrow this without a decision.
 - **New sign-ups are applicants.** A verified `@ashoka.edu.in` email lands
   as `applicant`; core promotes to `member`. The very first core in a fresh
   deployment is granted by `npm run db:bootstrap-core` (README).
