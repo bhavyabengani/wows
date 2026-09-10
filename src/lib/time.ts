@@ -67,6 +67,21 @@ const istFields = new Intl.DateTimeFormat("en-GB", {
   hourCycle: "h23",
 });
 
+const MONTH_NAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+] as const;
+
 const MONTH_ABBREVIATIONS = [
   "Jan",
   "Feb",
@@ -139,4 +154,19 @@ export function formatInIST(
   const date = `${wc.day} ${month} ${wc.year}`;
   if (!withTime) return date;
   return `${date}, ${pad2(wc.hour)}:${pad2(wc.minute)} ${DISPLAY_TIME_ZONE_LABEL}`;
+}
+
+/**
+ * The month an instant falls in, in IST: "March 2020".
+ *
+ * Narrative copy reads better with a month than with a date. "You sold in
+ * March 2020" is a sentence; "you sold in 31 Mar 2020" is a data field with a
+ * preposition in front of it. Lives here so that IST conversion still happens
+ * in exactly one place (H33).
+ */
+export function formatMonthInIST(instant: Instant): string {
+  const wc = toISTWallClock(instant);
+  const month = MONTH_NAMES[wc.month - 1];
+  if (!month) throw new Error(`Impossible month ${wc.month}`);
+  return `${month} ${wc.year}`;
 }

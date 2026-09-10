@@ -15,6 +15,7 @@ import { sql } from "drizzle-orm";
 import { createSystemDb } from "@/db/system";
 import * as s from "@/db/schema";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { loadScenarioFile } from "@/lib/scenarios";
 
 const DAY = 24 * 60 * 60 * 1000;
 const now = new Date();
@@ -328,42 +329,31 @@ async function main() {
         return i.id;
       };
 
-      // --- placeholder scenario + draft game ----------------------------------
+      // --- the v1 scenario, and an open game -----------------------------------
+      // The config is the committed one in data/scenarios, parsed and stored
+      // whole, so the row and the file cannot drift. `(name, version)` is
+      // unique and a config is never edited in place (H6): changing anything
+      // means writing v2 and seeding that instead.
+      const scenarioFile = loadScenarioFile("first-replay", 1);
       const [scenario] = await tx
         .insert(s.scenarios)
         .values({
-          name: "Placeholder replay",
-          version: 1,
-          seed: "20260908",
-          configJson: {
-            placeholder: true,
-            note:
-              "The universe and dates below are real, from snapshot v1. The config " +
-              "itself is still a placeholder: Phase 3 defines its shape, and writing " +
-              "fields the engine has not defined yet would be inventing an interface.",
-          },
-          // A real universe and window from snapshot v1. Bars for these
-          // symbols exist only after `npm run db:load-snapshot -- v1`.
-          universe: [
-            "RELIANCE",
-            "TCS",
-            "INFY",
-            "NIFTYBEES",
-            "GOLDBEES",
-            "FD1Y",
-            "CASH",
-          ],
-          startDate: "2019-01-01",
-          endDate: "2023-12-31",
+          name: scenarioFile.name,
+          version: scenarioFile.version,
+          seed: scenarioFile.seed,
+          configJson: scenarioFile.raw,
+          universe: scenarioFile.raw.universe,
+          startDate: scenarioFile.window.start,
+          endDate: scenarioFile.window.end,
         })
         .returning();
       if (!scenario) throw new Error("scenario");
       await tx.insert(s.gameInstances).values({
         scenarioId: scenario.id,
         seasonId: open.id,
-        opensAt: daysFromNow(7),
-        closesAt: daysFromNow(21),
-        state: "draft",
+        opensAt: daysFromNow(-1),
+        closesAt: daysFromNow(60),
+        state: "open",
       });
 
       // --- forecast questions: open, closed-unresolved, resolved --------------

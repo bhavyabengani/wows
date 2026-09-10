@@ -123,7 +123,7 @@ jobs:
       - name: Load market data snapshot v1
         run: npm run db:load-snapshot -- v1
 
-      - name: Database, RLS and snapshot loader tests
+      - name: Database, RLS, loader and run-flow tests
         run: npm run test:db
 
       - name: Resolve Playwright version

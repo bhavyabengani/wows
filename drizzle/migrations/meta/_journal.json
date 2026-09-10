@@ -43,6 +43,20 @@
       "when": 1788935991716,
       "tag": "0005_run_mode",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1788949566719,
+      "tag": "0006_run_ledger",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1788949850787,
+      "tag": "0007_rate_limits",
+      "breakpoints": true
     }
   ]
 }
