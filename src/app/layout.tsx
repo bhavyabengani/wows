@@ -37,6 +37,8 @@ export default function RootLayout({
       className={`${sans.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        {/* The lit ground. Fixed, behind everything, pointer-transparent. */}
+        <div className="ambient-bloom" aria-hidden="true" />
         <PreviewBanner />
         <SiteHeader />
         <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pt-8 pb-24 sm:px-6 md:pb-12">

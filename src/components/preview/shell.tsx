@@ -47,7 +47,7 @@ export function PreviewBanner() {
   return (
     <div
       role="status"
-      className="sticky top-0 z-40 border-b border-wows-rule bg-wows-paper px-4 py-1 text-center text-[12.5px] text-wows-muted"
+      className="glass sticky top-0 z-40 border-b border-wows-rule px-4 py-1 text-center text-[12.5px] text-wows-muted"
     >
       {PREVIEW_BANNER}{" "}
       <Link
@@ -64,14 +64,16 @@ export function PreviewBanner() {
 export function SiteHeader() {
   const pathname = usePathname();
   return (
-    <header className="bg-wows-accent text-wows-paper">
+    <header className="glass sticky top-[26px] z-30 border-b border-wows-rule text-wows-ink">
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-8 px-4 sm:px-6">
         <Link
           href="/"
-          className="flex items-baseline gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-wows-paper"
+          className="flex items-baseline gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-wows-accent-soft"
         >
-          <span className="text-lg font-bold tracking-tight">WOWS</span>
-          <span className="hidden text-sm text-wows-paper/70 sm:inline">
+          <span className="glow-text text-lg font-bold tracking-tight text-wows-accent">
+            WOWS
+          </span>
+          <span className="hidden text-sm text-wows-muted sm:inline">
             Portal
           </span>
         </Link>
@@ -86,10 +88,10 @@ export function SiteHeader() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "inline-flex h-14 items-center border-b-2 px-3 text-sm focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-wows-paper",
+                      "inline-flex h-14 items-center border-b-2 px-3 text-sm transition-colors focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-wows-accent-soft",
                       active
-                        ? "border-wows-paper font-semibold text-wows-paper"
-                        : "border-transparent text-wows-paper/75 hover:text-wows-paper",
+                        ? "glow-text border-wows-accent font-semibold text-wows-ink"
+                        : "border-transparent text-wows-muted hover:text-wows-ink",
                     )}
                   >
                     {item.label}
@@ -105,15 +107,15 @@ export function SiteHeader() {
             href="/admin/members"
             aria-current={pathname.startsWith("/admin") ? "page" : undefined}
             className={cn(
-              "hidden items-center gap-1.5 border px-2 py-1 text-xs sm:inline-flex focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-paper",
+              "hidden items-center gap-1.5 border px-2 py-1 text-xs transition-shadow sm:inline-flex focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft",
               pathname.startsWith("/admin")
-                ? "border-wows-paper font-semibold text-wows-paper"
-                : "border-wows-paper/40 text-wows-paper/75 hover:border-wows-paper hover:text-wows-paper",
+                ? "glow-accent border-wows-accent font-semibold text-wows-ink"
+                : "border-wows-rule text-wows-muted hover:border-wows-accent hover:text-wows-ink",
             )}
           >
             Admin
           </Link>
-          <span className="numeric hidden text-xs text-wows-paper/70 lg:inline">
+          <span className="numeric hidden text-xs text-wows-data lg:inline">
             {season.name} · wk {season.week}/{season.weeks}
           </span>
           <UserMenu />
@@ -128,7 +130,7 @@ function UserMenu() {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger
         aria-label={`Account: ${previewUser.name}`}
-        className="grid size-8 place-items-center rounded-full bg-wows-paper text-xs font-semibold text-wows-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-paper"
+        className="glow-accent grid size-8 place-items-center rounded-full bg-wows-accent text-xs font-semibold text-wows-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft"
       >
         {previewUser.initials}
       </DropdownMenu.Trigger>
@@ -136,7 +138,7 @@ function UserMenu() {
         <DropdownMenu.Content
           align="end"
           sideOffset={8}
-          className="z-50 w-64 border border-wows-rule bg-wows-surface p-1 text-sm"
+          className="glass z-50 w-64 border border-wows-rule p-1 text-sm"
         >
           <div className="px-2 py-2">
             <p className="font-semibold text-wows-ink">{previewUser.name}</p>
@@ -150,7 +152,7 @@ function UserMenu() {
             <DropdownMenu.Item key={item.href} asChild>
               <Link
                 href={item.href}
-                className="block px-2 py-1.5 text-wows-ink outline-none data-[highlighted]:bg-wows-paper"
+                className="block px-2 py-1.5 text-wows-ink outline-none data-[highlighted]:bg-wows-accent/15"
               >
                 {item.label}
               </Link>
@@ -161,7 +163,7 @@ function UserMenu() {
             <DropdownMenu.Item key={item.href} asChild>
               <Link
                 href={item.href}
-                className="block px-2 py-1.5 text-wows-ink outline-none data-[highlighted]:bg-wows-paper"
+                className="block px-2 py-1.5 text-wows-ink outline-none data-[highlighted]:bg-wows-accent/15"
               >
                 {item.label}
               </Link>
@@ -171,14 +173,14 @@ function UserMenu() {
           <DropdownMenu.Item asChild>
             <Link
               href="/preview"
-              className="block px-2 py-1.5 text-wows-accent outline-none data-[highlighted]:bg-wows-paper"
+              className="block px-2 py-1.5 text-wows-accent outline-none data-[highlighted]:bg-wows-accent/15"
             >
               Preview index: every screen
             </Link>
           </DropdownMenu.Item>
           <DropdownMenu.Separator className="my-1 h-px bg-wows-rule" />
           <DropdownMenu.Item
-            className="px-2 py-1.5 text-wows-muted outline-none data-[highlighted]:bg-wows-paper"
+            className="px-2 py-1.5 text-wows-muted outline-none data-[highlighted]:bg-wows-accent/15"
             onSelect={(e) => e.preventDefault()}
           >
             Sign out (disabled in preview)
@@ -195,7 +197,7 @@ export function MobileNav() {
   return (
     <nav
       aria-label="Primary, mobile"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-wows-rule bg-wows-surface md:hidden"
+      className="glass fixed inset-x-0 bottom-0 z-40 border-t border-wows-rule md:hidden"
     >
       <ul className="grid grid-cols-6">
         {NAV.map((item) => {
@@ -207,8 +209,10 @@ export function MobileNav() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex h-14 flex-col items-center justify-center gap-0.5 text-[11px] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-wows-accent-soft",
-                  active ? "font-semibold text-wows-accent" : "text-wows-muted",
+                  "flex h-14 flex-col items-center justify-center gap-0.5 text-[11px] transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-wows-accent-soft",
+                  active
+                    ? "glow-text font-semibold text-wows-accent"
+                    : "text-wows-muted",
                 )}
               >
                 <Icon

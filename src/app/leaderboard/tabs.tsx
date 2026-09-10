@@ -40,7 +40,7 @@ export function LeaderboardTabs({ sparse = false }: { sparse?: boolean }) {
               value={t.key}
               className={cn(
                 "px-3.5 py-2.5 text-[15px] whitespace-nowrap focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-wows-accent-soft",
-                "data-[state=active]:bg-wows-accent data-[state=active]:font-semibold data-[state=active]:text-wows-paper",
+                "data-[state=active]:glow-accent data-[state=active]:bg-wows-accent data-[state=active]:font-semibold data-[state=active]:text-wows-paper",
                 "data-[state=inactive]:text-wows-muted data-[state=inactive]:hover:text-wows-ink",
                 t.key === "calibration" && "font-semibold",
               )}
@@ -140,7 +140,12 @@ function Row({ row }: { row: (typeof leaderboards)[TrackKey][number] }) {
     );
   return (
     <>
-      <tr className={cn(you && "bg-wows-accent/6")}>
+      <tr
+        className={cn(
+          you &&
+            "bg-wows-accent/12 shadow-[inset_3px_0_0_0_var(--wows-accent)]",
+        )}
+      >
         <td
           className={cn(tdNum, "pl-0 pr-3 text-left text-[17px] font-medium")}
         >

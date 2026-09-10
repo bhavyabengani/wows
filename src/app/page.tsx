@@ -5,9 +5,19 @@ import { landing } from "@/preview-data";
 export default function LandingPage() {
   return (
     <main className="flex flex-col gap-14">
-      <section className="max-w-4xl">
+      <section className="relative max-w-4xl">
+        {/* A live status line, in the data colour: the instrument is running. */}
+        <p className="numeric mb-5 flex items-center gap-2.5 text-[11px] tracking-[0.2em] text-wows-data uppercase">
+          <span className="relative flex size-1.5">
+            <span className="absolute inline-flex size-full animate-ping rounded-full bg-wows-data opacity-70" />
+            <span className="relative inline-flex size-1.5 rounded-full bg-wows-data" />
+          </span>
+          Monsoon 2026 · week 3 of 15 · season open
+        </p>
         <h1 className="text-[40px] leading-[1.02] font-bold tracking-tight text-wows-ink sm:text-[64px]">
-          Wolves of Wall Street
+          Wolves of
+          <br />
+          <span className="figure-lit glow-text">Wall Street</span>
         </h1>
         <p className="mt-6 max-w-3xl text-[22px] leading-snug text-wows-ink sm:text-[28px]">
           Ashoka University&apos;s student finance club. We practise reasoning
@@ -29,7 +39,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section aria-labelledby="four" className="border-t border-wows-ink pt-5">
+      <section aria-labelledby="four" className="rule-lit border-t-2 pt-5">
         <h2
           id="four"
           className="text-xl font-semibold tracking-tight text-wows-ink"
@@ -46,7 +56,7 @@ export default function LandingPage() {
                 <span className="numeric mr-2 text-wows-muted">0{i + 1}</span>
                 {item.title}
               </h3>
-              <p className="numeric row-span-2 self-start text-right text-[32px] leading-none font-medium text-wows-ink">
+              <p className="numeric figure-lit row-span-2 self-start text-right text-[32px] leading-none font-medium">
                 {item.figure}
                 <span className="mt-1 block max-w-[9rem] text-right font-sans text-[12.5px] leading-tight font-normal text-wows-muted">
                   {item.unit}

@@ -76,9 +76,9 @@ export function Panel({
     <div
       className={cn(
         "border p-4 sm:p-5",
-        tone === "surface" && "border-wows-rule bg-wows-surface",
+        tone === "surface" && "glass border-wows-rule",
         tone === "accent" &&
-          "border-wows-rule border-l-[3px] border-l-wows-accent bg-wows-surface",
+          "glass border-wows-rule border-l-[3px] border-l-wows-accent shadow-[-8px_0_24px_-12px_var(--wows-glow)]",
         className,
       )}
     >
@@ -177,13 +177,14 @@ export function Chip({
     <span
       className={cn(
         "inline-flex items-center border px-1.5 py-0.5 text-xs font-medium whitespace-nowrap",
-        tone === "neutral" && "border-wows-rule bg-wows-paper text-wows-muted",
+        tone === "neutral" &&
+          "border-wows-rule bg-wows-surface text-wows-muted",
         tone === "accent" &&
-          "border-wows-accent bg-wows-accent text-wows-surface",
+          "glow-accent border-wows-accent bg-wows-accent text-wows-paper",
         tone === "positive" &&
-          "border-wows-positive/40 bg-wows-surface text-wows-positive",
+          "border-wows-positive/45 bg-wows-positive/10 text-wows-positive",
         tone === "warn" &&
-          "border-wows-accent/40 bg-wows-surface text-wows-accent",
+          "border-wows-accent/45 bg-wows-accent/10 text-wows-accent-soft",
         className,
       )}
     >
@@ -222,10 +223,16 @@ export function TableWrap({
 
 export const th =
   "py-2 pr-4 text-left text-xs font-medium text-wows-muted border-b border-wows-rule";
-export const thNum = cn(th, "text-right pr-0 pl-4");
+// `pr-0` is for the *final* column, which sits flush with the table edge.
+// Applied unconditionally it welds a numeric column to whatever follows it
+// ("0.163Yes"), so the flush treatment is scoped to the last cell.
+export const thNum = cn(th, "text-right pl-4 pr-4 last:pr-0");
 export const td =
   "py-2.5 pr-4 align-top text-wows-ink border-b border-wows-rule";
-export const tdNum = cn(td, "numeric text-right pr-0 pl-4 whitespace-nowrap");
+export const tdNum = cn(
+  td,
+  "numeric text-right pl-4 pr-4 whitespace-nowrap last:pr-0",
+);
 
 /** Definition list in two columns for metadata blocks. */
 export function Meta({
@@ -250,7 +257,7 @@ export function SimulationDisclaimer() {
   return (
     <p
       role="note"
-      className="border-l-2 border-wows-rule pl-3 text-[12.5px] leading-relaxed text-wows-muted"
+      className="border-l-2 border-wows-data/50 pl-3 text-[12.5px] leading-relaxed text-wows-muted"
     >
       Simulation. Historical replay on a pinned data snapshot; no real money, no
       live prices, and nothing here is advice. You are being assessed on your
@@ -294,7 +301,7 @@ export function DisplayMoney({
   return (
     <span
       className={cn(
-        "numeric font-medium tracking-tight text-wows-ink",
+        "numeric figure-lit font-medium tracking-tight",
         size === "lg"
           ? "text-[40px] leading-none sm:text-[48px]"
           : "text-[28px] leading-none",
@@ -313,13 +320,13 @@ export function Sparkline({
   width = 72,
   height = 20,
   className,
-  tone = "ink",
+  tone = "data",
 }: {
   values: number[];
   width?: number;
   height?: number;
   className?: string;
-  tone?: "ink" | "muted" | "accent" | "positive";
+  tone?: "ink" | "muted" | "accent" | "positive" | "data";
 }) {
   if (values.length < 2) return null;
   const min = Math.min(...values);
@@ -338,8 +345,10 @@ export function Sparkline({
       : tone === "positive"
         ? "var(--wows-positive)"
         : tone === "muted"
-          ? "var(--wows-muted)"
-          : "var(--wows-ink)";
+          ? "var(--wows-data-dim)"
+          : tone === "ink"
+            ? "var(--wows-ink)"
+            : "var(--wows-data)";
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
@@ -352,10 +361,20 @@ export function Sparkline({
         points={pts.map(([x, y]) => `${x},${y}`).join(" ")}
         fill="none"
         stroke={stroke}
+        strokeWidth={2.5}
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        opacity={0.22}
+      />
+      <polyline
+        points={pts.map(([x, y]) => `${x},${y}`).join(" ")}
+        fill="none"
+        stroke={stroke}
         strokeWidth={1.25}
         strokeLinejoin="round"
         strokeLinecap="round"
       />
+      <circle cx={last[0]} cy={last[1]} r={3.25} fill={stroke} opacity={0.28} />
       <circle cx={last[0]} cy={last[1]} r={1.75} fill={stroke} />
     </svg>
   );
@@ -381,9 +400,10 @@ export function StepStrip({
           key={n}
           aria-current={n === current ? "step" : undefined}
           className={cn(
-            "h-3 w-1.5 transition-colors duration-300",
-            n < current && "bg-wows-ink/35",
-            n === current && "h-4 bg-wows-accent",
+            "h-3 w-1.5 transition-all duration-300",
+            n < current && "bg-wows-data/45",
+            n === current &&
+              "h-4 bg-wows-accent shadow-[0_0_10px_0_var(--wows-glow)]",
             n > current && "bg-wows-rule",
           )}
         />

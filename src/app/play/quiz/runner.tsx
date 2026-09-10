@@ -103,11 +103,11 @@ export function QuizRunner() {
                   className={cn(
                     "flex w-full items-start gap-3 border px-3 py-2.5 text-left text-[15px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wows-accent-soft",
                     !revealed &&
-                      "border-wows-rule bg-wows-surface text-wows-ink hover:border-wows-ink",
+                      "border-wows-rule bg-wows-surface text-wows-ink transition-colors hover:border-wows-accent hover:bg-wows-accent/5",
                     showRight &&
-                      "border-wows-positive bg-wows-surface text-wows-ink",
+                      "border-wows-positive bg-wows-positive/10 text-wows-ink shadow-[0_0_22px_-8px_rgb(46_232_143/0.7)]",
                     showWrong &&
-                      "border-wows-accent bg-wows-surface text-wows-ink",
+                      "border-wows-accent bg-wows-accent/10 text-wows-ink",
                     revealed &&
                       !showRight &&
                       !showWrong &&

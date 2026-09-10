@@ -3,37 +3,56 @@
 @import "shadcn/tailwind.css";
 
 /*
- * Design tokens — WOWS Portal
+ * Design tokens — WOWS Portal, DARK PREVIEW
  * ---------------------------------------------------------------------------
- * The interface is light and paper-toned. There is no dark theme: the brand
- * oxblood (#5E011D) has very low luminance and cannot carry accent duty on a
- * dark surface, so a dark trading-terminal look is ruled out by design.
+ * This branch deliberately breaks the rule in CLAUDE.md > Design direction
+ * ("there is no dark theme") to see what the club thinks of the opposite.
+ * It is a throwaway comparison against `design-preview`, not a decision.
  *
- * Layer 1 — brand tokens (`--wows-*`). The single source of truth. Change a
- *           value here and it propagates everywhere below.
- * Layer 2 — shadcn/ui semantic variables (`--background`, `--primary`, ...).
- *           Derived from layer 1 so shadcn primitives pick up the palette.
- *           Two shadcn names (`--muted`, `--accent`) mean *backgrounds* in
- *           shadcn but *text colour* / *brand* in our token table, which is
- *           why layer 1 carries the `wows-` prefix instead of colliding.
- * Layer 3 — Tailwind utilities, generated from the `@theme` block below:
- *           bg-wows-paper, text-wows-ink, text-wows-muted, border-wows-rule,
- *           bg-wows-accent, text-wows-accent-soft, text-wows-positive, ...
+ * The reason the rule existed is real and had to be solved rather than
+ * ignored: the brand oxblood #5E011D sits at 19% lightness and simply dies on
+ * a dark ground — against #0A0710 it clears a contrast ratio of about 1.6:1,
+ * which is invisible. So the accent here is a *descendant* of oxblood, not
+ * oxblood: the same hue family (350°), lifted into a luminance that can carry
+ * a surface and a figure on black. True oxblood is kept as `--wows-oxblood`
+ * for anything that has to match the club's printed material.
  *
- * Font: system stack for now. Font selection is deferred to Phase 11 — see
- * CLAUDE.md > Design direction for the constraints on that choice.
+ * The second colour is new. A single accent on black reads as one brand
+ * colour on a dark template; a hot crimson paired with an electric cyan reads
+ * as an instrument. Cyan carries data — sparklines, grid, live values — and
+ * crimson carries brand and action. They never mean the same thing.
+ *
+ * Layer 1 — brand tokens (`--wows-*`). The single source of truth. Because
+ *           every screen already draws from these, this file is most of the
+ *           retheme: all 28 routes change when these eight values change.
+ * Layer 2 — shadcn/ui semantic variables, derived from layer 1.
+ * Layer 3 — Tailwind utilities generated from the `@theme` block.
+ *
+ * H38 still holds. Colour never carries direction alone anywhere in the
+ * interface: a gain is green *and* "▲" *and* "+". On this ground that matters
+ * more, not less, because saturated colour on black is where hue perception
+ * is least reliable.
  */
 
 :root {
   /* Layer 1 — brand tokens */
-  --wows-paper: #f6f5f2; /* page background — cool, slightly grey paper */
-  --wows-surface: #ffffff; /* cards, tables, panels */
-  --wows-ink: #1a1418; /* primary text */
-  --wows-muted: #6b6469; /* secondary text, labels */
-  --wows-rule: #e3dfda; /* borders, table rules, dividers */
-  --wows-accent: #5e011d; /* brand, primary buttons, negative figures */
-  --wows-accent-soft: #8c1030; /* hover/pressed states, links */
-  --wows-positive: #14603c; /* gains */
+  --wows-paper: #0a0710; /* page ground — near-black, carrying oxblood's hue */
+  --wows-surface: #14101c; /* panels and tables, lifted off the ground */
+  --wows-ink: #f2ecf5; /* primary text */
+  --wows-muted: #9c92aa; /* secondary text, labels — 7.1:1 on the ground */
+  --wows-rule: #2b2138; /* hairlines, table rules, dividers */
+  --wows-accent: #ff2e63; /* oxblood's descendant: brand, action, losses */
+  --wows-accent-soft: #ff7aa2; /* links and small text, where 5.4:1 is thin */
+  --wows-positive: #2ee88f; /* gains */
+
+  /* Layer 1b — tokens this dark treatment adds */
+  --wows-oxblood: #5e011d; /* the true brand colour, for print and light */
+  --wows-data: #4de8ff; /* electric cyan: data, never brand, never action */
+  --wows-data-dim: #1c6d80; /* cyan at rest, for inactive series */
+  --wows-glow: rgb(255 46 99 / 0.45); /* accent bloom */
+  --wows-glow-data: rgb(77 232 255 / 0.35); /* cyan bloom */
+  --wows-grid: rgb(255 255 255 / 0.028); /* the backdrop lattice */
+  --wows-glass: rgb(20 16 28 / 0.72); /* translucent chrome over the grid */
 
   /* Layer 2 — shadcn/ui semantic variables, derived from layer 1 */
   --background: var(--wows-paper);
@@ -87,6 +106,10 @@
   --color-wows-accent: var(--wows-accent);
   --color-wows-accent-soft: var(--wows-accent-soft);
   --color-wows-positive: var(--wows-positive);
+  --color-wows-oxblood: var(--wows-oxblood);
+  --color-wows-data: var(--wows-data);
+  --color-wows-data-dim: var(--wows-data-dim);
+  --color-wows-glass: var(--wows-glass);
 
   /* Design preview pairing (docs/DESIGN_DIRECTION.md): Schibsted Grotesk
      for interface and headlines, IBM Plex Mono for every number. Loaded by
@@ -182,6 +205,155 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+ * The dark treatment
+ *
+ * Three things separate this from "the light preview with the colours
+ * inverted": the ground is lit rather than flat, chrome is glass over that
+ * ground rather than a solid bar, and light is a material — an accent surface
+ * bleeds onto what surrounds it, the way an emitter does.
+ * ------------------------------------------------------------------------- */
+
+/* Glass: translucent chrome that lets the lattice and the bloom show through,
+   with a hairline top highlight so the plane has an edge. */
+@utility glass {
+  background: var(--wows-glass);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  border-color: var(--wows-rule);
+  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.05);
+}
+
+/* An emitter: the element and the air around it. */
+@utility glow-accent {
+  box-shadow:
+    0 0 0 1px rgb(255 46 99 / 0.35),
+    0 0 24px -4px var(--wows-glow),
+    inset 0 1px 0 0 rgb(255 255 255 / 0.08);
+}
+@utility glow-data {
+  box-shadow:
+    0 0 0 1px rgb(77 232 255 / 0.3),
+    0 0 22px -6px var(--wows-glow-data);
+}
+@utility glow-text {
+  text-shadow: 0 0 18px var(--wows-glow);
+}
+@utility glow-text-data {
+  text-shadow: 0 0 16px var(--wows-glow-data);
+}
+
+/* A hairline that emits along one edge, for section rules that should read as
+   lit rather than drawn. */
+@utility rule-lit {
+  border-image: linear-gradient(
+      90deg,
+      var(--wows-accent) 0%,
+      var(--wows-rule) 38%,
+      var(--wows-rule) 100%
+    )
+    1;
+}
+
+/* Display figures get a little chromatic lift so a number is the brightest
+   object on its screen, which is the point of the whole design direction. */
+@utility figure-lit {
+  background: linear-gradient(
+    180deg,
+    var(--wows-ink) 0%,
+    color-mix(in oklab, var(--wows-ink) 72%, var(--wows-data)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@layer base {
+  /*
+   * The lit ground: two blooms and a lattice, fixed behind everything, so
+   * scrolling moves content across a light source instead of dragging a
+   * texture with it. Pure black would be flat and would crush the panels;
+   * the ground carries oxblood's hue at 4% lightness instead.
+   */
+  body {
+    background-color: var(--wows-paper);
+    background-image:
+      radial-gradient(
+        ellipse 80% 55% at 8% -10%,
+        rgb(255 46 99 / 0.16),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 100% 8%,
+        rgb(77 232 255 / 0.1),
+        transparent 62%
+      ),
+      linear-gradient(var(--wows-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--wows-grid) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      100% 100%,
+      64px 64px,
+      64px 64px;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+  /* Selection reads as the instrument, not as the OS. */
+  ::selection {
+    background: rgb(255 46 99 / 0.32);
+    color: var(--wows-ink);
+  }
+
+  /* Focus has to survive on a lit ground: a ring alone disappears into the
+     bloom, so it gets its own halo. */
+  :focus-visible {
+    outline-color: var(--wows-accent-soft);
+    box-shadow: 0 0 0 4px rgb(255 46 99 / 0.18);
+  }
+
+  /* Hairlines are lighter on dark than the same rule reads on paper. */
+  hr,
+  table {
+    border-color: var(--wows-rule);
+  }
+}
+
+/*
+ * One ambient motion, against the direction's usual rule of none: the ground
+ * breathes over twelve seconds. It is on the backdrop rather than on content,
+ * so nothing a member is reading or clicking ever moves, and reduced motion
+ * removes it entirely through the global rule below.
+ */
+@keyframes ground-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@utility ambient-bloom {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 46% 34% at 22% 12%,
+      rgb(255 46 99 / 0.13),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 82% 78%,
+      rgb(77 232 255 / 0.09),
+      transparent 72%
+    );
+  animation: ground-breathe 12s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -189,5 +361,12 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  /* The breathing ground is ambient rather than responsive, so reduced motion
+     removes the animation and settles it at full strength instead of leaving
+     it frozen at whatever opacity the first frame happened to be. */
+  .ambient-bloom {
+    animation: none !important;
+    opacity: 1;
   }
 }
