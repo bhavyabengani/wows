@@ -69,6 +69,10 @@ set of numbers from the ones the engine actually produces.
    built from them alone would be missing its cash flows, and H13 says the
    ledger is the truth. Trades are still projected into `orders` and `fills`
    as the Phase 1 schema requires; a test asserts the two agree.
+   **Confirmed on 10 September 2026**: the brief's data model sketch was
+   explicitly not prescriptive on exact columns, and this is the case it did
+   not anticipate. The projection test into `orders` and `fills` is what keeps
+   the deviation honest.
 2. **No TanStack Query.** It is in the decided stack, but the run screen needs
    one request at a time and no cache. The brief explicitly names a warmed
    query cache as a way to break H15, so not having one is a smaller surface,
@@ -80,11 +84,10 @@ set of numbers from the ones the engine actually produces.
    `data/scenarios/first-replay/v1/`, and opens the game. Phase 1's
    placeholder config could not be parsed by the engine.
 
-## Practice-run rules: implemented as recommended, pending confirmation
+## Practice-run rules: confirmed 10 September 2026
 
-Open question 3 was not answered, and the brief's own recommendation was
-implemented rather than leaving the phase unfinished. **This is the one thing
-in Phase 4 that is not confirmed.**
+Open question 3 was not answered before the phase shipped, so the brief's own
+recommendation was implemented. It has since been confirmed as built.
 
 - A ranked run cannot be restarted; a second one is refused with a 409 that
   points at practice.
@@ -92,12 +95,13 @@ in Phase 4 that is not confirmed.**
   on the debrief.
 - `runs.state` has an `abandoned` value and `abandonRun` marks it. Nothing is
   deleted, because the ledger is append-only.
-
-**Not implemented, because it needs a decision:** whether abandoning a ranked
-run consumes the attempt. Today an abandoned ranked run still occupies the
-member's one attempt, since the check counts ranked runs regardless of state.
-If abandonment should release the attempt, that is a one-line change to the
-query in `startRun` and a test.
+- **Abandoning a ranked run consumes the attempt.** The check counts ranked
+  runs regardless of state, and that is deliberate. Releasing the attempt
+  would let a member start a ranked run, see March 2020 coming, abandon, and
+  restart knowing what is ahead: an information leak dressed as a fairness
+  feature, defeating H15 at the human layer rather than the network layer.
+  The cost is a member who loses a run to a genuine accident, and that is to
+  be handled as an admin action with an audit entry (Phase 9), not as a rule.
 
 ## Acceptance criteria
 
@@ -125,13 +129,30 @@ query in `startRun` and a test.
   again. This is the clearest gap in the phase.
 - **A leaderboard**, per the decisions: Phase 6.
 
-## Open questions for Phase 5
+## Still outstanding after Phase 5 began
 
-1. **Abandonment and the ranked attempt**, as above.
-2. **The news-card format**, as above: reconcile the engine's schema with the
-   decided one, and add the `written_from` check that makes the hindsight rule
-   mechanical.
-3. **The order preview.** Worth building before members play, or acceptable as
-   is?
-4. **Ownership** is now recorded rather than unknown, but the migration to a
+1. **The order preview.** The brief asked to show the resulting trades and
+   their cost before the player commits. Not built; the clearest gap in the
+   phase, and still unscheduled.
+2. **The news-card format**: reconcile the engine's schema (`step`,
+   `dateline`, `headline`, `body`, `source`) with the decided one
+   (`step_date`, `source_url`, `written_from`), and add the
+   `written_from <= step_date` check that makes the hindsight rule mechanical.
+   Belongs with the first real card.
+3. **Ownership** is recorded rather than unknown, but the migration to a
    club-owned account is still pending and still nobody's dated task.
+
+## Settled since
+
+- **Abandonment and the ranked attempt**: settled above, 10 September 2026.
+- **The `run_ledger_entries` deviation**: endorsed, 10 September 2026.
+
+## What a real run surfaced
+
+Playing the game rather than testing it found three things no test could
+have: a zero that read as a bug (a run with no trades after the opening has no
+gap to report, so the debrief now says so in words rather than showing
+`₹0.00`), dates that read as data, and loading copy inherited from the wrong
+screen. The standing instruction from this is to get four or five members to
+play a full run and write down what confused them, before Phase 6 hardens
+anything on top.
