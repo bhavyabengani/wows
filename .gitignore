@@ -41,3 +41,6 @@ yarn-error.log*
 data/ingest/.venv/
 data/ingest/**/__pycache__/
 data/ingest/.pytest_cache/
+
+# Local editor/agent config
+.claude/
