@@ -222,10 +222,16 @@ export function TableWrap({
 
 export const th =
   "py-2 pr-4 text-left text-xs font-medium text-wows-muted border-b border-wows-rule";
-export const thNum = cn(th, "text-right pr-0 pl-4");
+// `pr-0` is for the *final* column, which sits flush with the table edge.
+// Applied unconditionally it welds a numeric column to whatever follows it
+// ("0.163Yes"), so the flush treatment is scoped to the last cell.
+export const thNum = cn(th, "text-right pl-4 pr-4 last:pr-0");
 export const td =
   "py-2.5 pr-4 align-top text-wows-ink border-b border-wows-rule";
-export const tdNum = cn(td, "numeric text-right pr-0 pl-4 whitespace-nowrap");
+export const tdNum = cn(
+  td,
+  "numeric text-right pl-4 pr-4 whitespace-nowrap last:pr-0",
+);
 
 /** Definition list in two columns for metadata blocks. */
 export function Meta({
